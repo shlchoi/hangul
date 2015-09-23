@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Korea 101R</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="nav_menu_hangul">Hangul</string>
+    <string name="nav_menu_dictation">Dictation</string>
+
+    <string name="dictation_check">Check</string>
+</resources>

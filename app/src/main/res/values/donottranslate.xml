@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Supported languages -->
+    <string-array name="hangulChars" translatable="false">
+        <item>ㄱ</item>
+        <item>ㄴ</item>
+        <item>ㄷ</item>
+        <item>ㄹ</item>
+        <item>ㅁ</item>
+        <item>ㅂ</item>
+        <item>ㅅ</item>
+        <item>ㅇ</item>
+        <item>ㅈ</item>
+        <item>ㅊ</item>
+        <item>ㅋ</item>
+        <item>ㅌ</item>
+        <item>ㅍ</item>
+        <item>ㅎ</item>
+        <item>ㅏ</item>
+        <item>ㅓ</item>
+        <item>ㅗ</item>
+        <item>ㅜ</item>
+        <item>ㅡ</item>
+        <item>ㅣ</item>
+        <item>ㅑ</item>
+        <item>ㅕ</item>
+        <item>ㅛ</item>
+        <item>ㅠ</item>
+        <item>ㄲ</item>
+        <item>ㄸ</item>
+        <item>ㅃ</item>
+        <item>ㅆ</item>
+        <item>ㅉ</item>
+        <item>ㅐ</item>
+        <item>ㅒ</item>
+        <item>ㅔ</item>
+        <item>ㅖ</item>
+        <item>ㅢ</item>
+        <item>ㅘ</item>
+        <item>ㅙ</item>
+        <item>ㅚ</item>
+        <item>ㅝ</item>
+        <item>ㅞ</item>
+        <item>ㅟ</item>
+    </string-array>
+
+    <!-- Language values -->
+    <string-array name="hangulPronunciations" translatable="false">
+        <item>g</item>
+        <item>n</item>
+        <item>d</item>
+        <item>r</item>
+        <item>m</item>
+        <item>b</item>
+        <item>s</item>
+        <item>ng</item>
+        <item>j</item>
+        <item>ch</item>
+        <item>k</item>
+        <item>t</item>
+        <item>p</item>
+        <item>h</item>
+        <item>a</item>
+        <item>eo</item>
+        <item>o</item>
+        <item>u</item>
+        <item>eu</item>
+        <item>i</item>
+        <item>ya</item>
+        <item>yeo</item>
+        <item>yo</item>
+        <item>yu</item>
+        <item>kk</item>
+        <item>tt</item>
+        <item>pp</item>
+        <item>ss</item>
+        <item>jj</item>
+        <item>ae</item>
+        <item>yae</item>
+        <item>e</item>
+        <item>ye</item>
+        <item>ui</item>
+        <item>wa</item>
+        <item>wae</item>
+        <item>oe</item>
+        <item>wo</item>
+        <item>we</item>
+        <item>wi</item>
+    </string-array>
+
+    <string-array name="dictation_set_1">
+        <item>ga-gu</item>
+        <item>no-ran</item>
+        <item>do-jang</item>
+        <item>si-gol</item>
+        <item>ban-chan</item>
+        <item>eo-reum</item>
+        <item>jeon-cha</item>
+        <item>a-chim</item>
+        <item>jeo-nyeok</item>
+        <item>byeong-won</item>
+        <item>gol-mok</item>
+        <item>ra-myeon</item>
+        <item>man-du</item>
+        <item>an-gyeong</item>
+        <item>pa-jeon</item>
+        <item>hyang-gi</item>
+        <item>dal-ryeok</item>
+        <item>sin-mun</item>
+        <item>gam-ja</item>
+        <item>pung-sok</item>
+    </string-array>
+
+    <string-array name="dictation_set_1_answers">
+        <item>가구</item>
+        <item>노란</item>
+        <item>도장</item>
+        <item>시골</item>
+        <item>반찬</item>
+        <item>어름</item>
+        <item>전차</item>
+        <item>아침</item>
+        <item>저녁</item>
+        <item>병원</item>
+        <item>골목</item>
+        <item>라면</item>
+        <item>만두</item>
+        <item>안경</item>
+        <item>파전</item>
+        <item>향기</item>
+        <item>달력</item>
+        <item>신문</item>
+        <item>감자</item>
+        <item>풍속</item>
+    </string-array>
+
+</resources>

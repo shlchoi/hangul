@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/dictation_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        >
+
+        <TextView
+            android:id="@+id/word_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="24sp"
+            tools:text="dal-ryeok"/>
+
+        <EditText
+            android:id="@+id/input_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textSize="32sp"
+            tools:text="달력"/>
+
+        <TextView
+            android:id="@+id/hint_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            tools:text="달력"
+            tools:visibility="visible"/>
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/dictation_check_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/dictation_check"/>
+
+</RelativeLayout>

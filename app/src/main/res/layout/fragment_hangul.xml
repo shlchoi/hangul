@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hangul_fragment_relative_layout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="?android:attr/actionBarSize"
+    >
+
+    <TextView
+        android:id="@+id/character_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textSize="196sp"
+        android:includeFontPadding="false"
+        tools:text="ㅊ"/>
+
+    <TextView
+        android:id="@+id/hint_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/character_text_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:textSize="32sp"
+        android:visibility="gone"
+        tools:text="ch"
+        tools:visibility="visible"/>
+
+</RelativeLayout>
