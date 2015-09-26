@@ -11,6 +11,7 @@ android:
 
     - platform-tools
     - tools
+    - extra-android-support
 
 notifications:
   email: false
