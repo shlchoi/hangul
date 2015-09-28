@@ -22,7 +22,8 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
 
         <TextView
             android:id="@+id/toolbar_action_tv"
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:includeFontPadding="false"
+            android:textColor="@android:color/white"
             tools:text="@string/nav_menu_hangul" />
 
         </android.support.v7.widget.Toolbar>

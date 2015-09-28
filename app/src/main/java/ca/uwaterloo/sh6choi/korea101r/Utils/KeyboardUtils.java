@@ -1,4 +1,4 @@
-package ca.uwaterloo.sh6choi.korea101r.Utils;
+package ca.uwaterloo.sh6choi.korea101r.utils;
 
 import android.app.Activity;
 import android.content.Context;

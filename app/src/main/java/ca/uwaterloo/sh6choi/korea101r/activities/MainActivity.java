@@ -2,8 +2,9 @@ package ca.uwaterloo.sh6choi.korea101r.activities;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.media.AudioManager;
+import android.speech.RecognizerIntent;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
@@ -22,10 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.uwaterloo.sh6choi.korea101r.R;
-import ca.uwaterloo.sh6choi.korea101r.Utils.KeyboardUtils;
+import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulFlashcardFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulLookupFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.PronunciationFragment;
+import ca.uwaterloo.sh6choi.korea101r.utils.KeyboardUtils;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DictationFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
-import ca.uwaterloo.sh6choi.korea101r.fragments.HangulFragment;
 import ca.uwaterloo.sh6choi.korea101r.views.DrawerMenuAdapter;
 import ca.uwaterloo.sh6choi.korea101r.views.IDrawerMenuItem;
 import ca.uwaterloo.sh6choi.korea101r.views.ISlidingPane;
@@ -35,8 +39,15 @@ import ca.uwaterloo.sh6choi.korea101r.views.NavigationDrawerLayout;
 public class MainActivity extends AppCompatActivity implements ViewTreeObserver.OnGlobalLayoutListener {
 
     public static final String TAG = MainActivity.class.getCanonicalName();
+
     public static final String ACTION_HANGUL = TAG + ".action.hangul";
+    public static final String ACTION_HANGUL_LOOKUP = TAG + ".action.hangul.lookup";
+    public static final String ACTION_HANGUL_FLASHCARDS = TAG + ".action.hangul.flashcards";
+
     public static final String ACTION_DICTATION = TAG + ".action.dictation";
+    public static final String ACTION_PRONUNCIATION = TAG + ".action.pronunciation";
+
+    public static final String ACTION_SPEECH = TAG + ".action.speech";
 
 
     private NavigationDrawerLayout mDrawerLayout;
@@ -52,7 +63,11 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+//        Intent intent = new Intent(this, DictationWebIntentService.class);
+//        startService(intent);
+
         setContentView(R.layout.activity_main);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
         mDrawerLayout = (NavigationDrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setMenuAdapter(new DrawerMenuAdapter(this, setupMenu()));
@@ -77,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
-        mDrawerLayout.setDrawerEnabled(false);
+        mDrawerLayout.setDrawerEnabled(true);
 
         if (getIntent() == null || TextUtils.isEmpty(getIntent().getAction())) {
             Intent start = new Intent(ACTION_HANGUL);
@@ -91,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         List<IDrawerMenuItem> menuList = new ArrayList<>();
         menuList.add(KoreaMenuItem.HANGUL);
         menuList.add(KoreaMenuItem.DICTATION);
+        menuList.add(KoreaMenuItem.PRONUNCIATION);
         return menuList;
     }
 
@@ -103,19 +119,25 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         }
     }
 
-    private void handleAction(Intent sentIntent) {
-        String action = sentIntent.getAction();
+    private void handleAction(Intent intent) {
+        String action = intent.getAction();
 
         if (TextUtils.equals(action, ACTION_HANGUL)) {
-            onHangulClicked();
+            onHangul();
+        } else if (TextUtils.equals(action, ACTION_HANGUL_LOOKUP)) {
+            onHangulLookup();
+        } else if (TextUtils.equals(action, ACTION_HANGUL_FLASHCARDS)) {
+            onHangulFlashcards();
         } else if (TextUtils.equals(action, ACTION_DICTATION)) {
-            onDictationClicked();
+            onDictation();
+        } else if (TextUtils.equals(action, ACTION_PRONUNCIATION)) {
+            onPronunciation();
         } else {
-            onHangulClicked();
+            onHangul();
         }
     }
 
-    private void onHangulClicked() {
+    private void onHangul() {
         if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof HangulFragment) {
             mDrawerLayout.closePane();
             return;
@@ -124,12 +146,39 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         swapFragment(fragment);
     }
 
-    private void onDictationClicked() {
+    private void onHangulLookup() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof HangulLookupFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+        HangulLookupFragment fragment = HangulLookupFragment.getInstance(new Bundle());
+        swapFragment(fragment);
+    }
+
+    private void onHangulFlashcards() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof HangulFlashcardFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+        HangulFlashcardFragment fragment = HangulFlashcardFragment.getInstance(new Bundle());
+        swapFragment(fragment);
+    }
+
+    private void onDictation() {
         if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof DictationFragment) {
             mDrawerLayout.closePane();
             return;
         }
         DictationFragment fragment = DictationFragment.getInstance(new Bundle());
+        swapFragment(fragment);
+    }
+
+    private void onPronunciation() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof PronunciationFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+        PronunciationFragment fragment = PronunciationFragment.getInstance(new Bundle());
         swapFragment(fragment);
     }
 
@@ -145,10 +194,44 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         final View fragmentContainer = findViewById(R.id.fragment_container);
 
         fragmentContainer.getViewTreeObserver().addOnGlobalLayoutListener(this);
+
+        refreshToolbar(fragment.shouldShowUp(), fragment.getTitleStringResId());
     }
 
     private <T extends Fragment & DrawerFragment> void updateToolbar(T fragment) {
         mToolbarActionTextView.setText(fragment.getTitleStringResId());
+    }
+
+    @Override
+    public void onBackPressed() {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
+        if (currentFragment instanceof DrawerFragment) {
+            if (!((DrawerFragment) currentFragment).onBackPressed()) {
+                super.onBackPressed();
+            }
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //switch (requestCode) {
+            //case PronunciationFragment.REQUEST_SPEECH:
+                if (resultCode == RESULT_OK && data != null) {
+                    if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof PronunciationFragment) {
+                        Intent intent = new Intent();
+                        intent.setAction(ACTION_SPEECH);
+                        intent.putExtra(PronunciationFragment.EXTRA_RESULTS, data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS));
+
+                        sendBroadcast(intent);
+                    }
+                }
+                //break;
+        //}
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -176,7 +259,7 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    private void refreshToolbar(boolean shouldShowUp, String title) {
+    private void refreshToolbar(boolean shouldShowUp, int titleResId) {
         if (getSupportActionBar() == null)
             return;
 
@@ -184,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
             getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM
                     | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_HOME);
             mDrawerLayout.setDrawerEnabled(false);
-            setTitle(title);
+            setTitle(titleResId);
 
             mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override

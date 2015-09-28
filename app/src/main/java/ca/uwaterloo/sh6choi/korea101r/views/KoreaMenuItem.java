@@ -7,7 +7,8 @@ import ca.uwaterloo.sh6choi.korea101r.R;
  */
 public enum KoreaMenuItem implements IDrawerMenuItem {
     HANGUL(R.string.nav_menu_hangul),
-    DICTATION(R.string.nav_menu_dictation);
+    DICTATION(R.string.nav_menu_dictation),
+    PRONUNCIATION(R.string.nav_menu_pronunciation);
 
     private int mStringResId;
 

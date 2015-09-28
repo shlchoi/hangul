@@ -11,6 +11,8 @@ public interface DrawerFragment {
 
     int getTitleStringResId();
 
+    boolean shouldShowUp();
+
     boolean onBackPressed();
 
 }

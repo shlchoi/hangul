@@ -1,5 +1,6 @@
-package ca.uwaterloo.sh6choi.korea101r.fragments;
+package ca.uwaterloo.sh6choi.korea101r.fragments.hangul;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,24 +15,27 @@ import java.util.Random;
 
 import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 import ca.uwaterloo.sh6choi.korea101r.R;
+import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
 
 /**
  * Created by Samson on 2015-09-22.
  */
-public class HangulFragment extends Fragment implements DrawerFragment, View.OnClickListener, View.OnTouchListener {
+public class HangulFlashcardFragment extends Fragment implements DrawerFragment, View.OnClickListener, View.OnTouchListener {
 
-    private static final String TAG = HangulFragment.class.getCanonicalName();
-    public static final String FRAGMENT_TAG = MainActivity.TAG + ".fragment.hangul";
+    private static final String TAG = HangulFlashcardFragment.class.getCanonicalName();
+    public static final String FRAGMENT_TAG = MainActivity.TAG + ".fragment.hangul.flashcards";
 
     private String[] mCharacterSet;
-    private String[] mPronounciationSet;
+    private String[] mRomanizationSet;
+    private String[] mPronunciationSet;
+
     private int mCurIndex = -1;
 
     private TextView mCharacterTextView;
     private TextView mHintTextView;
 
-    public static HangulFragment getInstance(Bundle args) {
-        HangulFragment fragment = new HangulFragment();
+    public static HangulFlashcardFragment getInstance(Bundle args) {
+        HangulFlashcardFragment fragment = new HangulFlashcardFragment();
         fragment.setArguments(args);
 
         return fragment;
@@ -42,7 +46,7 @@ public class HangulFragment extends Fragment implements DrawerFragment, View.OnC
 
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View contentView = inflater.inflate(R.layout.fragment_hangul, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_hangul_flashcard, container, false);
         return contentView;
     }
 
@@ -51,7 +55,7 @@ public class HangulFragment extends Fragment implements DrawerFragment, View.OnC
         super.onViewCreated(view, savedInstanceState);
 
         mCharacterSet = getResources().getStringArray(R.array.hangulChars);
-        mPronounciationSet = getResources().getStringArray(R.array.hangulPronunciations);
+        mRomanizationSet = getResources().getStringArray(R.array.hangulPronunciations);
 
         mCharacterTextView = (TextView) view.findViewById(R.id.character_text_view);
         mCharacterTextView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -69,6 +73,7 @@ public class HangulFragment extends Fragment implements DrawerFragment, View.OnC
         switch (v.getId()) {
             case R.id.hangul_fragment_relative_layout:
                 switchCharacter();
+                break;
         }
     }
 
@@ -103,7 +108,7 @@ public class HangulFragment extends Fragment implements DrawerFragment, View.OnC
 
         mCurIndex = nextInt;
         mCharacterTextView.setText(mCharacterSet[mCurIndex]);
-        mHintTextView.setText(mPronounciationSet[mCurIndex]);
+        mHintTextView.setText(mRomanizationSet[mCurIndex]);
     }
 
     @Override
@@ -117,7 +122,16 @@ public class HangulFragment extends Fragment implements DrawerFragment, View.OnC
     }
 
     @Override
+    public boolean shouldShowUp() {
+        return true;
+    }
+
+    @Override
     public boolean onBackPressed() {
-        return false;
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.setAction(MainActivity.ACTION_HANGUL);
+
+        startActivity(intent);
+        return true;
     }
 }

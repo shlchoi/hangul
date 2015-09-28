@@ -6,6 +6,10 @@
 
     <string name="nav_menu_hangul">Hangul</string>
     <string name="nav_menu_dictation">Dictation</string>
+    <string name="nav_menu_pronunciation">Pronunciation</string>
 
     <string name="dictation_check">Check</string>
+
+    <string name="hangul_lookup">Character Lookup</string>
+    <string name="hangul_flashcards">Flashcards</string>
 </resources>
