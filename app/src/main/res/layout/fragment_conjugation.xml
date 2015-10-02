@@ -17,13 +17,22 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/word_text_view"
+            android:id="@+id/basic_verb_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:textSize="24sp"
-            tools:text="dal-ryeok"/>
+            tools:text="가다"/>
+
+        <TextView
+            android:id="@+id/speech_form_conjugation_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="16sp"
+            tools:text="Formal Plain - Statement"/>
 
         <EditText
             android:id="@+id/input_edit_text"
@@ -33,7 +42,7 @@
             android:gravity="center"
             android:textSize="32sp"
             android:singleLine="true"
-            tools:text="달력"/>
+            tools:text="갑니다"/>
 
         <TextView
             android:id="@+id/hint_text_view"
@@ -43,7 +52,7 @@
             android:layout_gravity="center_horizontal"
             android:textSize="16sp"
             android:visibility="invisible"
-            tools:text="달력"
+            tools:text="-ㅂ니다"
             tools:visibility="visible"/>
 
     </LinearLayout>

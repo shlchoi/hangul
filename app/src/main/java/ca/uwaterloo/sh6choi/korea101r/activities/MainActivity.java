@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.uwaterloo.sh6choi.korea101r.R;
+import ca.uwaterloo.sh6choi.korea101r.fragments.ConjugationFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulCharacterFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulFlashcardFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulLookupFragment;
@@ -42,10 +44,12 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
 
     public static final String ACTION_HANGUL = TAG + ".action.hangul";
     public static final String ACTION_HANGUL_LOOKUP = TAG + ".action.hangul.lookup";
+    public static final String ACTION_HANGUL_CHARACTER = TAG + ".action.hangul.character";
     public static final String ACTION_HANGUL_FLASHCARDS = TAG + ".action.hangul.flashcards";
 
     public static final String ACTION_DICTATION = TAG + ".action.dictation";
     public static final String ACTION_PRONUNCIATION = TAG + ".action.pronunciation";
+    public static final String ACTION_CONJUGATION = TAG + ".action.conjugation";
 
     public static final String ACTION_SPEECH = TAG + ".action.speech";
 
@@ -107,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         menuList.add(KoreaMenuItem.HANGUL);
         menuList.add(KoreaMenuItem.DICTATION);
         menuList.add(KoreaMenuItem.PRONUNCIATION);
+        menuList.add(KoreaMenuItem.CONJUGATION);
         return menuList;
     }
 
@@ -126,12 +131,16 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
             onHangul();
         } else if (TextUtils.equals(action, ACTION_HANGUL_LOOKUP)) {
             onHangulLookup();
+        } else if (TextUtils.equals(action, ACTION_HANGUL_CHARACTER)) {
+            onHangulCharacter(intent);
         } else if (TextUtils.equals(action, ACTION_HANGUL_FLASHCARDS)) {
             onHangulFlashcards();
         } else if (TextUtils.equals(action, ACTION_DICTATION)) {
             onDictation();
         } else if (TextUtils.equals(action, ACTION_PRONUNCIATION)) {
             onPronunciation();
+        } else if (TextUtils.equals(action, ACTION_CONJUGATION)) {
+            onConjugation();
         } else {
             onHangul();
         }
@@ -152,6 +161,25 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
             return;
         }
         HangulLookupFragment fragment = HangulLookupFragment.getInstance(new Bundle());
+        swapFragment(fragment);
+    }
+
+    private void onHangulCharacter(Intent intent) {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof HangulCharacterFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+
+        String character = intent.getStringExtra(HangulLookupFragment.EXTRA_HANGUL);
+        String romanization = intent.getStringExtra(HangulLookupFragment.EXTRA_ROMANIZATION);
+        String pronunciation = intent.getStringExtra(HangulLookupFragment.EXTRA_PRONUNCIATION);
+
+        Bundle args = new Bundle();
+        args.putString(HangulCharacterFragment.ARG_HANGUL, character);
+        args.putString(HangulCharacterFragment.ARG_ROMANIZATION, romanization);
+        args.putString(HangulCharacterFragment.ARG_PRONUNCIATION, pronunciation);
+
+        HangulCharacterFragment fragment = HangulCharacterFragment.getInstance(args);
         swapFragment(fragment);
     }
 
@@ -182,10 +210,24 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         swapFragment(fragment);
     }
 
+    private void onConjugation() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof ConjugationFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+        ConjugationFragment fragment = ConjugationFragment.getInstance(new Bundle());
+        swapFragment(fragment);
+    }
+
     private <T extends Fragment & DrawerFragment> void swapFragment(T fragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
+
+        if (fragment.shouldAddToBackstack()) {
+            transaction.addToBackStack(fragment.getFragmentTag());
+        }
+
         transaction.replace(R.id.fragment_container, fragment, fragment.getFragmentTag());
         transaction.commit();
 

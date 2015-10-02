@@ -189,6 +189,11 @@ public class PronunciationFragment extends Fragment implements DrawerFragment, V
     }
 
     @Override
+    public boolean shouldAddToBackstack() {
+        return false;
+    }
+
+    @Override
     public boolean onBackPressed() {
         return false;
     }

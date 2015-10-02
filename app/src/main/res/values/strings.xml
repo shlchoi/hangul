@@ -7,9 +7,20 @@
     <string name="nav_menu_hangul">Hangul</string>
     <string name="nav_menu_dictation">Dictation</string>
     <string name="nav_menu_pronunciation">Pronunciation</string>
+    <string name="nav_menu_conjugation">Conjugation</string>
 
-    <string name="dictation_check">Check</string>
+    <string name="check">Check</string>
 
     <string name="hangul_lookup">Character Lookup</string>
     <string name="hangul_flashcards">Flashcards</string>
+
+    <string name="speech_form_formal_polite">Formal Polite</string>
+    <string name="speech_form_formal_plain">Formal Plain</string>
+    <string name="speech_form_informal_polite">Informal Polite</string>
+    <string name="speech_form_informal_plain">Informal Plain</string>
+
+    <string name="conjugation_statement">Statement</string>
+    <string name="conjugation_question">Question</string>
+    <string name="conjugation_command">Command</string>
+    <string name="conjugation_proposal">Proposal</string>
 </resources>

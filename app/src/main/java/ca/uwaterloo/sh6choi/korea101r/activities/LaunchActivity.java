@@ -25,8 +25,7 @@ public class LaunchActivity extends AppCompatActivity {
         startActivityForResult(checkIntent, 01);
     }
 
-    protected void onActivityResult(
-            int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 01) {
             if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
                 Intent intent = new Intent(LaunchActivity.this, MainActivity.class);

@@ -54,8 +54,8 @@ public class HangulFlashcardFragment extends Fragment implements DrawerFragment,
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mCharacterSet = getResources().getStringArray(R.array.hangulChars);
-        mRomanizationSet = getResources().getStringArray(R.array.hangulPronunciations);
+        mCharacterSet = getResources().getStringArray(R.array.hangul_characters);
+        mRomanizationSet = getResources().getStringArray(R.array.hangul_romanizations);
 
         mCharacterTextView = (TextView) view.findViewById(R.id.character_text_view);
         mCharacterTextView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -106,6 +106,7 @@ public class HangulFlashcardFragment extends Fragment implements DrawerFragment,
             nextInt = random.nextInt(mCharacterSet.length);
         } while (nextInt == mCurIndex);
 
+
         mCurIndex = nextInt;
         mCharacterTextView.setText(mCharacterSet[mCurIndex]);
         mHintTextView.setText(mRomanizationSet[mCurIndex]);
@@ -119,6 +120,11 @@ public class HangulFlashcardFragment extends Fragment implements DrawerFragment,
     @Override
     public int getTitleStringResId() {
         return R.string.nav_menu_hangul;
+    }
+
+    @Override
+    public boolean shouldAddToBackstack() {
+        return false;
     }
 
     @Override

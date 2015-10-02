@@ -40,8 +40,8 @@ public class HangulCharacterFragment extends Fragment implements DrawerFragment,
 
     private TextToSpeech mTextToSpeech;
 
-    public static HangulFlashcardFragment getInstance(Bundle args) {
-        HangulFlashcardFragment fragment = new HangulFlashcardFragment();
+    public static HangulCharacterFragment getInstance(Bundle args) {
+        HangulCharacterFragment fragment = new HangulCharacterFragment();
         fragment.setArguments(args);
 
         return fragment;
@@ -52,7 +52,7 @@ public class HangulCharacterFragment extends Fragment implements DrawerFragment,
 
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View contentView = inflater.inflate(R.layout.fragment_hangul_flashcard, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_hangul_character, container, false);
 
         Bundle args = getArguments();
 
@@ -75,7 +75,7 @@ public class HangulCharacterFragment extends Fragment implements DrawerFragment,
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mTextToSpeech = new TextToSpeech(getActivity(), this);
+        //mTextToSpeech = new TextToSpeech(getActivity(), this);
 
         mCharacterTextView = (TextView) view.findViewById(R.id.character_text_view);
         mCharacterTextView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -90,19 +90,19 @@ public class HangulCharacterFragment extends Fragment implements DrawerFragment,
 
     @Override
     public void onInit(int status) {
-        if (mTextToSpeech.isLanguageAvailable(Locale.KOREA) == TextToSpeech.LANG_AVAILABLE || mTextToSpeech.isLanguageAvailable(Locale.KOREA) == TextToSpeech.LANG_COUNTRY_AVAILABLE) {
-            mTextToSpeech.setLanguage(Locale.KOREA);
-            mTextToSpeech.setSpeechRate(0.5f);
-        } else {
-            Toast.makeText(getActivity(), "No Voice Files found", Toast.LENGTH_SHORT).show();
-        }
+//        if (mTextToSpeech.isLanguageAvailable(Locale.KOREA) == TextToSpeech.LANG_AVAILABLE || mTextToSpeech.isLanguageAvailable(Locale.KOREA) == TextToSpeech.LANG_COUNTRY_AVAILABLE) {
+//            mTextToSpeech.setLanguage(Locale.KOREA);
+//            mTextToSpeech.setSpeechRate(0.5f);
+//        } else {
+//            Toast.makeText(getActivity(), "No Voice Files found", Toast.LENGTH_SHORT).show();
+//        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.play_fab:
-
+                //playSound();
                 break;
         }
     }
@@ -127,6 +127,11 @@ public class HangulCharacterFragment extends Fragment implements DrawerFragment,
     }
 
     @Override
+    public boolean shouldAddToBackstack() {
+        return true;
+    }
+
+    @Override
     public boolean onBackPressed() {
         getActivity().getSupportFragmentManager().popBackStack();
         return true;
@@ -134,7 +139,7 @@ public class HangulCharacterFragment extends Fragment implements DrawerFragment,
 
     @Override
     public void onDestroy() {
-        mTextToSpeech.shutdown();
+        //mTextToSpeech.shutdown();
         super.onDestroy();
     }
 }

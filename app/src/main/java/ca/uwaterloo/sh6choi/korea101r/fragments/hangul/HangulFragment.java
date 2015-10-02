@@ -92,6 +92,11 @@ public class HangulFragment extends Fragment implements DrawerFragment, View.OnC
     }
 
     @Override
+    public boolean shouldAddToBackstack() {
+        return false;
+    }
+
+    @Override
     public boolean onBackPressed() {
         return false;
     }

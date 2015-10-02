@@ -13,6 +13,8 @@ public interface DrawerFragment {
 
     boolean shouldShowUp();
 
+    boolean shouldAddToBackstack();
+
     boolean onBackPressed();
 
 }

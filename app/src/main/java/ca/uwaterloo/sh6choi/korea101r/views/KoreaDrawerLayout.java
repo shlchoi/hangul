@@ -57,6 +57,10 @@ public class KoreaDrawerLayout extends NavigationDrawerLayout {
                 intent = new Intent(getContext(), MainActivity.class);
                 intent.setAction(MainActivity.ACTION_PRONUNCIATION);
                 break;
+            case CONJUGATION:
+                intent = new Intent(getContext(), MainActivity.class);
+                intent.setAction(MainActivity.ACTION_CONJUGATION);
+                break;
         }
         getContext().startActivity(intent);
     }
