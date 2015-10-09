@@ -17,9 +17,9 @@
     <color name="greyBackground">#ffefefef</color>
 
     <!-- NAVIGATION MENU -->
-    <color name="nav_background">@android:color/white</color>
-    <color name="nav_text_color">#ff858585</color>
-    <color name="nav_text_color_disabled">#ffcad1d6</color>
-    <color name="nav_header_background">@android:color/white</color>
+    <color name="navBackground">@android:color/white</color>
+    <color name="navTextColor">#ff858585</color>
+    <color name="navTextColorDisabled">#ffcad1d6</color>
+    <color name="navHeaderBackground">@android:color/white</color>
     <color name="transparentWhite30">#40ffffff</color>
 </resources>
