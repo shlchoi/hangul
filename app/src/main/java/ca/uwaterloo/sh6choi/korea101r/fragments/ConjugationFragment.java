@@ -84,7 +84,7 @@ public class ConjugationFragment extends Fragment implements DrawerFragment, Vie
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.check_button:
-                String answer = HangulUtils.conjugate(mVerbSet[mCurIndex], mSpeechForm, mConjugationType);
+                String answer = HangulUtils.conjugatePresent(mVerbSet[mCurIndex], mSpeechForm, mConjugationType);
                 if (TextUtils.equals(mInputEditText.getText(), answer)) {
                     switchVerb();
                 } else {
