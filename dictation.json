@@ -1,1 +1,222 @@
-{"sets":[{"id":"1","words":[{"definition":"furniture","hangul":"가구"},{"definition":"yellow","hangul":"노란"},{"definition":"stamp","hangul":"도장"},{"definition":"rural","hangul":"시골"},{"definition":"side dish","hangul":"반찬"},{"definition":"ice","hangul":"어름"},{"definition":"train","hangul":"전차"},{"definition":"morning","hangul":"아침"},{"definition":"dinner","hangul":"저녁"},{"definition":"hospital","hangul":"병원"},{"definition":"alley","hangul":"골목"},{"definition":"ramen","hangul":"라면"},{"definition":"dumpling","hangul":"만두"},{"definition":"glasses","hangul":"안경"},{"definition":"pancake","hangul":"파전"},{"definition":"fragrance","hangul":"향기"},{"definition":"calendar","hangul":"달력"},{"definition":"newspaper","hangul":"신문"},{"definition":"potato","hangul":"감자"},{"definition":"wind speed","hangul":"풍속"}]},{"id":"2","words":[{"definition":"Earth","hangul":"지구"},{"definition":"glass","hangul":"유리"},{"definition":"airplane","hangul":"비행기"},{"definition":"piano","hangul":"피아노"},{"definition":"train","hangul":"전차"},{"definition":"winter","hangul":"겨울"},{"definition":"fingernail","hangul":"손톱"},{"definition":"watermelon","hangul":"수박"},{"definition":"elephant","hangul":"코끼리"},{"definition":"Gochujang (hot pepper paste)","hangul":"고추장"}]},{"id":"3","words":[{"definition":"spider","hangul":"거미"},{"definition":"university","hangul":"대학"},{"definition":"crest","hangul":"문장"},{"definition":"senior","hangul":"노인"},{"definition":"feast","hangul":"잔치"},{"definition":"hands and feet","hangul":"손발"},{"definition":"art","hangul":"미술"},{"definition":"now","hangul":"지금"},{"definition":"car","hangul":"자동차"},{"definition":"terminus","hangul":"종착역"}]},{"id":"4","words":[{"definition":"card","hangul":"카드"},{"definition":"tail","hangul":"꼬리"},{"definition":"Iceland","hangul":"아이그란드"},{"definition":"bee","hangul":"꿀벌"},{"definition":"maple","hangul":"단풍"},{"definition":"rice cake","hangul":"찰떡"},{"definition":"wash","hangul":"빨래"},{"definition":"release","hangul":"짤랑"},{"definition":"rice bucket","hangul":"쌀통"},{"definition":"lid","hangul":"뚜껑"}]}]}s
+[
+    {
+        "set_id": "1",
+        "words": [
+            {
+                "definition": "furniture",
+                "hangul": "가구"
+            },
+            {
+                "definition": "yellow",
+                "hangul": "노란"
+            },
+            {
+                "definition": "stamp",
+                "hangul": "도장"
+            },
+            {
+                "definition": "rural",
+                "hangul": "시골"
+            },
+            {
+                "definition": "side dish",
+                "hangul": "반찬"
+            },
+            {
+                "definition": "ice",
+                "hangul": "어름"
+            },
+            {
+                "definition": "train",
+                "hangul": "전차"
+            },
+            {
+                "definition": "morning",
+                "hangul": "아침"
+            },
+            {
+                "definition": "dinner",
+                "hangul": "저녁"
+            },
+            {
+                "definition": "hospital",
+                "hangul": "병원"
+            },
+            {
+                "definition": "alley",
+                "hangul": "골목"
+            },
+            {
+                "definition": "ramen",
+                "hangul": "라면"
+            },
+            {
+                "definition": "dumpling",
+                "hangul": "만두"
+            },
+            {
+                "definition": "glasses",
+                "hangul": "안경"
+            },
+            {
+                "definition": "pancake",
+                "hangul": "파전"
+            },
+            {
+                "definition": "fragrance",
+                "hangul": "향기"
+            },
+            {
+                "definition": "calendar",
+                "hangul": "달력"
+            },
+            {
+                "definition": "newspaper",
+                "hangul": "신문"
+            },
+            {
+                "definition": "potato",
+                "hangul": "감자"
+            },
+            {
+                "definition": "wind speed",
+                "hangul": "풍속"
+            }
+        ]
+    },
+    {
+        "set_id": "2",
+        "words": [
+            {
+                "definition": "Earth",
+                "hangul": "지구"
+            },
+            {
+                "definition": "glass",
+                "hangul": "유리"
+            },
+            {
+                "definition": "airplane",
+                "hangul": "비행기"
+            },
+            {
+                "definition": "piano",
+                "hangul": "피아노"
+            },
+            {
+                "definition": "train",
+                "hangul": "전차"
+            },
+            {
+                "definition": "winter",
+                "hangul": "겨울"
+            },
+            {
+                "definition": "fingernail",
+                "hangul": "손톱"
+            },
+            {
+                "definition": "watermelon",
+                "hangul": "수박"
+            },
+            {
+                "definition": "elephant",
+                "hangul": "코끼리"
+            },
+            {
+                "definition": "Gochujang (hot pepper paste)",
+                "hangul": "고추장"
+            }
+        ]
+    },
+    {
+        "set_id": "3",
+        "words": [
+            {
+                "definition": "spider",
+                "hangul": "거미"
+            },
+            {
+                "definition": "university",
+                "hangul": "대학"
+            },
+            {
+                "definition": "crest",
+                "hangul": "문장"
+            },
+            {
+                "definition": "senior",
+                "hangul": "노인"
+            },
+            {
+                "definition": "feast",
+                "hangul": "잔치"
+            },
+            {
+                "definition": "hands and feet",
+                "hangul": "손발"
+            },
+            {
+                "definition": "art",
+                "hangul": "미술"
+            },
+            {
+                "definition": "now",
+                "hangul": "지금"
+            },
+            {
+                "definition": "car",
+                "hangul": "자동차"
+            },
+            {
+                "definition": "terminus",
+                "hangul": "종착역"
+            }
+        ]
+    },
+    {
+        "set_id": "4",
+        "words": [
+            {
+                "definition": "card",
+                "hangul": "카드"
+            },
+            {
+                "definition": "tail",
+                "hangul": "꼬리"
+            },
+            {
+                "definition": "Iceland",
+                "hangul": "아이그란드"
+            },
+            {
+                "definition": "bee",
+                "hangul": "꿀벌"
+            },
+            {
+                "definition": "maple",
+                "hangul": "단풍"
+            },
+            {
+                "definition": "rice cake",
+                "hangul": "찰떡"
+            },
+            {
+                "definition": "wash",
+                "hangul": "빨래"
+            },
+            {
+                "definition": "release",
+                "hangul": "짤랑"
+            },
+            {
+                "definition": "rice bucket",
+                "hangul": "쌀통"
+            },
+            {
+                "definition": "lid",
+                "hangul": "뚜껑"
+            }
+        ]
+    }
+]

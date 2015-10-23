@@ -1,1 +1,419 @@
-{"hangul":[{"character":"ㄱ","name":"기역","pronunciation":"그","type":"consonant"},{"character":"ㄴ","name":"니은","pronunciation":"느","type":"consonant"},{"character":"ㄷ","name":"디귿","pronunciation":"드","type":"consonant"},{"character":"ㄹ","name":"리을","pronunciation":"르","type":"consonant"},{"character":"ㅁ","name":"미음","pronunciation":"므","type":"consonant"},{"character":"ㅂ","name":"비읍","pronunciation":"브","type":"consonant"},{"character":"ㅅ","name":"시옷","pronunciation":"스","type":"consonant"},{"character":"ㅇ","name":"이응","pronunciation":"응","type":"consonant"},{"character":"ㅈ","name":"지읒","pronunciation":"즈","type":"consonant"},{"character":"ㅊ","name":"치읓","pronunciation":"츠","type":"consonant"},{"character":"ㅋ","name":"키읔","pronunciation":"크","type":"consonant"},{"character":"ㅌ","name":"티읕","pronunciation":"트","type":"consonant"},{"character":"ㅍ","name":"피읖","pronunciation":"프","type":"consonant"},{"character":"ㅎ","name":"히잏","pronunciation":"흐","type":"consonant"},{"character":"ㅏ","name":"a","pronunciation":"아","type":"vowel"},{"character":"ㅓ","name":"eo","pronunciation":"어","type":"vowel"},{"character":"ㅗ","name":"o","pronunciation":"오","type":"vowel"},{"character":"ㅜ","name":"u","pronunciation":"우","type":"vowel"},{"character":"ㅡ","name":"eu","pronunciation":"으","type":"vowel"},{"character":"ㅣ","name":"i","pronunciation":"이","type":"vowel"},{"character":"ㅑ","name":"ya","pronunciation":"야","type":"vowel"},{"character":"ㅕ","name":"yeo","pronunciation":"여","type":"vowel"},{"character":"ㅛ","name":"yo","pronunciation":"요","type":"vowel"},{"character":"ㅠ","name":"yu","pronunciation":"유","type":"vowel"},{"character":"ㄲ","name":"쌍기역","pronunciation":"끄","type":"consonant"},{"character":"ㄸ","name":"쌍디귿","pronunciation":"뜨","type":"consonant"},{"character":"ㅃ","name":"쌍비읍","pronunciation":"쁘","type":"consonant"},{"character":"ㅆ","name":"쌍시옷","pronunciation":"쓰","type":"consonant"},{"character":"ㅉ","name":"쌍지읒","pronunciation":"쯔","type":"consonant"},{"character":"ㅐ","name":"ae","pronunciation":"애","type":"vowel"},{"character":"ㅒ","name":"yae","pronunciation":"얘","type":"vowel"},{"character":"ㅔ","name":"e","pronunciation":"에","type":"vowel"},{"character":"ㅖ","name":"ye","pronunciation":"예","type":"vowel"},{"character":"ㅢ","name":"ui","pronunciation":"의","type":"vowel"},{"character":"ㅘ","name":"wa","pronunciation":"와","type":"vowel"},{"character":"ㅙ","name":"wae","pronunciation":"왜","type":"vowel"},{"character":"ㅚ","name":"oe","pronunciation":"외","type":"vowel"},{"character":"ㅝ","name":"wo","pronunciation":"워","type":"vowel"},{"character":"ㅞ","name":"we","pronunciation":"웨","type":"vowel"},{"character":"ㅟ","name":"wi","pronunciation":"위","type":"vowel"}]}
+[
+    {
+        "char_id": "g",
+        "character": "ㄱ",
+        "name": "기역",
+        "pronunciation": "그",
+        "romanization": [
+            "g",
+            "k"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "n",
+        "character": "ㄴ",
+        "name": "니은",
+        "pronunciation": "느",
+        "romanization": [
+            "n"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "d",
+        "character": "ㄷ",
+        "name": "디귿",
+        "pronunciation": "드",
+        "romanization": [
+            "d",
+            "t"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "r",
+        "character": "ㄹ",
+        "name": "리을",
+        "pronunciation": "르",
+        "romanization": [
+            "r",
+            "l"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "m",
+        "character": "ㅁ",
+        "name": "미음",
+        "pronunciation": "므",
+        "romanization": [
+            "m"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "b",
+        "character": "ㅂ",
+        "name": "비읍",
+        "pronunciation": "브",
+        "romanization": [
+            "b",
+            "p"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "s",
+        "character": "ㅅ",
+        "name": "시옷",
+        "pronunciation": "스",
+        "romanization": [
+            "s",
+            "t"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "ng",
+        "character": "ㅇ",
+        "name": "이응",
+        "pronunciation": "응",
+        "romanization": [
+            "",
+            "ng"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "j",
+        "character": "ㅈ",
+        "name": "지읒",
+        "pronunciation": "즈",
+        "romanization": [
+            "j",
+            "t"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "ch",
+        "character": "ㅊ",
+        "name": "치읓",
+        "pronunciation": "츠",
+        "romanization": [
+            "ch",
+            "t"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "k",
+        "character": "ㅋ",
+        "name": "키읔",
+        "pronunciation": "크",
+        "romanization": [
+            "k",
+            "k"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "t",
+        "character": "ㅌ",
+        "name": "티읕",
+        "pronunciation": "트",
+        "romanization": [
+            "t",
+            "t"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "p",
+        "character": "ㅍ",
+        "name": "피읖",
+        "pronunciation": "프",
+        "romanization": [
+            "p",
+            "p"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "h",
+        "character": "ㅎ",
+        "name": "히잏",
+        "pronunciation": "흐",
+        "romanization": [
+            "h",
+            "t"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "a",
+        "character": "ㅏ",
+        "name": "아",
+        "pronunciation": "아",
+        "romanization": [
+            "a"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "eo",
+        "character": "ㅓ",
+        "name": "어",
+        "pronunciation": "어",
+        "romanization": [
+            "eo"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "o",
+        "character": "ㅗ",
+        "name": "오",
+        "pronunciation": "오",
+        "romanization": [
+            "o"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "u",
+        "character": "ㅜ",
+        "name": "우",
+        "pronunciation": "우",
+        "romanization": [
+            "u"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "eu",
+        "character": "ㅡ",
+        "name": "으",
+        "pronunciation": "으",
+        "romanization": [
+            "eu"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "i",
+        "character": "ㅣ",
+        "name": "이",
+        "pronunciation": "이",
+        "romanization": [
+            "i"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "ya",
+        "character": "ㅑ",
+        "name": "야",
+        "pronunciation": "야",
+        "romanization": [
+            "ya"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "yeo",
+        "character": "ㅕ",
+        "name": "여",
+        "pronunciation": "여",
+        "romanization": [
+            "yeo"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "yo",
+        "character": "ㅛ",
+        "name": "요",
+        "pronunciation": "요",
+        "romanization": [
+            "yo"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "yu",
+        "character": "ㅠ",
+        "name": "유",
+        "pronunciation": "유",
+        "romanization": [
+            "yu"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "kk",
+        "character": "ㄲ",
+        "name": "쌍기역",
+        "pronunciation": "끄",
+        "romanization": [
+            "kk",
+            "k"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "tt",
+        "character": "ㄸ",
+        "name": "쌍디귿",
+        "pronunciation": "뜨",
+        "romanization": [
+            "tt",
+            "t"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "pp",
+        "character": "ㅃ",
+        "name": "쌍비읍",
+        "pronunciation": "쁘",
+        "romanization": [
+            "pp",
+            "p"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "ss",
+        "character": "ㅆ",
+        "name": "쌍시옷",
+        "pronunciation": "쓰",
+        "romanization": [
+            "ss",
+            "t"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "jj",
+        "character": "ㅉ",
+        "name": "쌍지읒",
+        "pronunciation": "쯔",
+        "romanization": [
+            "jj",
+            "t"
+        ],
+        "type": "consonant"
+    },
+    {
+        "char_id": "ae",
+        "character": "ㅐ",
+        "name": "애",
+        "pronunciation": "애",
+        "romanization": [
+            "ae"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "yae",
+        "character": "ㅒ",
+        "name": "얘",
+        "pronunciation": "얘",
+        "romanization": [
+            "yae"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "e",
+        "character": "ㅔ",
+        "name": "에",
+        "pronunciation": "에",
+        "romanization": [
+            "e"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "ye",
+        "character": "ㅖ",
+        "name": "예",
+        "pronunciation": "예",
+        "romanization": [
+            "ye"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "ui",
+        "character": "ㅢ",
+        "name": "의",
+        "pronunciation": "의",
+        "romanization": [
+            "ui"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "wa",
+        "character": "ㅘ",
+        "name": "와",
+        "pronunciation": "와",
+        "romanization": [
+            "wa"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "wae",
+        "character": "ㅙ",
+        "name": "왜",
+        "pronunciation": "왜",
+        "romanization": [
+            "wae"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "woe",
+        "character": "ㅚ",
+        "name": "외",
+        "pronunciation": "외",
+        "romanization": [
+            "woe"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "wo",
+        "character": "ㅝ",
+        "name": "워",
+        "pronunciation": "워",
+        "romanization": [
+            "wo"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "we",
+        "character": "ㅞ",
+        "name": "웨",
+        "pronunciation": "웨",
+        "romanization": [
+            "we"
+        ],
+        "type": "vowel"
+    },
+    {
+        "char_id": "wi",
+        "character": "ㅟ",
+        "name": "위",
+        "pronunciation": "위",
+        "romanization": [
+            "wi"
+        ],
+        "type": "vowel"
+    }
+]

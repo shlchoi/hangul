@@ -1,1 +1,618 @@
-{"vocabulary":[{"id":"1","words":[{"hangul":"저","definitions":["I"],"type":"noun"},{"hangul":"제","definitionss":["my"],"type":"noun"},{"hangul":"이름","definitions":["name"],"type":"noun"},{"hangul":"미국","definitions":["United States of America"],"type":"noun"},{"hangul":"사람","definitions":["person","people"],"type":"noun"},{"hangul":"미국 사람","definitions":["American person"],"type":"noun"},{"hangul":"캐나다","definitions":["Canada"],"type":"noun"},{"hangul":"캐나다 사람","definitions":["Canadian person"],"type":"noun"},{"hangul":"안녕하시다","definitions":["to be well","to be in good health"],"type":"verb"},{"hangul":"뵙다","definitions":["to see","to meet (honorific)"],"type":"verb"},{"hangul":"이다","definitions":["to be"],"type":"verb"},{"hangul":"아니다","definitions":["to not be"],"type":"verb"},{"hangul":"반갑다","definitions":["to be glad"],"type":"verb"},{"hangul":"그렇다","definitions":["to be so"],"type":"verb"},{"hangul":"처음","definitions":["for the first time"],"type":"adverb"},{"hangul":"은","definitions":["topic marker (consonant preceding)"],"type":"particle"},{"hangul":"는","definitions":["topic marker (vowel preceding)"],"type":"particle"},{"hangul":"이","definitions":["subject marker (consonant preceding)"],"type":"particle"},{"hangul":"가","definitions":["subject marker (vowel preceding)"],"type":"particle"},{"hangul":"한국","definitions":["Korea"],"type":"additional"},{"hangul":"한국 사람","definitions":["Korean person"],"type":"additional"},{"hangul":"중국","definitions":["China"],"type":"additional"},{"hangul":"중국 사람","definitions":["Chinese person"],"type":"additional"},{"hangul":"일본","definitions":["Japan"],"type":"additional"},{"hangul":"일본 사람","definitions":["Japanese person"],"type":"additional"}]},{"id":"2","words":[{"hangul":"누구","definitions":["who","whom"],"type":"noun"},{"hangul":"학교","definitions":["school"],"type":"noun"},{"hangul":"학생","definitions":["student"],"type":"noun"},{"hangul":"대학교","definitions":["university"],"type":"noun"},{"hangul":"대학원","definitions":["graduate school"],"type":"noun"},{"hangul":"분","definitions":["person (honorific)"],"type":"noun"},{"hangul":"박","definitions":["Park (Korean surname)"],"type":"noun"},{"hangul":"선생님","definitions":["teacher","Mr."],"type":"noun"},{"hangul":"교수님","definitions":["professor"],"type":"noun"},{"hangul":"이","definitions":["this"],"type":"noun modifier"},{"hangul":"저","definitions":["that"],"type":"noun modifier"},{"hangul":"그","definitions":["the"],"type":"noun modifier"},{"hangul":"의","definitions":["'s"],"type":"particle"},{"hangul":"애학생","definitions":["university student"],"type":"additional"},{"hangul":"친구","definitions":["friend"],"type":"additional"},{"hangul":"짐","definitions":["house","home"],"type":"additional"}]},{"id":"3","words":[{"hangul":"이것","definitions":["this (thing)"],"type":"pronoun"},{"hangul":"저것","definitions":["that (thing)"],"type":"pronoun"},{"hangul":"그갓","definitions":["the (thing)"],"type":"pronoun"},{"hangul":"무엇","definitions":["what","something","anything"],"type":"pronoun"},{"hangul":"백화점","definitions":["department store"],"type":"noun"},{"hangul":"병원","definitions":["hospital"],"type":"noun"},{"hangul":"시청","definitions":["city hall"],"type":"noun"},{"hangul":"건물","definitions":["building"],"type":"noun"},{"hangul":"도","definitions":["also","too"],"type":"particle"},{"hangul":"일하다","definitions":["to work"],"type":"verb"},{"hangul":"좋다","definitions":["to be good"],"type":"verb"},{"hangul":"참","definitions":["really","very"],"type":"adverb"}]},{"id":"4","words":[{"hangul":"학교","definitions":["school"],"type":"noun"},{"hangul":"애학교","definitions":["university"],"type":"noun"},{"hangul":"한국","definitions":["Korea"],"type":"noun"},{"hangul":"한국말","definitions":["Korean language"],"type":"noun"},{"hangul":"한국어","definitions":["Korean language"],"type":"noun"},{"hangul":"역사","definitions":["history"],"type":"noun"},{"hangul":"한국 역사","definitions":["Korean history"],"type":"noun"},{"hangul":"오늘","definitions":["today"],"type":"noun"},{"hangul":"시내","definitions":["downtown","inside the city"],"type":"noun"},{"hangul":"어디","definitions":["where"],"type":"pronoun"},{"hangul":"하다","definitions":["to do"],"type":"verb"},{"hangul":"공부하다","definitions":["to study"],"type":"verb"},{"hangul":"가다","definitions":["to go"],"type":"verb"},{"hangul":"같이","definitions":["together"],"type":"adverb"},{"hangul":"그럼","definitions":["if so","in that case","then"],"type":"adverb"},{"hangul":"에서","definitions":["at","in","from"],"type":"particle"},{"hangul":"을","definitions":["object marker (consonant preceding)"],"type":"particle"},{"hangul":"를","definitions":["object marker (vowel preceding)"],"type":"particle"},{"hangul":"에","definitions":["to (a destination)"],"type":"particle"},{"hangul":"중국어","definitions":["Chinese language"],"type":"additional"},{"hangul":"궁국말","definitions":["Chinese language"],"type":"additional"},{"hangul":"일본어","definitions":["Japanese language"],"type":"additional"},{"hangul":"일본말","definitions":["Japanese language"],"type":"additional"},{"hangul":"영어","definitions":["English"],"type":"additional"},{"hangul":"어제","definitions":["yesterday"],"type":"additional"},{"hangul":"내일","definitions":["tomorrow"],"type":"additional"},{"hangul":"지금","definitions":["now"],"type":"additional"},{"hangul":"언제","definitions":["when"],"type":"additional"},{"hangul":"식당","definitions":["restaurant"],"type":"additional"},{"hangul":"오다","definitions":["to come"],"type":"additional"}]}]}
+[
+    {
+        "lesson_id": 1,
+        "words": [
+            {
+                "hangul": "저",
+                "definitions": [
+                    "I"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "제",
+                "definitions": [
+                    "my"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "이름",
+                "definitions": [
+                    "name"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "미국",
+                "definitions": [
+                    "United States of America"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "사람",
+                "definitions": [
+                    "person",
+                    "people"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "미국 사람",
+                "definitions": [
+                    "American person"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "캐나다",
+                "definitions": [
+                    "Canada"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "캐나다 사람",
+                "definitions": [
+                    "Canadian person"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "안녕하시다",
+                "definitions": [
+                    "to be well",
+                    "to be in good health"
+                ],
+                "type": "verb"
+            },
+            {
+                "hangul": "뵙다",
+                "definitions": [
+                    "to see",
+                    "to meet (honorific)"
+                ],
+                "type": "verb"
+            },
+            {
+                "hangul": "이다",
+                "definitions": [
+                    "to be"
+                ],
+                "type": "verb"
+            },
+            {
+                "hangul": "아니다",
+                "definitions": [
+                    "to not be"
+                ],
+                "type": "verb"
+            },
+            {
+                "hangul": "반갑다",
+                "definitions": [
+                    "to be glad"
+                ],
+                "type": "verb"
+            },
+            {
+                "hangul": "그렇다",
+                "definitions": [
+                    "to be so"
+                ],
+                "type": "verb"
+            },
+            {
+                "hangul": "처음",
+                "definitions": [
+                    "for the first time"
+                ],
+                "type": "adverb"
+            },
+            {
+                "hangul": "은",
+                "definitions": [
+                    "topic marker (consonant preceding)"
+                ],
+                "type": "particle"
+            },
+            {
+                "hangul": "는",
+                "definitions": [
+                    "topic marker (vowel preceding)"
+                ],
+                "type": "particle"
+            },
+            {
+                "hangul": "이",
+                "definitions": [
+                    "subject marker (consonant preceding)"
+                ],
+                "type": "particle"
+            },
+            {
+                "hangul": "가",
+                "definitions": [
+                    "subject marker (vowel preceding)"
+                ],
+                "type": "particle"
+            },
+            {
+                "hangul": "한국",
+                "definitions": [
+                    "Korea"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "한국 사람",
+                "definitions": [
+                    "Korean person"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "중국",
+                "definitions": [
+                    "China"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "중국 사람",
+                "definitions": [
+                    "Chinese person"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "일본",
+                "definitions": [
+                    "Japan"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "일본 사람",
+                "definitions": [
+                    "Japanese person"
+                ],
+                "type": "additional"
+            }
+        ]
+    },
+    {
+        "lesson_id": 2,
+        "words": [
+            {
+                "hangul": "누구",
+                "definitions": [
+                    "who",
+                    "whom"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "학교",
+                "definitions": [
+                    "school"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "학생",
+                "definitions": [
+                    "student"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "대학교",
+                "definitions": [
+                    "university"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "대학원",
+                "definitions": [
+                    "graduate school"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "분",
+                "definitions": [
+                    "person (honorific)"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "박",
+                "definitions": [
+                    "Park (Korean surname)"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "선생님",
+                "definitions": [
+                    "teacher",
+                    "Mr."
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "교수님",
+                "definitions": [
+                    "professor"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "이",
+                "definitions": [
+                    "this"
+                ],
+                "type": "noun modifier"
+            },
+            {
+                "hangul": "저",
+                "definitions": [
+                    "that"
+                ],
+                "type": "noun modifier"
+            },
+            {
+                "hangul": "그",
+                "definitions": [
+                    "the"
+                ],
+                "type": "noun modifier"
+            },
+            {
+                "hangul": "의",
+                "definitions": [
+                    "'s"
+                ],
+                "type": "particle"
+            },
+            {
+                "hangul": "애학생",
+                "definitions": [
+                    "university student"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "친구",
+                "definitions": [
+                    "friend"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "짐",
+                "definitions": [
+                    "house",
+                    "home"
+                ],
+                "type": "additional"
+            }
+        ]
+    },
+    {
+        "lesson_id": 3,
+        "words": [
+            {
+                "hangul": "이것",
+                "definitions": [
+                    "this (thing)"
+                ],
+                "type": "pronoun"
+            },
+            {
+                "hangul": "저것",
+                "definitions": [
+                    "that (thing)"
+                ],
+                "type": "pronoun"
+            },
+            {
+                "hangul": "그갓",
+                "definitions": [
+                    "the (thing)"
+                ],
+                "type": "pronoun"
+            },
+            {
+                "hangul": "무엇",
+                "definitions": [
+                    "what",
+                    "something",
+                    "anything"
+                ],
+                "type": "pronoun"
+            },
+            {
+                "hangul": "백화점",
+                "definitions": [
+                    "department store"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "병원",
+                "definitions": [
+                    "hospital"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "시청",
+                "definitions": [
+                    "city hall"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "건물",
+                "definitions": [
+                    "building"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "도",
+                "definitions": [
+                    "also",
+                    "too"
+                ],
+                "type": "particle"
+            },
+            {
+                "hangul": "일하다",
+                "definitions": [
+                    "to work"
+                ],
+                "type": "verb"
+            },
+            {
+                "hangul": "좋다",
+                "definitions": [
+                    "to be good"
+                ],
+                "type": "verb"
+            },
+            {
+                "hangul": "참",
+                "definitions": [
+                    "really",
+                    "very"
+                ],
+                "type": "adverb"
+            }
+        ]
+    },
+    {
+        "lesson_id": 4,
+        "words": [
+            {
+                "hangul": "학교",
+                "definitions": [
+                    "school"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "애학교",
+                "definitions": [
+                    "university"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "한국",
+                "definitions": [
+                    "Korea"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "한국말",
+                "definitions": [
+                    "Korean language"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "한국어",
+                "definitions": [
+                    "Korean language"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "역사",
+                "definitions": [
+                    "history"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "한국 역사",
+                "definitions": [
+                    "Korean history"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "오늘",
+                "definitions": [
+                    "today"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "시내",
+                "definitions": [
+                    "downtown",
+                    "inside the city"
+                ],
+                "type": "noun"
+            },
+            {
+                "hangul": "어디",
+                "definitions": [
+                    "where"
+                ],
+                "type": "pronoun"
+            },
+            {
+                "hangul": "하다",
+                "definitions": [
+                    "to do"
+                ],
+                "type": "verb"
+            },
+            {
+                "hangul": "공부하다",
+                "definitions": [
+                    "to study"
+                ],
+                "type": "verb"
+            },
+            {
+                "hangul": "가다",
+                "definitions": [
+                    "to go"
+                ],
+                "type": "verb"
+            },
+            {
+                "hangul": "같이",
+                "definitions": [
+                    "together"
+                ],
+                "type": "adverb"
+            },
+            {
+                "hangul": "그럼",
+                "definitions": [
+                    "if so",
+                    "in that case",
+                    "then"
+                ],
+                "type": "adverb"
+            },
+            {
+                "hangul": "에서",
+                "definitions": [
+                    "at",
+                    "in",
+                    "from"
+                ],
+                "type": "particle"
+            },
+            {
+                "hangul": "을",
+                "definitions": [
+                    "object marker (consonant preceding)"
+                ],
+                "type": "particle"
+            },
+            {
+                "hangul": "를",
+                "definitions": [
+                    "object marker (vowel preceding)"
+                ],
+                "type": "particle"
+            },
+            {
+                "hangul": "에",
+                "definitions": [
+                    "to (a destination)"
+                ],
+                "type": "particle"
+            },
+            {
+                "hangul": "중국어",
+                "definitions": [
+                    "Chinese language"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "궁국말",
+                "definitions": [
+                    "Chinese language"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "일본어",
+                "definitions": [
+                    "Japanese language"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "일본말",
+                "definitions": [
+                    "Japanese language"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "영어",
+                "definitions": [
+                    "English"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "어제",
+                "definitions": [
+                    "yesterday"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "내일",
+                "definitions": [
+                    "tomorrow"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "지금",
+                "definitions": [
+                    "now"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "언제",
+                "definitions": [
+                    "when"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "식당",
+                "definitions": [
+                    "restaurant"
+                ],
+                "type": "additional"
+            },
+            {
+                "hangul": "오다",
+                "definitions": [
+                    "to come"
+                ],
+                "type": "additional"
+            }
+        ]
+    }
+]
