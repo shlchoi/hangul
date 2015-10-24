@@ -29,6 +29,8 @@ import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulFlashcardFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulLookupFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.PronunciationFragment;
+import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
+import ca.uwaterloo.sh6choi.korea101r.services.HangulWebIntentService;
 import ca.uwaterloo.sh6choi.korea101r.utils.KeyboardUtils;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DictationFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
@@ -67,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        Intent intent = new Intent(this, DictationWebIntentService.class);
-//        startService(intent);
+        Intent intent = new Intent(this, HangulWebIntentService.class);
+        startService(intent);
 
         setContentView(R.layout.activity_main);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -170,14 +172,10 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
             return;
         }
 
-        String character = intent.getStringExtra(HangulLookupFragment.EXTRA_HANGUL);
-        String romanization = intent.getStringExtra(HangulLookupFragment.EXTRA_ROMANIZATION);
-        String pronunciation = intent.getStringExtra(HangulLookupFragment.EXTRA_PRONUNCIATION);
+        HangulCharacter character = intent.getParcelableExtra(HangulLookupFragment.EXTRA_CHARACTER);
 
         Bundle args = new Bundle();
-        args.putString(HangulCharacterFragment.ARG_HANGUL, character);
-        args.putString(HangulCharacterFragment.ARG_ROMANIZATION, romanization);
-        args.putString(HangulCharacterFragment.ARG_PRONUNCIATION, pronunciation);
+        args.putParcelable(HangulCharacterFragment.ARG_HANGUL_CHARACTER, character);
 
         HangulCharacterFragment fragment = HangulCharacterFragment.getInstance(args);
         swapFragment(fragment);

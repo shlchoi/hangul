@@ -12,7 +12,7 @@
         android:id="@+id/hangul_character_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="72dp"
+        android:textSize="72sp"
         tools:text="ㅊ"/>
 
 </LinearLayout>

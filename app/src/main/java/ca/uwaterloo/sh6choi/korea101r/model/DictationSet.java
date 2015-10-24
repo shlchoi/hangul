@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class DictationSet {
 
-    @SerializedName("id")
+    @SerializedName("set_id")
     private String mId;
 
     @SerializedName("words")

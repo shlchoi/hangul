@@ -21,6 +21,7 @@ import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulCharacterFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulFlashcardFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulLookupFragment;
+import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
 import ca.uwaterloo.sh6choi.korea101r.views.DrawerMenuAdapter;
 import ca.uwaterloo.sh6choi.korea101r.views.NavigationDrawerLayout;
 
@@ -119,18 +120,14 @@ public class MainActivityTest {
 
     @Test
     public void shouldContainHangulCharacterFragmentOnIntent() {
-        String hangul = "ㄱ";
-        String romanization = "g";
-        String pronunciation = "그";
+        HangulCharacter character = new HangulCharacter("g", "ㄱ", "기역", "그", new String[]{"g", "k"}, "consonant");
 
         Intent intent = new Intent();
         intent.setAction(MainActivity.ACTION_HANGUL_CHARACTER);
-        intent.putExtra(HangulLookupFragment.EXTRA_HANGUL, hangul);
-        intent.putExtra(HangulLookupFragment.EXTRA_ROMANIZATION, romanization);
-        intent.putExtra(HangulLookupFragment.EXTRA_PRONUNCIATION, pronunciation);
+        intent.putExtra(HangulLookupFragment.EXTRA_CHARACTER, character);
 
         ActivityController controller = Robolectric.buildActivity(MainActivity.class).withIntent(intent);
-        controller.create().resume();
+        controller.create().start().resume();
         MainActivity activity = (MainActivity) controller.get();
 
         FragmentManager manager = activity.getSupportFragmentManager();
@@ -139,13 +136,9 @@ public class MainActivityTest {
         assertThat(fragment, instanceOf(HangulCharacterFragment.class));
         assertThat(activity.getIntent().getAction(), equalTo(MainActivity.ACTION_HANGUL_CHARACTER));
 
-        assertThat(activity.getIntent().hasExtra(HangulLookupFragment.EXTRA_HANGUL), is(true));
-        assertThat(activity.getIntent().hasExtra(HangulLookupFragment.EXTRA_ROMANIZATION), is(true));
-        assertThat(activity.getIntent().hasExtra(HangulLookupFragment.EXTRA_PRONUNCIATION), is(true));
+        assertThat(activity.getIntent().hasExtra(HangulLookupFragment.EXTRA_CHARACTER), is(true));
 
-        assertThat(fragment.getArguments().containsKey(HangulCharacterFragment.ARG_HANGUL), is(true));
-        assertThat(fragment.getArguments().containsKey(HangulCharacterFragment.ARG_ROMANIZATION), is(true));
-        assertThat(fragment.getArguments().containsKey(HangulCharacterFragment.ARG_PRONUNCIATION), is(true));
+        assertThat(fragment.getArguments().containsKey(HangulCharacterFragment.ARG_HANGUL_CHARACTER), is(true));
     }
 
 

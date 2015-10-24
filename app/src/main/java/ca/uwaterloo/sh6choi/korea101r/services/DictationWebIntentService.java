@@ -3,6 +3,7 @@ package ca.uwaterloo.sh6choi.korea101r.services;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
@@ -33,8 +34,8 @@ public class DictationWebIntentService extends WebIntentService {
     @Override
     public void onResponse(String response) {
         Log.d(TAG, "Dictation set retrieved");
-        JsonObject o = new JsonParser().parse(response).getAsJsonObject();
-        DictationSet[] dictationSets = new Gson().fromJson(o.getAsJsonArray("sets"), DictationSet[].class);
+        JsonArray array = new JsonParser().parse(response).getAsJsonArray();
+        DictationSet[] dictationSets = new Gson().fromJson(array, DictationSet[].class);
     }
 
     @Override

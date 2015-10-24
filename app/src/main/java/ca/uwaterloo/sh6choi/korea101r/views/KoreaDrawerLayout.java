@@ -5,7 +5,11 @@ import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 
+import java.util.ArrayList;
+
+import ca.uwaterloo.sh6choi.korea101r.R;
 import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 
 /**
@@ -23,6 +27,19 @@ public class KoreaDrawerLayout extends NavigationDrawerLayout {
 
     public KoreaDrawerLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    @Override
+    protected void initializeMenu() {
+
+        mDrawerMenu = (ListView) findViewById(R.id.navigation_drawer);
+
+        if (mMenuAdapter == null) {
+            mMenuAdapter = new KoreaDrawerMenuAdapter(getContext(), new ArrayList<IDrawerMenuItem>());
+        }
+        mDrawerMenu.setAdapter(mMenuAdapter);
+
+        setupClickListener();
     }
 
     @Override

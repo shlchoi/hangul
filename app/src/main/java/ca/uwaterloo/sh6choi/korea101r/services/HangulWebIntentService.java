@@ -3,12 +3,15 @@ package ca.uwaterloo.sh6choi.korea101r.services;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import ca.uwaterloo.sh6choi.korea101r.database.DatabaseRequestCallback;
+import ca.uwaterloo.sh6choi.korea101r.database.HangulCharacterDataSource;
 import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
 
 /**
@@ -16,7 +19,7 @@ import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
  */
 public class HangulWebIntentService extends WebIntentService {
 
-    private static final String TAG = DictationWebIntentService.class.getCanonicalName();
+    private static final String TAG = HangulWebIntentService.class.getCanonicalName();
 
     public HangulWebIntentService() {
         super("HangulWebIntentService");
@@ -30,8 +33,14 @@ public class HangulWebIntentService extends WebIntentService {
     @Override
     public void onResponse(String response) {
         Log.d(TAG, "Hangul retrieved");
-        JsonObject o = new JsonParser().parse(response).getAsJsonObject();
-        HangulCharacter[] hangulChars = new Gson().fromJson(o.getAsJsonArray("hangul"), HangulCharacter[].class);
+        JsonArray array = new JsonParser().parse(response).getAsJsonArray();
+        HangulCharacter[] hangulChars = new Gson().fromJson(array, HangulCharacter[].class);
+
+        final HangulCharacterDataSource dataSource = new HangulCharacterDataSource(this);
+        dataSource.open();
+        for (int i = 0; i < hangulChars.length; i ++) {
+            dataSource.update(hangulChars[i], null);
+        }
     }
 
     @Override

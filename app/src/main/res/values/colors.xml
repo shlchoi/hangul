@@ -2,11 +2,11 @@
 <resources>
 
     <color name="colorPrimary">#ff003478</color>
-    <color name="colorPrimaryDark">#ff264d7f</color>
-    <color name="colorPrimaryLight">#ff4c9aff</color>
+    <color name="colorPrimaryDark">#ff001c40</color>
+    <color name="colorPrimaryLight">#ff006eff</color>
     <color name="colorAccent">#ffc60c30</color>
-    <color name="colorAccentDark">#ff7f2e3e</color>
-    <color name="colorAccentLight">#ffff5c7c</color>
+    <color name="colorAccentDark">#ff40040f</color>
+    <color name="colorAccentLight">#ffe50e38</color>
 
     <color name="primaryForegroundColor">@android:color/white</color>
     <color name="textColorPrimary">#ff5f6062</color>

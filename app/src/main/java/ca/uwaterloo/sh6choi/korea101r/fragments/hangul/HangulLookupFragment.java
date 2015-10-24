@@ -10,29 +10,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import ca.uwaterloo.sh6choi.korea101r.R;
 import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 import ca.uwaterloo.sh6choi.korea101r.adapters.HangulAdapter;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
+import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
+import ca.uwaterloo.sh6choi.korea101r.presentation.HangulCharacterPresenter;
 
 /**
  * Created by Samson on 2015-09-25.
  */
-public class HangulLookupFragment extends Fragment implements DrawerFragment, HangulAdapter.OnItemClickListener {
+public class HangulLookupFragment extends Fragment implements DrawerFragment, HangulCharacterPresenter.HangulCharacterView,
+        HangulAdapter.OnItemClickListener {
 
     private static final String TAG = HangulLookupFragment.class.getCanonicalName();
     public static final String FRAGMENT_TAG = MainActivity.TAG + ".fragment.hangul_lookup";
 
-    public static final String EXTRA_HANGUL = TAG +".extra.character";
-    public static final String EXTRA_ROMANIZATION = TAG +".extra.romanization";
-    public static final String EXTRA_PRONUNCIATION = TAG +".extra.pronunciation";
+    public static final String EXTRA_CHARACTER = TAG +".extra.character";
 
-    private String[] mCharacterSet;
-    private String[] mRomanizationSet;
-    private String[] mPronunciationSet;
 
     private RecyclerView mHangulRecyclerView;
     private HangulAdapter mHangulAdapter;
+
+    private HangulCharacterPresenter mPresenter;
 
     public static HangulLookupFragment getInstance(Bundle args) {
         HangulLookupFragment fragment = new HangulLookupFragment();
@@ -54,34 +56,30 @@ public class HangulLookupFragment extends Fragment implements DrawerFragment, Ha
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mCharacterSet = getResources().getStringArray(R.array.hangul_characters);
-        mRomanizationSet = getResources().getStringArray(R.array.hangul_romanizations);
-        mPronunciationSet = getResources().getStringArray(R.array.hangul_pronunciations);
-
         mHangulRecyclerView = (RecyclerView) view.findViewById(R.id.hangul_recycler_view);
-
         mHangulRecyclerView.setHasFixedSize(true);
-
         mHangulRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
 
-
-
-        // specify an adapter (see also next example)
-        mHangulAdapter = new HangulAdapter(mCharacterSet);
+        mHangulAdapter = new HangulAdapter();
         mHangulAdapter.setOnItemClickListener(this);
         mHangulRecyclerView.setAdapter(mHangulAdapter);
 
+        mPresenter = new HangulCharacterPresenter(getContext(), this);
+        mPresenter.obtainAllCharacters();
+    }
+
+    @Override
+    public void refreshHangulCharacterList(List<HangulCharacter> hangulCharacterList) {
+        mHangulAdapter.setHangulCharacterList(hangulCharacterList);
     }
 
     @Override
     public void onItemClick(View view) {
-        int index = (int) view.getTag();
+        HangulCharacter hangulCharacter = (HangulCharacter) view.getTag();
 
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.setAction(MainActivity.ACTION_HANGUL_CHARACTER);
-        intent.putExtra(EXTRA_HANGUL, mCharacterSet[index]);
-        intent.putExtra(EXTRA_ROMANIZATION, mRomanizationSet[index]);
-        intent.putExtra(EXTRA_PRONUNCIATION, mPronunciationSet[index]);
+        intent.putExtra(EXTRA_CHARACTER, hangulCharacter);
 
         startActivity(intent);
     }

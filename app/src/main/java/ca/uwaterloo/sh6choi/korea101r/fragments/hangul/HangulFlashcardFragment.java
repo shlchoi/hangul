@@ -10,24 +10,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 import ca.uwaterloo.sh6choi.korea101r.R;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
+import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
+import ca.uwaterloo.sh6choi.korea101r.presentation.HangulCharacterPresenter;
 
 /**
  * Created by Samson on 2015-09-22.
  */
-public class HangulFlashcardFragment extends Fragment implements DrawerFragment, View.OnClickListener, View.OnTouchListener {
+public class HangulFlashcardFragment extends Fragment implements DrawerFragment, View.OnClickListener, View.OnTouchListener, HangulCharacterPresenter.HangulCharacterView {
 
     private static final String TAG = HangulFlashcardFragment.class.getCanonicalName();
     public static final String FRAGMENT_TAG = MainActivity.TAG + ".fragment.hangul.flashcards";
 
-    private String[] mCharacterSet;
-    private String[] mRomanizationSet;
-    private String[] mPronunciationSet;
+    private List<HangulCharacter> mHangulCharacterList;
+    private HangulCharacterPresenter mPresenter;
 
     private int mCurIndex = -1;
 
@@ -54,8 +57,7 @@ public class HangulFlashcardFragment extends Fragment implements DrawerFragment,
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mCharacterSet = getResources().getStringArray(R.array.hangul_characters);
-        mRomanizationSet = getResources().getStringArray(R.array.hangul_romanizations);
+        mHangulCharacterList = new ArrayList<>();
 
         mCharacterTextView = (TextView) view.findViewById(R.id.character_text_view);
         mCharacterTextView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -65,7 +67,8 @@ public class HangulFlashcardFragment extends Fragment implements DrawerFragment,
 
         view.findViewById(R.id.hangul_fragment_relative_layout).setOnClickListener(this);
 
-        switchCharacter();
+        mPresenter  = new HangulCharacterPresenter(getContext(), this);
+        mPresenter.obtainAllCharacters();
     }
 
     @Override
@@ -98,18 +101,27 @@ public class HangulFlashcardFragment extends Fragment implements DrawerFragment,
         return false;
     }
 
+    @Override
+    public void refreshHangulCharacterList(List<HangulCharacter> hangulCharacterList) {
+        mHangulCharacterList = hangulCharacterList;
+
+        switchCharacter();
+    }
+
     private void switchCharacter() {
         Random random = new Random(new Date().getTime());
 
-        int nextInt;
-        do {
-            nextInt = random.nextInt(mCharacterSet.length);
-        } while (nextInt == mCurIndex);
+        if (mHangulCharacterList.size() > 0) {
+            int nextInt;
+            do {
+                nextInt = random.nextInt(mHangulCharacterList.size());
+            } while (nextInt == mCurIndex);
 
 
-        mCurIndex = nextInt;
-        mCharacterTextView.setText(mCharacterSet[mCurIndex]);
-        mHintTextView.setText(mRomanizationSet[mCurIndex]);
+            mCurIndex = nextInt;
+            mCharacterTextView.setText(mHangulCharacterList.get(mCurIndex).getCharacter());
+            mHintTextView.setText(mHangulCharacterList.get(mCurIndex).getName());
+        }
     }
 
     @Override

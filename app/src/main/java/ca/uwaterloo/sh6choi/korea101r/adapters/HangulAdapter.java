@@ -4,20 +4,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import ca.uwaterloo.sh6choi.korea101r.R;
+import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
 
 /**
  * Created by Samson on 2015-09-25.
  */
 public class HangulAdapter extends RecyclerView.Adapter<HangulCharacterViewHolder> implements HangulCharacterViewHolder.OnItemClickListener {
-    private String[] mHangulCharacterSet;
+    private List<HangulCharacter> mHangulCharacterList;
 
     private OnItemClickListener mOnItemClickListener;
 
-    public HangulAdapter(String[] hangulCharacterSet) {
-        mHangulCharacterSet = hangulCharacterSet;
+    public HangulAdapter() {
+        mHangulCharacterList = new ArrayList<>();
     }
 
     @Override
@@ -29,15 +32,15 @@ public class HangulAdapter extends RecyclerView.Adapter<HangulCharacterViewHolde
 
     @Override
     public void onBindViewHolder(HangulCharacterViewHolder holder, int position) {
-        holder.getTextView().setText(mHangulCharacterSet[position]);
+        holder.getTextView().setText(mHangulCharacterList.get(position).getCharacter());
 
-        holder.itemView.setTag(position);
+        holder.itemView.setTag(mHangulCharacterList.get(position));
         holder.setOnItemClickListener(this);
     }
 
     @Override
     public int getItemCount() {
-        return mHangulCharacterSet.length;
+        return mHangulCharacterList.size();
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -49,6 +52,11 @@ public class HangulAdapter extends RecyclerView.Adapter<HangulCharacterViewHolde
         if (mOnItemClickListener != null) {
             mOnItemClickListener.onItemClick(view);
         }
+    }
+
+    public void setHangulCharacterList(List<HangulCharacter> hangulCharacterList) {
+        mHangulCharacterList = hangulCharacterList;
+        notifyDataSetChanged();
     }
 
     public interface OnItemClickListener {

@@ -46,7 +46,7 @@ public abstract class NavigationDrawerLayout extends SlidingDrawer {
         initializeMenu();
     }
 
-    private void initializeMenu() {
+    protected void initializeMenu() {
 
         mDrawerMenu = (ListView) findViewById(R.id.navigation_drawer);
 

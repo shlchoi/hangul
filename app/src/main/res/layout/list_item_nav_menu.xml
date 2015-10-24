@@ -17,6 +17,7 @@
         android:includeFontPadding="false"
         android:gravity="center_vertical"
         style="@style/nav_menu_item_text"
+        android:duplicateParentState="true"
         tools:text="Hangul"
         />
 

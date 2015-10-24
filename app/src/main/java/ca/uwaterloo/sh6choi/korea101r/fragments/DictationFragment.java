@@ -17,7 +17,6 @@ import java.util.Random;
 
 import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 import ca.uwaterloo.sh6choi.korea101r.R;
-import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulFlashcardFragment;
 import ca.uwaterloo.sh6choi.korea101r.utils.HangulUtils;
 
 /**

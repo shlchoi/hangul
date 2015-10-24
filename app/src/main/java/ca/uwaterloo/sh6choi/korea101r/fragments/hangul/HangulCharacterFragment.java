@@ -1,44 +1,67 @@
 package ca.uwaterloo.sh6choi.korea101r.fragments.hangul;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.Locale;
 
 import ca.uwaterloo.sh6choi.korea101r.R;
 import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
+import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
+import ca.uwaterloo.sh6choi.korea101r.services.TextToSpeechService;
 
 /**
  * Created by Samson on 2015-09-25.
  */
-public class HangulCharacterFragment extends Fragment implements DrawerFragment, View.OnClickListener, TextToSpeech.OnInitListener {
+public class HangulCharacterFragment extends Fragment implements DrawerFragment, View.OnClickListener,
+       TextToSpeechService.OnInitializedListener {
 
     private static final String TAG = HangulFlashcardFragment.class.getCanonicalName();
     public static final String FRAGMENT_TAG = MainActivity.TAG + ".fragment.hangul.flashcards";
 
-    public static final String ARG_HANGUL = TAG + ".arg.hangul";
-    public static final String ARG_ROMANIZATION = TAG + ".arg.romanization";
-    public static final String ARG_PRONUNCIATION = TAG + ".arg.pronunciation";
+    public static final String ARG_HANGUL_CHARACTER = TAG + ".arg.character";
 
-    private String mHangulCharacter;
-    private String mRomanization;
-    private String mPronunciation;
+    private HangulCharacter mHangulCharacter;
 
     private TextView mCharacterTextView;
-    private TextView mRomanizationTextView;
+    private TextView mNameTextView;
     private FloatingActionButton mPlayFab;
 
+    private TextToSpeechService mTextToSpeechService;
+    private boolean mBound;
+    private ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            if (service != null) {
+                TextToSpeechService.TextToSpeechBinder binder = (TextToSpeechService.TextToSpeechBinder) service;
+                mTextToSpeechService = binder.getService();
+                mTextToSpeechService.setOnInitializedListener(HangulCharacterFragment.this);
 
-    private TextToSpeech mTextToSpeech;
+                mBound = true;
+                mPlayFab.setEnabled(mTextToSpeechService.isInitialized());
+            } else {
+                mBound = false;
+                mPlayFab.setEnabled(false);
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName className) {
+            mBound = false;
+            mTextToSpeechService = null;
+        }
+    };
 
     public static HangulCharacterFragment getInstance(Bundle args) {
         HangulCharacterFragment fragment = new HangulCharacterFragment();
@@ -56,16 +79,8 @@ public class HangulCharacterFragment extends Fragment implements DrawerFragment,
 
         Bundle args = getArguments();
 
-        if (args.containsKey(ARG_HANGUL)) {
-            mHangulCharacter = args.getString(ARG_HANGUL);
-        }
-
-        if (args.containsKey(ARG_ROMANIZATION)) {
-            mRomanization = args.getString(ARG_ROMANIZATION);
-        }
-
-        if (args.containsKey(ARG_PRONUNCIATION)) {
-            mPronunciation = args.getString(ARG_PRONUNCIATION);
+        if (args.containsKey(ARG_HANGUL_CHARACTER)) {
+            mHangulCharacter = args.getParcelable(ARG_HANGUL_CHARACTER);
         }
 
         return contentView;
@@ -75,40 +90,40 @@ public class HangulCharacterFragment extends Fragment implements DrawerFragment,
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //mTextToSpeech = new TextToSpeech(getActivity(), this);
-
         mCharacterTextView = (TextView) view.findViewById(R.id.character_text_view);
         mCharacterTextView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        mCharacterTextView.setText(mHangulCharacter);
+        mCharacterTextView.setText(mHangulCharacter.getCharacter());
 
-        mRomanizationTextView = (TextView) view.findViewById(R.id.romanization_text_view);
-        mRomanizationTextView.setText(mRomanization);
+        mNameTextView = (TextView) view.findViewById(R.id.romanization_text_view);
+        mNameTextView.setText(mHangulCharacter.getName());
 
         mPlayFab = (FloatingActionButton) view.findViewById(R.id.play_fab);
         mPlayFab.setOnClickListener(this);
+        mPlayFab.setEnabled(false);
+
+        Intent intent = new Intent(getActivity(), TextToSpeechService.class);
+        getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
-    public void onInit(int status) {
-//        if (mTextToSpeech.isLanguageAvailable(Locale.KOREA) == TextToSpeech.LANG_AVAILABLE || mTextToSpeech.isLanguageAvailable(Locale.KOREA) == TextToSpeech.LANG_COUNTRY_AVAILABLE) {
-//            mTextToSpeech.setLanguage(Locale.KOREA);
-//            mTextToSpeech.setSpeechRate(0.5f);
-//        } else {
-//            Toast.makeText(getActivity(), "No Voice Files found", Toast.LENGTH_SHORT).show();
-//        }
+    public void onInitialized() {
+        mPlayFab.setEnabled(true);
+    }
+
+    @Override
+    public void onError() {
+        mPlayFab.setEnabled(false);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.play_fab:
-                //playSound();
+                if (mBound) {
+                    mTextToSpeechService.playSound(mHangulCharacter.getPronunciation());
+                }
                 break;
         }
-    }
-
-    private void playSound() {
-        mTextToSpeech.speak(mPronunciation, TextToSpeech.QUEUE_FLUSH, null);
     }
 
     @Override
@@ -135,11 +150,5 @@ public class HangulCharacterFragment extends Fragment implements DrawerFragment,
     public boolean onBackPressed() {
         getActivity().getSupportFragmentManager().popBackStack();
         return true;
-    }
-
-    @Override
-    public void onDestroy() {
-        //mTextToSpeech.shutdown();
-        super.onDestroy();
     }
 }

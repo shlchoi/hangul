@@ -6,7 +6,7 @@
     android:layout_marginRight="@dimen/menu_remainder_margin"
     android:orientation="vertical">
 
-    <include layout="@layout/list_item_nav_header"/>
+    <!--<include layout="@layout/list_item_nav_header"/>-->
 
     <ListView
         android:id="@+id/navigation_drawer"
