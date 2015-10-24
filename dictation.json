@@ -1,6 +1,6 @@
 [
     {
-        "set_id": "1",
+        "set_id": 1,
         "words": [
             {
                 "definition": "furniture",
@@ -85,7 +85,7 @@
         ]
     },
     {
-        "set_id": "2",
+        "set_id": 2,
         "words": [
             {
                 "definition": "Earth",
@@ -130,7 +130,7 @@
         ]
     },
     {
-        "set_id": "3",
+        "set_id": 3,
         "words": [
             {
                 "definition": "spider",
@@ -175,7 +175,7 @@
         ]
     },
     {
-        "set_id": "4",
+        "set_id": 4,
         "words": [
             {
                 "definition": "card",
