@@ -697,5 +697,140 @@
                 "type": "additional"
             }
         ]
+    },
+    {
+        "lesson_id": 5,
+        "words": [
+            {
+                "word_id" : 500,
+                "hangul": "언제",
+                "definitions": [
+                    "when"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 501,
+                "hangul": "금년",
+                "definitions": [
+                    "current year"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 502,
+                "hangul": "나라",
+                "definitions": [
+                    "country"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 503,
+                "hangul": "월",
+                "definitions": [
+                    "month"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 504,
+                "hangul": "오다",
+                "definitions": [
+                    "to come"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 505,
+                "hangul": "만나다",
+                "definitions": [
+                    "to meet"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 506,
+                "hangul": "처음",
+                "definitions": [
+                    "for the first time"
+                ],
+                "type": "adverb"
+            },
+            {
+                "word_id" : 507,
+                "hangul": "에서",
+                "definitions": [
+                    "from (a place or time)",
+                    "at / in"
+                ],
+                "type": "particle"
+            }
+            {
+                "word_id" : 508,
+                "hangul": "에",
+                "definitions": [
+                    "at / in (time marker)",
+                    "to (destination marker)"
+                ],
+                "type": "particle"
+            }
+            {
+                "word_id" : 509,
+                "hangul": "과",
+                "definitions": [
+                    "and (Noun) (consonant preceding)"
+                ],
+                "type": "particle"
+            }
+            {
+                "word_id" : 510,
+                "hangul": "와",
+                "definitions": [
+                    "and (Noun) (vowel preceding)"
+                ],
+                "type": "particle"
+            },
+            {
+                "word_id" : 511,
+                "hangul": "어느",
+                "definitions": [
+                    "which"
+                ],
+                "type": "noun modifier"
+            },
+            {
+                "word_id" : 512,
+                "hangul": "일",
+                "definitions": [
+                    "date"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 513,
+                "hangul": "작년",
+                "definitions": [
+                    "last year"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 514,
+                "hangul": "내년",
+                "definitions": [
+                    "next year"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 515,
+                "hangul": "사랑하다",
+                "definitions": [
+                    "to love"
+                ],
+                "type": "additional"
+            }
+        ]
     }
 ]
