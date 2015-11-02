@@ -1,0 +1,60 @@
+[
+    {
+        "number": 1,
+        "korean": "하나",
+        "sino-korean": "일",
+        "count_form": "한"
+    },
+    {
+        "number": 2,
+        "korean": "둘",
+        "sino-korean": "이",
+        "count_form": "두"
+    },
+    {
+        "number": 3,
+        "korean": "셋",
+        "sino-korean": "삼",
+        "count_form": "세"
+    },
+    {
+        "number": 4,
+        "korean": "넷",
+        "sino-korean": "사",
+        "count_form": "네"
+    },
+    {
+        "number": 5,
+        "korean": "다섯",
+        "sino-korean": "오"
+    },
+    {
+        "number": 6,
+        "korean": "여섯",
+        "sino-korean": "육"
+    },
+    {
+        "number": 7,
+        "korean": "일곱",
+        "sino-korean": "칠"
+    },
+    {
+        "number": 8,
+        "korean": "여덟",
+        "sino-korean": "팔"
+    },
+    {
+        "number": 9,
+        "korean": "아홉",
+        "sino-korean": "구"
+    },
+    {
+        "number": 10,
+        "korean": "열",
+        "sino-korean": "십"
+    },
+    {
+        "number": 20,
+        "korean": "스물"
+    }
+]
