@@ -56,5 +56,49 @@
     {
         "number": 20,
         "korean": "스물"
+    },
+    {
+        "number": 30,
+        "korean": "서른"
+    },
+    {
+        "number": 40,
+        "korean": "마흔"
+    },
+    {
+        "number": 50,
+        "korean": "쉰"
+    },
+    {
+        "number": 60,
+        "korean": "예순"
+    },
+    {
+        "number": 70,
+        "korean": "일흔"
+    },
+    {
+        "number": 80,
+        "korean": "여든"
+    },
+    {
+        "number": 90,
+        "korean": "아흔"
+    },
+    {
+        "number": 100,
+        "sino-korean": "백"
+    },
+    {
+        "number": 1000,
+        "sino-korean": "천"
+    },
+    {
+        "number": 10000,
+        "sino-korean": "만"
+    },
+    {
+        "number": 100000000,
+        "sino-korean": "억"
     }
 ]
