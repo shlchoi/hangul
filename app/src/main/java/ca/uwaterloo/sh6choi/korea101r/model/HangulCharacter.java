@@ -10,7 +10,7 @@ import java.util.Comparator;
 /**
  * Created by Samson on 2015-09-23.
  */
-public class HangulCharacter implements Parcelable {
+public class HangulCharacter implements Parcelable, FlashcardItem {
 
     @SerializedName("char_id")
     private String mCharId;
@@ -82,6 +82,16 @@ public class HangulCharacter implements Parcelable {
 
     public String getType() {
         return mType;
+    }
+
+    @Override
+    public String getFlashcardText() {
+        return getCharacter();
+    }
+
+    @Override
+    public String getFlashcardHint() {
+        return getName();
     }
 
     @Override

@@ -59,12 +59,13 @@ public class MainActivityTest {
         NavigationDrawerLayout drawerLayout = (NavigationDrawerLayout) activity.findViewById(R.id.drawer_layout);
         DrawerMenuAdapter adapter = drawerLayout.getMenuAdapter();
 
-        assertThat(adapter.getCount(), equalTo(4));
+        assertThat(adapter.getCount(), equalTo(5));
 
         assertThat(adapter.getItem(0).getStringResId(), equalTo(R.string.nav_menu_hangul));
         assertThat(adapter.getItem(1).getStringResId(), equalTo(R.string.nav_menu_dictation));
-        assertThat(adapter.getItem(2).getStringResId(), equalTo(R.string.nav_menu_pronunciation));
-        assertThat(adapter.getItem(3).getStringResId(), equalTo(R.string.nav_menu_conjugation));
+        assertThat(adapter.getItem(2).getStringResId(), equalTo(R.string.nav_menu_conjugation));
+        assertThat(adapter.getItem(3).getStringResId(), equalTo(R.string.nav_menu_vocab));
+        assertThat(adapter.getItem(4).getStringResId(), equalTo(R.string.nav_menu_number_time));
     }
 
     @Test

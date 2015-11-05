@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,25 +21,24 @@ import java.util.Random;
 
 import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 import ca.uwaterloo.sh6choi.korea101r.R;
+import ca.uwaterloo.sh6choi.korea101r.adapters.FlashcardAdapter;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
+import ca.uwaterloo.sh6choi.korea101r.model.FlashcardItem;
 import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
 import ca.uwaterloo.sh6choi.korea101r.presentation.HangulCharacterPresenter;
 
 /**
  * Created by Samson on 2015-09-22.
  */
-public class HangulFlashcardFragment extends Fragment implements DrawerFragment, View.OnClickListener, View.OnTouchListener, HangulCharacterPresenter.HangulCharacterView {
+public class HangulFlashcardFragment extends Fragment implements DrawerFragment, HangulCharacterPresenter.HangulCharacterView {
 
     private static final String TAG = HangulFlashcardFragment.class.getCanonicalName();
     public static final String FRAGMENT_TAG = MainActivity.TAG + ".fragment.hangul.flashcards";
 
-    private List<HangulCharacter> mHangulCharacterList;
+    private RecyclerView mFlashcardRecyclerView;
+    private FlashcardAdapter<HangulCharacter> mFlashcardAdapter;
+
     private HangulCharacterPresenter mPresenter;
-
-    private int mCurIndex = -1;
-
-    private TextView mCharacterTextView;
-    private TextView mHintTextView;
 
     public static HangulFlashcardFragment getInstance(Bundle args) {
         HangulFlashcardFragment fragment = new HangulFlashcardFragment();
@@ -57,71 +60,48 @@ public class HangulFlashcardFragment extends Fragment implements DrawerFragment,
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mHangulCharacterList = new ArrayList<>();
+        mFlashcardRecyclerView = (RecyclerView) view.findViewById(R.id.flashcard_recycler_view);
+        mFlashcardAdapter = new FlashcardAdapter<>(R.layout.list_item_flashcard_character);
 
-        mCharacterTextView = (TextView) view.findViewById(R.id.character_text_view);
-        mCharacterTextView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        mCharacterTextView.setOnTouchListener(this);
+        ItemTouchHelper.Callback listItemTouchHelper = new ItemTouchHelper.Callback() {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
 
-        mHintTextView = (TextView) view.findViewById(R.id.hint_text_view);
+            @Override
+            public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                return makeFlag(ItemTouchHelper.ACTION_STATE_SWIPE, ItemTouchHelper.LEFT);
+            }
 
-        view.findViewById(R.id.hangul_fragment_relative_layout).setOnClickListener(this);
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                if (direction == ItemTouchHelper.LEFT) {
+                    mFlashcardAdapter.nextCard();
+                }
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(listItemTouchHelper);
+        itemTouchHelper.attachToRecyclerView(mFlashcardRecyclerView);
+
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+
+        mFlashcardRecyclerView.setLayoutManager(manager);
+        mFlashcardRecyclerView.setAdapter(mFlashcardAdapter);
 
         mPresenter  = new HangulCharacterPresenter(getContext(), this);
         mPresenter.obtainAllCharacters();
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.hangul_fragment_relative_layout:
-                switchCharacter();
-                break;
-        }
-    }
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        switch(event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                switch (v.getId()) {
-                    case R.id.character_text_view:
-                        mHintTextView.setVisibility(View.VISIBLE);
-                        return true;
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                switch (v.getId()) {
-                    case R.id.character_text_view:
-                        mHintTextView.setVisibility(View.GONE);
-                        return true;
-                }
-                break;
-        }
-        return false;
-    }
-
-    @Override
     public void refreshHangulCharacterList(List<HangulCharacter> hangulCharacterList) {
-        mHangulCharacterList = hangulCharacterList;
-
-        switchCharacter();
-    }
-
-    private void switchCharacter() {
-        Random random = new Random(new Date().getTime());
-
-        if (mHangulCharacterList.size() > 0) {
-            int nextInt;
-            do {
-                nextInt = random.nextInt(mHangulCharacterList.size());
-            } while (nextInt == mCurIndex);
-
-
-            mCurIndex = nextInt;
-            mCharacterTextView.setText(mHangulCharacterList.get(mCurIndex).getCharacter());
-            mHintTextView.setText(mHangulCharacterList.get(mCurIndex).getName());
-        }
+        mFlashcardAdapter.setFlashcardList(hangulCharacterList);
     }
 
     @Override
@@ -131,7 +111,7 @@ public class HangulFlashcardFragment extends Fragment implements DrawerFragment,
 
     @Override
     public int getTitleStringResId() {
-        return R.string.nav_menu_hangul;
+        return R.string.hangul_flashcards;
     }
 
     @Override

@@ -30,14 +30,21 @@ public class KoreanSQLiteOpenHelper extends SQLiteOpenHelper{
     public static final String COLUMN_WORD_ID_VOCAB = "word_id";
     public static final String COLUMN_LESSON_ID = "lesson_id";
     public static final String COLUMN_HANGUL_VOCAB = "hangul";
+    public static final String COLUMN_WORD_TYPE = "type";
 
     public static final String TABLE_DEFINITIONS = "definitions";
     public static final String COLUMN_DEFINITION_ID = "definition_id";
     public static final String COLUMN_WORD_ID = "word_id";
     public static final String COLUMN_DEFINITION = "definition";
 
+    public static final String TABLE_NUMBERS = "numbers";
+    public static final String COLUMN_NUMBER = "number";
+    public static final String COLUMN_KOREAN = "korean";
+    public static final String COLUMN_SINO_KOREAN = "sino_korean";
+    public static final String COLUMN_COUNT = "count";
+
     private static final String DATABASE_NAME = "Hangul.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 5;
 
     private static final String TABLE_CHARACTERS_CREATE = "CREATE TABLE " + TABLE_CHARACTERS + "(" +
             COLUMN_CHAR_ID + " TEXT NOT NULL PRIMARY KEY, " +
@@ -55,16 +62,21 @@ public class KoreanSQLiteOpenHelper extends SQLiteOpenHelper{
             COLUMN_HANGUL_DICT + " TEXT NOT NULL);";
 
     private static final String TABLE_VOCABULARY_CREATE = "CREATE TABLE " + TABLE_VOCABULARY + " (" +
-            COLUMN_WORD_ID_VOCAB + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_WORD_ID_VOCAB + " INTEGER NOT NULL PRIMARY KEY, " +
             COLUMN_LESSON_ID + " INTEGER NOT NULL, " +
-            COLUMN_HANGUL_VOCAB + " TEXT NOT NULL);";
+            COLUMN_HANGUL_VOCAB + " TEXT NOT NULL, " +
+            COLUMN_WORD_TYPE + " TEXT NOT NULL);";
 
     private static final String TABLE_DEFINITIONS_CREATE = "CREATE TABLE " + TABLE_DEFINITIONS + " (" +
             COLUMN_DEFINITION_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_WORD_ID + " INTEGER NOT NULL, " +
             COLUMN_DEFINITION + " TEXT NOT NULL);";
 
-
+    private static final String TABLE_NUMBERS_CREATE = "CREATE TABLE " + TABLE_NUMBERS + " (" +
+            COLUMN_NUMBER + " INTEGER NOT NULL PRIMARY KEY, " +
+            COLUMN_KOREAN + " TEXT, " +
+            COLUMN_SINO_KOREAN + " TEXT, " +
+            COLUMN_COUNT + " TEXT);";
 
     public KoreanSQLiteOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -76,6 +88,7 @@ public class KoreanSQLiteOpenHelper extends SQLiteOpenHelper{
         db.execSQL(TABLE_DICTATION_CREATE);
         db.execSQL(TABLE_VOCABULARY_CREATE);
         db.execSQL(TABLE_DEFINITIONS_CREATE);
+        db.execSQL(TABLE_NUMBERS_CREATE);
         Log.d(TAG, "Database Created");
     }
 
@@ -85,6 +98,12 @@ public class KoreanSQLiteOpenHelper extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DICTATION);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_VOCABULARY);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DEFINITIONS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NUMBERS);
         onCreate(db);
+    }
+
+    public void clearDefinitionsTable(SQLiteDatabase db) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DEFINITIONS);
+        db.execSQL(TABLE_DEFINITIONS_CREATE);
     }
 }

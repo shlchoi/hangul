@@ -29,11 +29,24 @@ import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulFlashcardFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulLookupFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.PronunciationFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.numbers.KoreanNumbersFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.numbers.NumberTimeFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.numbers.NumbersLookupFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.numbers.SinoKoreanNumbersFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.numbers.TimeFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.vocab.VocabFlashcardFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.vocab.VocabFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.vocab.VocabLookupFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.vocab.VocabWordFragment;
 import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
+import ca.uwaterloo.sh6choi.korea101r.model.VocabWord;
 import ca.uwaterloo.sh6choi.korea101r.services.HangulWebIntentService;
+import ca.uwaterloo.sh6choi.korea101r.services.NumberWebIntentService;
+import ca.uwaterloo.sh6choi.korea101r.services.VocabWebIntentService;
 import ca.uwaterloo.sh6choi.korea101r.utils.KeyboardUtils;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DictationFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
+import ca.uwaterloo.sh6choi.korea101r.utils.NumberUtils;
 import ca.uwaterloo.sh6choi.korea101r.views.DrawerMenuAdapter;
 import ca.uwaterloo.sh6choi.korea101r.views.IDrawerMenuItem;
 import ca.uwaterloo.sh6choi.korea101r.views.ISlidingPane;
@@ -45,16 +58,26 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
     public static final String TAG = MainActivity.class.getCanonicalName();
 
     public static final String ACTION_HANGUL = TAG + ".action.hangul";
-    public static final String ACTION_HANGUL_LOOKUP = TAG + ".action.hangul.lookup";
-    public static final String ACTION_HANGUL_CHARACTER = TAG + ".action.hangul.character";
-    public static final String ACTION_HANGUL_FLASHCARDS = TAG + ".action.hangul.flashcards";
+    public static final String ACTION_HANGUL_LOOKUP = ACTION_HANGUL + ".lookup";
+    public static final String ACTION_HANGUL_CHARACTER = ACTION_HANGUL + ".character";
+    public static final String ACTION_HANGUL_FLASHCARDS = ACTION_HANGUL + ".flashcards";
 
     public static final String ACTION_DICTATION = TAG + ".action.dictation";
     public static final String ACTION_PRONUNCIATION = TAG + ".action.pronunciation";
     public static final String ACTION_CONJUGATION = TAG + ".action.conjugation";
 
-    public static final String ACTION_SPEECH = TAG + ".action.speech";
+    public static final String ACTION_VOCAB = TAG + ".action.vocab";
+    public static final String ACTION_VOCAB_LOOKUP = ACTION_VOCAB + ".lookup";
+    public static final String ACTION_VOCAB_WORD = ACTION_VOCAB + ".word";
+    public static final String ACTION_VOCAB_FLASHCARDS = ACTION_VOCAB + ".flashcards";
 
+    public static final String ACTION_NUMBERS_TIME = TAG + ".action.numbers";
+    public static final String ACTION_NUMBERS_LOOKUP = ACTION_NUMBERS_TIME + ".lookup";
+    public static final String ACTION_KOREAN_NUMBERS = ACTION_NUMBERS_TIME + ".korean_numbers";
+    public static final String ACTION_SINO_KOREAN_NUMBERS = ACTION_NUMBERS_TIME + ".sino_korean_numbers";
+    public static final String ACTION_TIME = ACTION_NUMBERS_TIME + ".time";
+
+    public static final String ACTION_SPEECH = TAG + ".action.speech";
 
     private NavigationDrawerLayout mDrawerLayout;
     private DrawerLayout mWrappedDrawerLayout;
@@ -69,8 +92,15 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = new Intent(this, HangulWebIntentService.class);
-        startService(intent);
+//        Intent hangulIntent = new Intent(this, HangulWebIntentService.class);
+//        startService(hangulIntent);
+//        Intent vocabIntent = new Intent(this, VocabWebIntentService.class);
+//        startService(vocabIntent);
+//
+//        Intent numberIntent = new Intent(this, NumberWebIntentService.class);
+//        startService(numberIntent);
+
+        NumberUtils.refreshMap(this);
 
         setContentView(R.layout.activity_main);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -112,8 +142,9 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         List<IDrawerMenuItem> menuList = new ArrayList<>();
         menuList.add(KoreaMenuItem.HANGUL);
         menuList.add(KoreaMenuItem.DICTATION);
-        menuList.add(KoreaMenuItem.PRONUNCIATION);
         menuList.add(KoreaMenuItem.CONJUGATION);
+        menuList.add(KoreaMenuItem.VOCAB);
+        menuList.add(KoreaMenuItem.NUMBERS_TIME);
         return menuList;
     }
 
@@ -143,6 +174,24 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
             onPronunciation();
         } else if (TextUtils.equals(action, ACTION_CONJUGATION)) {
             onConjugation();
+        } else if (TextUtils.equals(action, ACTION_VOCAB)) {
+            onVocab();
+        } else if (TextUtils.equals(action, ACTION_VOCAB_LOOKUP)) {
+            onVocabLookup();
+        } else if (TextUtils.equals(action, ACTION_VOCAB_WORD)) {
+            onVocabWord(intent);
+        } else if (TextUtils.equals(action, ACTION_VOCAB_FLASHCARDS)) {
+            onVocabFlashcards();
+        } else if (TextUtils.equals(action, ACTION_NUMBERS_TIME)) {
+            onNumbersTime();
+        } else if (TextUtils.equals(action, ACTION_NUMBERS_LOOKUP)) {
+            onNumbersLookup();
+        } else if (TextUtils.equals(action, ACTION_KOREAN_NUMBERS)) {
+            onKoreanNumbers();
+        } else if (TextUtils.equals(action, ACTION_SINO_KOREAN_NUMBERS)) {
+            onSinoKoreanNumbers();
+        } else if (TextUtils.equals(action, ACTION_TIME)) {
+            onTime();
         } else {
             onHangul();
         }
@@ -217,6 +266,93 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         swapFragment(fragment);
     }
 
+    private void onVocab() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof VocabFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+        VocabFragment fragment = VocabFragment.getInstance(new Bundle());
+        swapFragment(fragment);
+    }
+
+    private void onVocabLookup() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof VocabLookupFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+        VocabLookupFragment fragment = VocabLookupFragment.getInstance(new Bundle());
+        swapFragment(fragment);
+    }
+
+    private void onVocabWord(Intent intent) {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof VocabWordFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+        VocabWord word = intent.getParcelableExtra(VocabLookupFragment.EXTRA_VOCAB_WORD);
+
+        Bundle args = new Bundle();
+        args.putParcelable(VocabWordFragment.ARG_VOCAB_WORD, word);
+
+        VocabWordFragment fragment = VocabWordFragment.getInstance(args);
+        swapFragment(fragment);
+    }
+
+    private void onVocabFlashcards() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof VocabFlashcardFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+        VocabFlashcardFragment fragment = VocabFlashcardFragment.getInstance(new Bundle());
+        swapFragment(fragment);
+    }
+
+    private void onNumbersTime() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof NumberTimeFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+        NumberTimeFragment fragment = NumberTimeFragment.getInstance(new Bundle());
+        swapFragment(fragment);
+    }
+
+    private void onNumbersLookup() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof NumbersLookupFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+        NumbersLookupFragment fragment = NumbersLookupFragment.getInstance(new Bundle());
+        swapFragment(fragment);
+    }
+
+    private void onKoreanNumbers() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof KoreanNumbersFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+        KoreanNumbersFragment fragment = KoreanNumbersFragment.getInstance(new Bundle());
+        swapFragment(fragment);
+    }
+
+    private void onSinoKoreanNumbers() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof SinoKoreanNumbersFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+        SinoKoreanNumbersFragment fragment = SinoKoreanNumbersFragment.getInstance(new Bundle());
+        swapFragment(fragment);
+    }
+
+    private void onTime() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof TimeFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+
+        TimeFragment fragment = TimeFragment.getInstance(new Bundle());
+        swapFragment(fragment);
+    }
+
     private <T extends Fragment & DrawerFragment> void swapFragment(T fragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -245,7 +381,7 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
     @Override
     public void onBackPressed() {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-
+        KeyboardUtils.hideKeyboard(MainActivity.this);
         if (currentFragment instanceof DrawerFragment) {
             if (!((DrawerFragment) currentFragment).onBackPressed()) {
                 super.onBackPressed();

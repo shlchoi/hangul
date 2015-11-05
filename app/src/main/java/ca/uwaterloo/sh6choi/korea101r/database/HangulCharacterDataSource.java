@@ -3,8 +3,10 @@ package ca.uwaterloo.sh6choi.korea101r.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.os.AsyncTask;
 
 import java.util.ArrayList;
@@ -69,27 +71,41 @@ public class HangulCharacterDataSource {
         }.execute();
     }
 
-    public void update(final HangulCharacter hangulCharacter, final DatabaseRequestCallback<Void> callback ) {
+    public void update(final List<HangulCharacter> hangulCharacters, final DatabaseRequestCallback<Void> callback ) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(KoreanSQLiteOpenHelper.COLUMN_CHAR_ID, hangulCharacter.getCharId());
-                contentValues.put(KoreanSQLiteOpenHelper.COLUMN_CHARACTER, hangulCharacter.getCharacter());
-                contentValues.put(KoreanSQLiteOpenHelper.COLUMN_NAME, hangulCharacter.getName());
-                contentValues.put(KoreanSQLiteOpenHelper.COLUMN_PRONUNCIATION, hangulCharacter.getPronunciation());
-                contentValues.put(KoreanSQLiteOpenHelper.COLUMN_ROMANIZATION_INITIAL, hangulCharacter.getRomanization()[0]);
 
-                if (hangulCharacter.getRomanization().length > 1) {
-                    contentValues.put(KoreanSQLiteOpenHelper.COLUMN_ROMANIZATION_FINAL, hangulCharacter.getRomanization()[1]);
-                } else {
-                    contentValues.put(KoreanSQLiteOpenHelper.COLUMN_ROMANIZATION_FINAL, hangulCharacter.getRomanization()[0]);
+                String sql = "INSERT OR REPLACE INTO " + KoreanSQLiteOpenHelper.TABLE_CHARACTERS + "(" +
+                        KoreanSQLiteOpenHelper.COLUMN_CHAR_ID + ", " +
+                        KoreanSQLiteOpenHelper.COLUMN_CHARACTER + ", " +
+                        KoreanSQLiteOpenHelper.COLUMN_NAME + ", " +
+                        KoreanSQLiteOpenHelper.COLUMN_PRONUNCIATION + ", " +
+                        KoreanSQLiteOpenHelper.COLUMN_ROMANIZATION_INITIAL + ", " +
+                        KoreanSQLiteOpenHelper.COLUMN_ROMANIZATION_FINAL + ", " +
+                        KoreanSQLiteOpenHelper.COLUMN_CHARACTER_TYPE + ") VALUES ";
+
+                StringBuilder builder = new StringBuilder(sql);
+                for (int i = 0; i < hangulCharacters.size(); i ++) {
+                    HangulCharacter character = hangulCharacters.get(i);
+                    String format = "(\"%1$s\", \"%2$s\", \"%3$s\", \"%4$s\", \"%5$s\", \"%6$s\", \"%7$s\")";
+
+                    String romanizationFinal;
+                    if (character.getRomanization().length > 1) {
+                        romanizationFinal =  character.getRomanization()[1];
+                    } else {
+                        romanizationFinal =  character.getRomanization()[0];
+                    }
+
+
+                    builder.append(String.format(format, character.getCharId(), character.getCharacter(), character.getName(), character.getPronunciation(), character.getRomanization()[0], romanizationFinal, character.getType()));
+                    if (i < hangulCharacters.size() - 1) {
+                        builder.append(", ");
+                    }
                 }
-                contentValues.put(KoreanSQLiteOpenHelper.COLUMN_CHARACTER_TYPE, hangulCharacter.getType());
-
-                mDatabase.insertWithOnConflict(KoreanSQLiteOpenHelper.TABLE_CHARACTERS, null, contentValues,
-                        SQLiteDatabase.CONFLICT_REPLACE);
-
+                builder.append(";");
+                SQLiteStatement statement = mDatabase.compileStatement(builder.toString());
+                statement.executeInsert();
                 return null;
             }
 

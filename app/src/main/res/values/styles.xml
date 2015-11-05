@@ -47,4 +47,8 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="pager_tab_strip_text">
+        <item name="android:textSize">18sp</item>
+    </style>
+
 </resources>

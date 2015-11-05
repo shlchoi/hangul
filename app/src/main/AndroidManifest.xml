@@ -48,6 +48,17 @@
             android:name=".services.HangulWebIntentService"
             android:exported="false"
             android:stopWithTask="true"/>
+
+        <service
+            android:name=".services.VocabWebIntentService"
+            android:exported="false"
+            android:stopWithTask="true"/>
+
+        <service
+            android:name=".services.NumberWebIntentService"
+            android:exported="false"
+            android:stopWithTask="true"/>
+
     </application>
 
 </manifest>

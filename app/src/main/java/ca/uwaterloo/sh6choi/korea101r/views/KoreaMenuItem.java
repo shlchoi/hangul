@@ -9,7 +9,9 @@ public enum KoreaMenuItem implements IDrawerMenuItem {
     HANGUL(R.string.nav_menu_hangul),
     DICTATION(R.string.nav_menu_dictation),
     PRONUNCIATION(R.string.nav_menu_pronunciation),
-    CONJUGATION(R.string.nav_menu_conjugation);
+    CONJUGATION(R.string.nav_menu_conjugation),
+    VOCAB(R.string.nav_menu_vocab),
+    NUMBERS_TIME(R.string.nav_menu_number_time);
 
     private int mStringResId;
 

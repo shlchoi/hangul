@@ -17,28 +17,31 @@ import java.util.Random;
 
 import ca.uwaterloo.sh6choi.korea101r.R;
 import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
+import ca.uwaterloo.sh6choi.korea101r.model.VocabSet;
+import ca.uwaterloo.sh6choi.korea101r.model.VocabWord;
+import ca.uwaterloo.sh6choi.korea101r.presentation.VocabSetPresenter;
 import ca.uwaterloo.sh6choi.korea101r.utils.CharacterType;
-import ca.uwaterloo.sh6choi.korea101r.utils.ConjugationType;
+import ca.uwaterloo.sh6choi.korea101r.utils.ConjugationForm;
 import ca.uwaterloo.sh6choi.korea101r.utils.HangulUtils;
 import ca.uwaterloo.sh6choi.korea101r.utils.SpeechForm;
+import ca.uwaterloo.sh6choi.korea101r.utils.VerbTense;
 
 /**
  * Created by Samson on 2015-10-01.
  */
-public class ConjugationFragment extends Fragment implements DrawerFragment, View.OnClickListener, View.OnTouchListener {
+public class ConjugationFragment extends Fragment implements DrawerFragment, View.OnClickListener, VocabSetPresenter.VocabSetView {
     private static final String TAG = ConjugationFragment.class.getCanonicalName();
     private static final String FRAGMENT_TAG = MainActivity.TAG + ".fragment.conjugation";
 
-    private String[] mVerbSet;
-    private SpeechForm mSpeechForm = SpeechForm.FORMAL_POLITE;
-    private ConjugationType mConjugationType;
+    private VocabSet mVerbSet;
+    private VocabSetPresenter mPresenter;
 
     private int mCurIndex = -1;
+    private int mCurForm = -1;
 
     private TextView mBasicVerbTextView;
     private TextView mSpeechFormConjugationTextView;
     private EditText mInputEditText;
-    private TextView mHintTextView;
     private Button mCheckButton;
 
     public static ConjugationFragment getInstance(Bundle args) {
@@ -61,15 +64,12 @@ public class ConjugationFragment extends Fragment implements DrawerFragment, Vie
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mVerbSet = getResources().getStringArray(R.array.verb_set);
+        mVerbSet = new VocabSet(0, new VocabWord[0]);
 
         mBasicVerbTextView = (TextView) view.findViewById(R.id.basic_verb_text_view);
         mBasicVerbTextView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        mBasicVerbTextView.setOnTouchListener(this);
 
         mSpeechFormConjugationTextView = (TextView) view.findViewById(R.id.speech_form_conjugation_text_view);
-
-        mHintTextView = (TextView) view.findViewById(R.id.hint_text_view);
 
         mInputEditText = (EditText) view.findViewById(R.id.input_edit_text);
         mInputEditText.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -77,14 +77,26 @@ public class ConjugationFragment extends Fragment implements DrawerFragment, Vie
         mCheckButton = (Button) view.findViewById(R.id.check_button);
         mCheckButton.setOnClickListener(this);
 
-        switchVerb();
+        mPresenter = new VocabSetPresenter(getActivity(), this);
+        mPresenter.obtainVocab("verb");
+    }
+
+    @Override
+    public void refreshVocabSet(VocabSet vocabSet) {
+        mVerbSet = vocabSet;
+        if (mVerbSet.getWords().length > 0) {
+            switchVerb();
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.check_button:
-                String answer = HangulUtils.conjugatePresent(mVerbSet[mCurIndex], mSpeechForm, mConjugationType);
+                String answer = HangulUtils.conjugate(mVerbSet.getWords()[mCurIndex].getHangul(), isPositive(mCurForm),
+                        getVerbTense(mCurForm), isHonorific(mCurForm), getConjugationForm(mCurForm),
+                        SpeechForm.FORMAL_POLITE);
+
                 if (TextUtils.equals(mInputEditText.getText(), answer)) {
                     switchVerb();
                 } else {
@@ -94,51 +106,64 @@ public class ConjugationFragment extends Fragment implements DrawerFragment, Vie
         }
     }
 
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        switch(event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                switch (v.getId()) {
-                    case R.id.basic_verb_text_view:
-                        mHintTextView.setVisibility(View.VISIBLE);
-                        return true;
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                switch (v.getId()) {
-                    case R.id.basic_verb_text_view:
-                        mHintTextView.setVisibility(View.INVISIBLE);
-                        return true;
-                }
-                break;
-        }
-        return false;
-    }
-
     private void switchVerb() {
         Random random = new Random(new Date().getTime());
 
-        mConjugationType = ConjugationType.values()[new Random(new Date().getTime()).nextInt(4)];
-
+        int nextForm;
         int nextInt;
         do {
-            nextInt = random.nextInt(mVerbSet.length);
-        } while (nextInt == mCurIndex);
+            nextForm = random.nextInt(63);
+            nextInt = random.nextInt(mVerbSet.getWords().length);
+        } while (nextInt == mCurIndex && nextForm == mCurForm);
 
         mCurIndex = nextInt;
+        mCurForm = nextForm;
 
-        mBasicVerbTextView.setText(mVerbSet[mCurIndex]);
-        mSpeechFormConjugationTextView.setText(getString(mSpeechForm.getStringResId()) + " - " + getString(mConjugationType.getStringResId()));
+        mBasicVerbTextView.setText(mVerbSet.getWords()[mCurIndex].getHangul());
 
-        CharacterType characterType = HangulUtils.getCharacterType(mVerbSet[mCurIndex].charAt(mVerbSet[mCurIndex].length() - 2));
-        if (characterType == CharacterType.TYPE_1 || characterType == CharacterType.TYPE_3) {
-            mHintTextView.setText(mConjugationType.getVowelHintStringResId());
+        VerbTense verbTense = getVerbTense(mCurForm);
+
+        String positiveString = "";
+        if (isPositive(mCurForm)) {
+            positiveString = getString(R.string.verb_positive);
         } else {
-            mHintTextView.setText(mConjugationType.getVowelHintStringResId());
+            positiveString = getString(R.string.verb_negative);
+        }
+
+        if (isHonorific(mCurForm)) {
+            mSpeechFormConjugationTextView.setText(String.format(getString(R.string.conjugation_form_honorific),
+                    positiveString, getString(verbTense.getStringResId()),
+                    getString(getConjugationForm(mCurForm).getStringResId())));
+        } else {
+            mSpeechFormConjugationTextView.setText(String.format(getString(R.string.conjugation_form),
+                    positiveString, getString(verbTense.getStringResId()),
+                    getString(getConjugationForm(mCurForm).getStringResId())));
         }
 
         mInputEditText.setText("");
         mInputEditText.setError(null);
+    }
+
+    private boolean isPositive(int form) {
+        return (form & 0b100000) == 0;
+    }
+
+    private VerbTense getVerbTense(int form) {
+        form = form & 0b101111;
+
+        return VerbTense.values()[(form & 0b011000) >> 3];
+    }
+
+    private boolean isHonorific(int form) {
+        return (form & 0b000100) == 0;
+    }
+
+    private ConjugationForm getConjugationForm(int form) {
+        if (getVerbTense(form) == VerbTense.PAST) {
+            form = form & 0b111101;
+        }
+
+        return ConjugationForm.values()[form & 0b000011];
     }
 
     @Override

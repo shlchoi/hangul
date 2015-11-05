@@ -9,6 +9,7 @@ import com.google.gson.JsonParser;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 
 import ca.uwaterloo.sh6choi.korea101r.database.DatabaseRequestCallback;
 import ca.uwaterloo.sh6choi.korea101r.database.HangulCharacterDataSource;
@@ -38,9 +39,13 @@ public class HangulWebIntentService extends WebIntentService {
 
         final HangulCharacterDataSource dataSource = new HangulCharacterDataSource(this);
         dataSource.open();
-        for (int i = 0; i < hangulChars.length; i ++) {
-            dataSource.update(hangulChars[i], null);
-        }
+
+        dataSource.update(Arrays.asList(hangulChars), new DatabaseRequestCallback<Void>() {
+            @Override
+            public void processResults(Void results) {
+                dataSource.close();
+            }
+        });
     }
 
     @Override

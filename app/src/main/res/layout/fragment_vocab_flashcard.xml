@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/actionbarDropShadowCenter"
+    android:padding="16dp">
+
+        <TextView
+            android:id="@+id/vocab_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="64dp"
+            android:gravity="center"
+            android:textSize="48sp"
+            android:includeFontPadding="false"
+            tools:text="캐나다 사람"/>
+
+        <TextView
+            android:id="@+id/error_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vocab_text_view"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:visibility="gone"
+            android:textColor="@color/colorAccent"
+            android:text="@string/error_vocab_incorrect"
+            tools:visibility="visible"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/vocab_answer_1_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:textColor="@color/primaryForegroundColor"
+                tools:text="Chinese person"/>
+
+            <Button
+                android:id="@+id/vocab_answer_2_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:textColor="@color/primaryForegroundColor"
+                android:layout_marginTop="8dp"
+                tools:text="Japanese person"/>
+
+            <Button
+                android:id="@+id/vocab_answer_3_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:textColor="@color/primaryForegroundColor"
+                android:layout_marginTop="8dp"
+                tools:text="American person"/>
+
+            <Button
+                android:id="@+id/vocab_answer_4_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:textColor="@color/primaryForegroundColor"
+                android:layout_marginTop="8dp"
+                tools:text="Canadian person"/>
+
+        </LinearLayout>
+
+</RelativeLayout>

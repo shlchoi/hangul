@@ -30,30 +30,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:gravity="center"
-            android:textSize="16sp"
-            tools:text="Formal Plain - Statement"/>
+            android:textSize="14sp"
+            tools:text="Positive - Present Tense - Statement\n(Honorific)"/>
 
         <EditText
             android:id="@+id/input_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:gravity="center"
-            android:textSize="32sp"
+            android:textSize="24sp"
             android:singleLine="true"
             tools:text="갑니다"/>
-
-        <TextView
-            android:id="@+id/hint_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            android:textSize="16sp"
-            android:visibility="invisible"
-            tools:text="-ㅂ니다"
-            tools:visibility="visible"/>
 
     </LinearLayout>
 

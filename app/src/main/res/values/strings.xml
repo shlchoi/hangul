@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Korea 101R</string>
+    <string name="app_name">Hangul</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -8,19 +8,50 @@
     <string name="nav_menu_dictation">Dictation</string>
     <string name="nav_menu_pronunciation">Pronunciation</string>
     <string name="nav_menu_conjugation">Conjugation</string>
+    <string name="nav_menu_vocab">Vocabulary</string>
+    <string name="nav_menu_number_time">Numbers and Time</string>
 
     <string name="check">Check</string>
 
     <string name="hangul_lookup">Character Lookup</string>
     <string name="hangul_flashcards">Flashcards</string>
 
+    <string name="vocab_list">Vocabulary List</string>
+    <string name="vocab_korean_to_english">Korean to English</string>
+    <string name="vocab_english_to_korean">English to Korean</string>
+    <string name="vocab_flashcards">Flashcards</string>
+
+    <string name="conjugation_form">%1$s - %2$s - %3$s</string>
+    <string name="conjugation_form_honorific">%1$s - %2$s - %3$s\n(Honorific)</string>
+
     <string name="speech_form_formal_polite">Formal Polite</string>
     <string name="speech_form_formal_plain">Formal Plain</string>
     <string name="speech_form_informal_polite">Informal Polite</string>
     <string name="speech_form_informal_plain">Informal Plain</string>
 
+    <string name="verb_tense_past">Past</string>
+    <string name="verb_tense_present">Present</string>
+    <string name="verb_tense_future">Future</string>
+
+    <string name="verb_positive">Positive</string>
+    <string name="verb_negative">Negative</string>
+
     <string name="conjugation_statement">Statement</string>
     <string name="conjugation_question">Question</string>
     <string name="conjugation_command">Command</string>
     <string name="conjugation_proposal">Proposal</string>
+
+    <string name="error_vocab_incorrect">Incorrect</string>
+
+    <string name="numbers_lookup">Number Lookup</string>
+    <string name="numbers_korean">Korean Numbers</string>
+    <string name="numbers_sino_korean">Sino-Korean Numbers</string>
+    <string name="time">Time</string>
+
+    <string name="time_format">%1$02d:%2$02d</string>
+    <string name="AM">AM</string>
+    <string name="PM">PM</string>
+
+    <string name="AM_korean">오전</string>
+    <string name="PM_korean">오후</string>
 </resources>
