@@ -28,7 +28,7 @@ public class HangulWebIntentService extends WebIntentService {
 
     @Override
     protected URL getUrl() throws MalformedURLException {
-        return new URL("https://raw.githubusercontent.com/shlchoi/korea101r/master/hangul.json");
+        return new URL("https://raw.githubusercontent.com/shlchoi/hangul/master/hangul.json");
     }
 
     @Override

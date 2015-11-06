@@ -29,7 +29,7 @@ public class NumberWebIntentService extends WebIntentService {
 
     @Override
     protected URL getUrl() throws MalformedURLException {
-        return new URL("https://raw.githubusercontent.com/shlchoi/korea101r/master/numbers.json");
+        return new URL("https://raw.githubusercontent.com/shlchoi/hangul/master/numbers.json");
     }
 
     @Override

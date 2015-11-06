@@ -28,7 +28,7 @@ public class DictationWebIntentService extends WebIntentService {
 
     @Override
     protected URL getUrl() throws MalformedURLException {
-        return new URL("https://raw.githubusercontent.com/shlchoi/korea101r/master/dictation.json");
+        return new URL("https://raw.githubusercontent.com/shlchoi/hangul/master/dictation.json");
     }
 
     @Override
