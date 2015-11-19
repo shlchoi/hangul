@@ -11,7 +11,7 @@ import java.util.Comparator;
 /**
  * Created by Samson on 2015-11-01.
  */
-public class KoreanNumber implements Parcelable{
+public class KoreanNumber implements Parcelable {
     @SerializedName("number")
     private int mNumber;
 

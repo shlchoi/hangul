@@ -188,7 +188,7 @@ public class HangulUtils {
     }
 
     public static String conjugate(String verb, boolean positive, VerbTense tense, boolean honorific, ConjugationForm conjugationForm, SpeechForm speechForm) {
-        if (speechForm != SpeechForm.FORMAL_POLITE) {
+        if (speechForm == SpeechForm.FORMAL_PLAIN) {
             throw new IllegalArgumentException("Selected speech form is not implemented yet");
         }
 
@@ -196,6 +196,18 @@ public class HangulUtils {
             throw new IllegalArgumentException("Provided string is not a verb or in basic verb form");
         }
 
+        switch (speechForm) {
+            case FORMAL_POLITE:
+            default:
+                return conjugateFormalPolite(verb, positive, tense, honorific, conjugationForm);
+            case INFORMAL_POLITE:
+                return conjugateInformalPolite(verb, positive, tense, honorific, conjugationForm);
+            case INFORMAL_PLAIN:
+                return conjugateInformalPlain(verb, positive, tense, honorific, conjugationForm);
+        }
+    }
+
+    public static String conjugateFormalPolite(String verb, boolean positive, VerbTense tense, boolean honorific, ConjugationForm conjugationForm) {
         String stem = verb.substring(0, verb.length() - 1);
 
         if (honorific) {
@@ -339,11 +351,145 @@ public class HangulUtils {
         return builder.toString();
     }
 
-    public static String conjugatePresent(String verb, SpeechForm speechForm, ConjugationForm conjugationForm) {
+    public static String conjugateInformalPolite(String verb, boolean positive, VerbTense tense, boolean honorific, ConjugationForm conjugationForm) {
+        StringBuilder builder = new StringBuilder(conjugateInformalPlain(verb, positive, tense, honorific, conjugationForm));
+        builder.append("요");
+        return builder.toString();
+    }
 
-        if (speechForm != SpeechForm.FORMAL_POLITE) {
-            throw new IllegalArgumentException("Selected speech form is not implemented yet");
+    public static String conjugateInformalPlain(String verb, boolean positive, VerbTense tense, boolean honorific, ConjugationForm conjugationForm) {
+        String stem = verb.substring(0, verb.length() - 1);
+
+        if (honorific) {
+            StringBuilder honorBuilder = new StringBuilder(stem);
+
+            int value = stem.codePointAt(stem.length() - 1) - UNICODE_OFFSET;
+
+            if (value < 0) {
+                throw new IllegalArgumentException("Provided string is not a hangul character");
+            }
+
+            int initialValue = value / CHARS_PER_INITIAL;
+            int vowelValue = (value - (initialValue * CHARS_PER_INITIAL)) / CHARS_PER_VOWEL;
+            int finalValue = (value - (initialValue * CHARS_PER_INITIAL)) - (vowelValue * CHARS_PER_VOWEL);
+
+            if (finalValue != 0) {
+                honorBuilder.append("으");
+            }
+            honorBuilder.append("시");
+            stem = honorBuilder.toString();
         }
+
+        if (!positive) {
+            StringBuilder negativeBuilder = new StringBuilder(stem);
+
+            negativeBuilder.append("지 않");
+            stem = negativeBuilder.toString();
+        }
+
+        if (tense == VerbTense.PAST) {
+
+            StringBuilder tenseBuilder = new StringBuilder();
+
+            if (stem.length() > 1) {
+                tenseBuilder.append(stem.substring(0, stem.length() - 1));
+            }
+
+            if (stem.endsWith("하")) {
+                tenseBuilder.append("했");
+            } else {
+                int value = stem.codePointAt(stem.length() - 1) - UNICODE_OFFSET;
+
+                if (value < 0) {
+                    throw new IllegalArgumentException("Provided string is not a hangul character");
+                }
+
+                int initialValue = value / CHARS_PER_INITIAL;
+                int vowelValue = (value - (initialValue * CHARS_PER_INITIAL)) / CHARS_PER_VOWEL;
+                int finalValue = (value - (initialValue * CHARS_PER_INITIAL)) - (vowelValue * CHARS_PER_VOWEL);
+
+                if (finalValue == 0) {
+                    finalValue = 19;
+
+                    if (vowelValue == 8) {
+                        //ㅗ -> ㅘ
+                        vowelValue = 9;
+                    } else if (vowelValue == 13) {
+                        //ㅜ -> ㅝ
+                        vowelValue = 14;
+                    } else if (vowelValue == 20) {
+                        //ㅣ -> ㅕ
+                        vowelValue = 6;
+                    } else if (vowelValue == 18) {
+                        //ㅡ -> ㅓ
+                        vowelValue = 4;
+                    }
+
+                    tenseBuilder.append(compose(new char[]{CHARACTER_INITIALS[initialValue], CHARACTER_VOWELS[vowelValue], CHARACTER_FINALS[finalValue]}));
+                } else {
+                    if (vowelValue == 0 || vowelValue == 8) {
+                        tenseBuilder.append(stem.substring(stem.length() - 1));
+                        tenseBuilder.append("았");
+                    } else {
+                        tenseBuilder.append(stem.substring(stem.length() - 1));
+                        tenseBuilder.append("었");
+                    }
+                }
+            }
+
+            stem = tenseBuilder.toString();
+        }
+
+        StringBuilder builder = new StringBuilder();
+
+        if (stem.length() > 1) {
+            builder.append(stem.substring(0, stem.length() - 1));
+        }
+
+        if (stem.endsWith("하")) {
+            builder.append("해");
+        } else {
+            int value = stem.codePointAt(stem.length() - 1) - UNICODE_OFFSET;
+
+            if (value < 0) {
+                throw new IllegalArgumentException("Provided string is not a hangul character");
+            }
+
+            int initialValue = value / CHARS_PER_INITIAL;
+            int vowelValue = (value - (initialValue * CHARS_PER_INITIAL)) / CHARS_PER_VOWEL;
+            int finalValue = (value - (     initialValue * CHARS_PER_INITIAL)) - (vowelValue * CHARS_PER_VOWEL);
+
+            if (finalValue == 0) {
+                if (vowelValue == 8) {
+                    //ㅗ -> ㅘ
+                    vowelValue = 9;
+                } else if (vowelValue == 13) {
+                    //ㅜ -> ㅝ
+                    vowelValue = 14;
+                } else if (vowelValue == 20) {
+                    //ㅣ -> ㅕ
+                    vowelValue = 6;
+                } else if (vowelValue == 18) {
+                    //ㅡ -> ㅓ
+                    vowelValue = 4;
+                }
+
+                builder.append(compose(new char[]{CHARACTER_INITIALS[initialValue], CHARACTER_VOWELS[vowelValue], CHARACTER_FINALS[finalValue]}));
+            } else {
+                if (vowelValue == 0 || vowelValue == 8) {
+                    builder.append(stem.substring(stem.length() - 1));
+                    builder.append("아");
+                } else {
+                    builder.append(stem.substring(stem.length() - 1));
+                    builder.append("");
+                }
+            }
+        }
+
+        return builder.toString();
+    }
+
+    public static String conjugateFormalPolitePresent(String verb, ConjugationForm conjugationForm) {
 
         if (verb.substring(verb.length() - 1).compareTo("다") != 0) {
             throw new IllegalArgumentException("Provided string is not a verb or in basic verb form");

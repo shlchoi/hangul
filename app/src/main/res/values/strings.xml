@@ -17,12 +17,11 @@
     <string name="hangul_flashcards">Flashcards</string>
 
     <string name="vocab_list">Vocabulary List</string>
-    <string name="vocab_korean_to_english">Korean to English</string>
-    <string name="vocab_english_to_korean">English to Korean</string>
+    <string name="vocab_quiz">Vocabulary Quiz</string>
     <string name="vocab_flashcards">Flashcards</string>
 
-    <string name="conjugation_form">%1$s - %2$s - %3$s</string>
-    <string name="conjugation_form_honorific">%1$s - %2$s - %3$s\n(Honorific)</string>
+    <string name="conjugation_form">%1$s - %2$s - %3$s\n%4$s</string>
+    <string name="conjugation_form_honorific">%1$s - %2$s - %3$s\n%4$s\n(Honorific)</string>
 
     <string name="speech_form_formal_polite">Formal Polite</string>
     <string name="speech_form_formal_plain">Formal Plain</string>
@@ -54,4 +53,6 @@
 
     <string name="AM_korean">오전</string>
     <string name="PM_korean">오후</string>
+
+    <string name="menu_refresh">Refresh</string>
 </resources>

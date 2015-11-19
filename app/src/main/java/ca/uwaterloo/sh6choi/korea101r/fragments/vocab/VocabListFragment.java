@@ -1,12 +1,18 @@
 package ca.uwaterloo.sh6choi.korea101r.fragments.vocab;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,6 +23,8 @@ import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
 import ca.uwaterloo.sh6choi.korea101r.model.VocabSet;
 import ca.uwaterloo.sh6choi.korea101r.model.VocabWord;
 import ca.uwaterloo.sh6choi.korea101r.presentation.VocabSetPresenter;
+import ca.uwaterloo.sh6choi.korea101r.services.NumberWebIntentService;
+import ca.uwaterloo.sh6choi.korea101r.services.VocabWebIntentService;
 
 /**
  * Created by Samson on 2015-10-27.
@@ -33,6 +41,15 @@ public class VocabListFragment extends Fragment implements DrawerFragment, Vocab
     private VocabAdapter mVocabAdapter;
 
     private VocabSetPresenter mPresenter;
+    private BroadcastReceiver mSuccessReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (mPresenter != null) {
+                //mPinyinSwipeRefreshLayout.setRefreshing(false);
+                mPresenter.obtainVocabulary(mLessonId);
+            }
+        }
+    };
 
     private int mLessonId;
 
@@ -68,6 +85,20 @@ public class VocabListFragment extends Fragment implements DrawerFragment, Vocab
 
         mPresenter = new VocabSetPresenter(getContext(), this);
         mPresenter.obtainVocabulary(mLessonId);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        IntentFilter successFilter = new IntentFilter();
+        successFilter.addAction(VocabWebIntentService.ACTION_SUCCESS);
+        getContext().registerReceiver(mSuccessReceiver, successFilter);
+    }
+
+    @Override
+    public void onPause() {
+        getContext().unregisterReceiver(mSuccessReceiver);
+        super.onPause();
     }
 
     @Override

@@ -48,7 +48,7 @@ public class VocabFlashcardFragment extends Fragment implements DrawerFragment, 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-
+        setHasOptionsMenu(false);
         View contentView = inflater.inflate(R.layout.fragment_hangul_flashcard, container, false);
         return contentView;
     }

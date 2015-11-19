@@ -16,20 +16,11 @@
         android:textColor="@android:color/white"/>
 
     <Button
-        android:id="@+id/korean_to_english_button"
+        android:id="@+id/vocab_quiz_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="@string/vocab_korean_to_english"
-        android:background="@color/colorAccent"
-        android:textColor="@android:color/white"/>
-
-    <Button
-        android:id="@+id/english_to_korean_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/vocab_english_to_korean"
+        android:text="@string/vocab_quiz"
         android:background="@color/colorAccent"
         android:textColor="@android:color/white"/>
 

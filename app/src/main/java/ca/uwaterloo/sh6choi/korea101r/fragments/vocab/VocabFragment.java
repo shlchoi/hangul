@@ -22,6 +22,7 @@ public class VocabFragment extends Fragment implements DrawerFragment, View.OnCl
     public static final String FRAGMENT_TAG = MainActivity.TAG + ".fragment.vocab";
 
     private Button mLookupButton;
+    private Button mQuizButton;
     private Button mFlashcardButton;
 
     public static VocabFragment getInstance(Bundle args) {
@@ -45,9 +46,11 @@ public class VocabFragment extends Fragment implements DrawerFragment, View.OnCl
         super.onViewCreated(view, savedInstanceState);
 
         mLookupButton = (Button) view.findViewById(R.id.lookup_button);
+        mQuizButton = (Button) view.findViewById(R.id.vocab_quiz_button);
         mFlashcardButton = (Button) view.findViewById(R.id.flashcards_button);
 
         mLookupButton.setOnClickListener(this);
+        mQuizButton.setOnClickListener(this);
         mFlashcardButton.setOnClickListener(this);
     }
 
@@ -56,6 +59,9 @@ public class VocabFragment extends Fragment implements DrawerFragment, View.OnCl
         switch (v.getId()) {
             case R.id.lookup_button:
                 onLookupButtonClicked();
+                break;
+            case R.id.vocab_quiz_button:
+                onQuizButtonClicked();
                 break;
             case R.id.flashcards_button:
                 onFlashcardButtonClicked();
@@ -66,6 +72,12 @@ public class VocabFragment extends Fragment implements DrawerFragment, View.OnCl
     private void onLookupButtonClicked() {
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.setAction(MainActivity.ACTION_VOCAB_LOOKUP);
+        startActivity(intent);
+    }
+
+    private void onQuizButtonClicked() {
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.setAction(MainActivity.ACTION_VOCAB_QUIZ);
         startActivity(intent);
     }
 

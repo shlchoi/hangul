@@ -75,7 +75,7 @@ public class PronunciationFragment extends Fragment implements DrawerFragment, V
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-
+        setHasOptionsMenu(false);
         View contentView = inflater.inflate(R.layout.fragment_pronuncation, container, false);
         return contentView;
     }

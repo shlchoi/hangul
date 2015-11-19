@@ -1,5 +1,6 @@
 package ca.uwaterloo.sh6choi.korea101r.services;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -21,6 +22,7 @@ import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
 public class HangulWebIntentService extends WebIntentService {
 
     private static final String TAG = HangulWebIntentService.class.getCanonicalName();
+    public static final String ACTION_SUCCESS = TAG + ".action.success";
 
     public HangulWebIntentService() {
         super("HangulWebIntentService");
@@ -44,8 +46,10 @@ public class HangulWebIntentService extends WebIntentService {
             @Override
             public void processResults(Void results) {
                 dataSource.close();
+                sendBroadcast(new Intent(ACTION_SUCCESS));
             }
         });
+
     }
 
     @Override

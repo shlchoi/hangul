@@ -76,7 +76,7 @@ public class HangulCharacterFragment extends Fragment implements DrawerFragment,
         super.onCreateView(inflater, container, savedInstanceState);
 
         View contentView = inflater.inflate(R.layout.fragment_hangul_character, container, false);
-
+        setHasOptionsMenu(false);
         Bundle args = getArguments();
 
         if (args.containsKey(ARG_HANGUL_CHARACTER)) {

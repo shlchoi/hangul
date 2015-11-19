@@ -76,7 +76,7 @@ public class VocabWordFragment extends Fragment implements DrawerFragment, View.
         super.onCreateView(inflater, container, savedInstanceState);
 
         View contentView = inflater.inflate(R.layout.fragment_vocab_word, container, false);
-
+        setHasOptionsMenu(false);
         Bundle args = getArguments();
 
         if (args.containsKey(ARG_VOCAB_WORD)) {

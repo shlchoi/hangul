@@ -1,5 +1,6 @@
 package ca.uwaterloo.sh6choi.korea101r.services;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -21,6 +22,7 @@ import ca.uwaterloo.sh6choi.korea101r.model.DictationSet;
 public class DictationWebIntentService extends WebIntentService {
 
     private static final String TAG = DictationWebIntentService.class.getCanonicalName();
+    public static final String ACTION_SUCCESS = TAG + ".action.success";
 
     public DictationWebIntentService() {
         super("DictationWebIntentService");
@@ -36,6 +38,8 @@ public class DictationWebIntentService extends WebIntentService {
         Log.d(TAG, "Dictation set retrieved");
         JsonArray array = new JsonParser().parse(response).getAsJsonArray();
         DictationSet[] dictationSets = new Gson().fromJson(array, DictationSet[].class);
+
+        sendBroadcast(new Intent(ACTION_SUCCESS));
     }
 
     @Override

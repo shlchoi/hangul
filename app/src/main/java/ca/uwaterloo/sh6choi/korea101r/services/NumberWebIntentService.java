@@ -1,5 +1,6 @@
 package ca.uwaterloo.sh6choi.korea101r.services;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -22,6 +23,7 @@ import ca.uwaterloo.sh6choi.korea101r.utils.NumberUtils;
 public class NumberWebIntentService extends WebIntentService {
 
     private static final String TAG = NumberWebIntentService.class.getCanonicalName();
+    public static final String ACTION_SUCCESS = TAG + ".action.success";
 
     public NumberWebIntentService() {
         super("NumberWebIntentService");
@@ -44,10 +46,12 @@ public class NumberWebIntentService extends WebIntentService {
             @Override
             public void processResults(Void results) {
                 dataSource.close();
+                NumberUtils.refreshMap(NumberWebIntentService.this);
+                sendBroadcast(new Intent(ACTION_SUCCESS));
             }
         });
 
-        NumberUtils.refreshMap(this);
+
     }
 
     @Override

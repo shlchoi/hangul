@@ -42,7 +42,7 @@ public class VocabSetPresenter {
         });
     }
 
-    public void obtainVocab(String type) {
+    public void obtainVocabulary(String type) {
         mDataSource.open();
         mDataSource.queryVocab(type, new DatabaseRequestCallback<VocabSet>() {
             @Override
@@ -51,6 +51,17 @@ public class VocabSetPresenter {
                 mDataSource.close();
             }
         });
+    }
+
+    public void obtainVocabulary(String... types) {
+        mDataSource.open();
+        mDataSource.queryVocab(new DatabaseRequestCallback<VocabSet>() {
+            @Override
+            public void processResults(VocabSet results) {
+                mView.refreshVocabSet(results);
+                mDataSource.close();
+            }
+        }, types);
     }
 
     public interface VocabSetView {

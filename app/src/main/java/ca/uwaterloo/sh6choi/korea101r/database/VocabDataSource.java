@@ -180,6 +180,52 @@ public class VocabDataSource {
         }.execute();
     }
 
+    public void queryVocab(final DatabaseRequestCallback<VocabSet> callback, final String... vocabTypes) {
+        new AsyncTask<Void, Void, VocabSet>() {
+            @Override
+            protected VocabSet doInBackground(Void... params) {
+                HashMap<Integer, VocabWord> words = new HashMap<>();
+
+                Cursor vocabCursor = mDatabase.query(KoreanSQLiteOpenHelper.TABLE_VOCABULARY, mColumnsVocab,
+                        KoreanSQLiteOpenHelper.COLUMN_WORD_TYPE + " IN (" + generateQuestionMarkString(vocabTypes) + ")", null, null, null, null);
+
+                vocabCursor.moveToFirst();
+                while (!vocabCursor.isAfterLast()) {
+                    VocabWord vocab = cursorToWord(vocabCursor);
+                    words.put(vocab.getWordId(), vocab);
+
+                    vocabCursor.moveToNext();
+                }
+                vocabCursor.close();
+
+                Cursor definitionCursor = mDatabase.query(KoreanSQLiteOpenHelper.TABLE_DEFINITIONS, mColumnsDefinitions,
+                        KoreanSQLiteOpenHelper.COLUMN_WORD_ID + " IN (" + generateQuestionMarkString(words.keySet()) + ")", null, null, null, null);
+
+                definitionCursor.moveToFirst();
+                while (!definitionCursor.isAfterLast()) {
+                    int wordId = definitionCursor.getInt(0);
+                    String definition = definitionCursor.getString(1);
+
+                    if (words.containsKey(wordId)) {
+                        words.get(wordId).addDefinition(definition);
+                    }
+                    definitionCursor.moveToNext();
+                }
+                definitionCursor.close();
+
+                VocabWord[] vocabWords = words.values().toArray(new VocabWord[words.size()]);
+                Arrays.sort(vocabWords, new VocabWord.WordComparator());
+                return new VocabSet(0, vocabWords);
+            }
+
+            @Override
+            protected void onPostExecute(VocabSet vocabSet) {
+                callback.processResults(vocabSet);
+            }
+
+        }.execute();
+    }
+
     public void update(final VocabSet vocabSet, final DatabaseRequestCallback<Void> callback ) {
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -231,6 +277,17 @@ public class VocabDataSource {
         for (int i = 0; i < args.size(); i ++) {
             builder.append(intArray[i]);
             if (i < args.size() - 1) {
+                builder.append(", ");
+            }
+        }
+        return builder.toString();
+    }
+
+    private String generateQuestionMarkString(String... args) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < args.length; i ++) {
+            builder.append("\"" + args[i] + "\"");
+            if (i < args.length - 1) {
                 builder.append(", ");
             }
         }

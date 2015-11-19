@@ -1,12 +1,18 @@
 package ca.uwaterloo.sh6choi.korea101r.fragments.hangul;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -18,6 +24,7 @@ import ca.uwaterloo.sh6choi.korea101r.adapters.HangulAdapter;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
 import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
 import ca.uwaterloo.sh6choi.korea101r.presentation.HangulCharacterPresenter;
+import ca.uwaterloo.sh6choi.korea101r.services.HangulWebIntentService;
 
 /**
  * Created by Samson on 2015-09-25.
@@ -35,6 +42,15 @@ public class HangulLookupFragment extends Fragment implements DrawerFragment, Ha
     private HangulAdapter mHangulAdapter;
 
     private HangulCharacterPresenter mPresenter;
+    private BroadcastReceiver mSuccessReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (mPresenter != null) {
+                //mPinyinSwipeRefreshLayout.setRefreshing(false);
+                mPresenter.obtainAllCharacters();
+            }
+        }
+    };
 
     public static HangulLookupFragment getInstance(Bundle args) {
         HangulLookupFragment fragment = new HangulLookupFragment();
@@ -49,6 +65,7 @@ public class HangulLookupFragment extends Fragment implements DrawerFragment, Ha
         super.onCreateView(inflater, container, savedInstanceState);
 
         View contentView = inflater.inflate(R.layout.fragment_hangul_lookup, container, false);
+        setHasOptionsMenu(true);
         return contentView;
     }
 
@@ -69,6 +86,20 @@ public class HangulLookupFragment extends Fragment implements DrawerFragment, Ha
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        IntentFilter successFilter = new IntentFilter();
+        successFilter.addAction(HangulWebIntentService.ACTION_SUCCESS);
+        getContext().registerReceiver(mSuccessReceiver, successFilter);
+    }
+
+    @Override
+    public void onPause() {
+        getContext().unregisterReceiver(mSuccessReceiver);
+        super.onPause();
+    }
+
+    @Override
     public void refreshHangulCharacterList(List<HangulCharacter> hangulCharacterList) {
         mHangulAdapter.setHangulCharacterList(hangulCharacterList);
     }
@@ -82,6 +113,30 @@ public class HangulLookupFragment extends Fragment implements DrawerFragment, Ha
         intent.putExtra(EXTRA_CHARACTER, hangulCharacter);
 
         startActivity(intent);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_refresh_list, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_refresh:
+//                mPinyinSwipeRefreshLayout.setRefreshing(true);
+                onRefresh();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    //    @Override
+    public void onRefresh() {
+        Intent hangul = new Intent(getContext(), HangulWebIntentService.class);
+        getContext().startService(hangul);
     }
 
     @Override

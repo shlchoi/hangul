@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,6 +22,7 @@ import ca.uwaterloo.sh6choi.korea101r.adapters.NumbersViewPagerAdapater;
 import ca.uwaterloo.sh6choi.korea101r.adapters.VocabViewPagerAdapter;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.vocab.VocabListFragment;
+import ca.uwaterloo.sh6choi.korea101r.services.NumberWebIntentService;
 
 /**
  * Created by Samson on 2015-11-03.
@@ -43,7 +47,7 @@ public class NumbersLookupFragment extends Fragment implements DrawerFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-
+        setHasOptionsMenu(true);
         View contentView = inflater.inflate(R.layout.fragment_numbers_lookup, container, false);
         return contentView;
     }
@@ -63,6 +67,30 @@ public class NumbersLookupFragment extends Fragment implements DrawerFragment {
 
         mNumbersViewPagerAdapater = new NumbersViewPagerAdapater(getChildFragmentManager(), fragments);
         mNumbersViewPager.setAdapter(mNumbersViewPagerAdapater);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_refresh_list, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_refresh:
+//                mPinyinSwipeRefreshLayout.setRefreshing(true);
+                onRefresh();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    //    @Override
+    public void onRefresh() {
+        Intent intent = new Intent(getContext(), NumberWebIntentService.class);
+        getContext().startService(intent);
     }
 
     @Override

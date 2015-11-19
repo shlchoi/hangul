@@ -37,6 +37,7 @@ import ca.uwaterloo.sh6choi.korea101r.fragments.numbers.TimeFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.vocab.VocabFlashcardFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.vocab.VocabFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.vocab.VocabLookupFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.vocab.VocabQuizFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.vocab.VocabWordFragment;
 import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
 import ca.uwaterloo.sh6choi.korea101r.model.VocabWord;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
     public static final String ACTION_VOCAB = TAG + ".action.vocab";
     public static final String ACTION_VOCAB_LOOKUP = ACTION_VOCAB + ".lookup";
     public static final String ACTION_VOCAB_WORD = ACTION_VOCAB + ".word";
+    public static final String ACTION_VOCAB_QUIZ = ACTION_VOCAB + ".quiz";
     public static final String ACTION_VOCAB_FLASHCARDS = ACTION_VOCAB + ".flashcards";
 
     public static final String ACTION_NUMBERS_TIME = TAG + ".action.numbers";
@@ -180,6 +182,8 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
             onVocabLookup();
         } else if (TextUtils.equals(action, ACTION_VOCAB_WORD)) {
             onVocabWord(intent);
+        } else if (TextUtils.equals(action, ACTION_VOCAB_QUIZ)) {
+            onVocabQuiz();
         } else if (TextUtils.equals(action, ACTION_VOCAB_FLASHCARDS)) {
             onVocabFlashcards();
         } else if (TextUtils.equals(action, ACTION_NUMBERS_TIME)) {
@@ -295,6 +299,15 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         args.putParcelable(VocabWordFragment.ARG_VOCAB_WORD, word);
 
         VocabWordFragment fragment = VocabWordFragment.getInstance(args);
+        swapFragment(fragment);
+    }
+
+    private void onVocabQuiz() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof VocabQuizFragment) {
+            mDrawerLayout.closePane();
+            return;
+        }
+        VocabQuizFragment fragment = VocabQuizFragment.getInstance(new Bundle());
         swapFragment(fragment);
     }
 

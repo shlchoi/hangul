@@ -20,6 +20,7 @@ import ca.uwaterloo.sh6choi.korea101r.model.VocabSet;
 public class VocabWebIntentService extends WebIntentService {
 
     private static final String TAG = VocabWebIntentService.class.getCanonicalName();
+    public static final String ACTION_SUCCESS = TAG + ".action.success";
 
     public VocabWebIntentService() {
         super("VocabWebIntentService");

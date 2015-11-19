@@ -1,11 +1,18 @@
 package ca.uwaterloo.sh6choi.korea101r.fragments.numbers;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -15,6 +22,7 @@ import java.util.List;
 import ca.uwaterloo.sh6choi.korea101r.R;
 import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 import ca.uwaterloo.sh6choi.korea101r.adapters.NumbersAdapter;
+import ca.uwaterloo.sh6choi.korea101r.services.NumberWebIntentService;
 import ca.uwaterloo.sh6choi.korea101r.utils.NumberUtils;
 
 /**
@@ -23,10 +31,18 @@ import ca.uwaterloo.sh6choi.korea101r.utils.NumberUtils;
 public abstract class NumbersListFragment extends Fragment {
     private RecyclerView mListRecyclerView;
     private NumbersAdapter mAdapter;
+    private BroadcastReceiver mSuccessReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+                //mPinyinSwipeRefreshLayout.setRefreshing(false);
+            mAdapter.notifyDataSetChanged();
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+        setHasOptionsMenu(false);
         return inflater.inflate(R.layout.fragment_view_pager_list, container, false);
     }
 
@@ -54,6 +70,20 @@ public abstract class NumbersListFragment extends Fragment {
 
         mAdapter = new NumbersAdapter(numbers);
         mListRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        IntentFilter successFilter = new IntentFilter();
+        successFilter.addAction(NumberWebIntentService.ACTION_SUCCESS);
+        getContext().registerReceiver(mSuccessReceiver, successFilter);
+    }
+
+    @Override
+    public void onPause() {
+        getContext().unregisterReceiver(mSuccessReceiver);
+        super.onPause();
     }
 
     protected abstract List<String> getNumbers(int maxNum);

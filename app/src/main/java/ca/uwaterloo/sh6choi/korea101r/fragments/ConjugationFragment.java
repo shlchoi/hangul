@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,7 +19,6 @@ import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 import ca.uwaterloo.sh6choi.korea101r.model.VocabSet;
 import ca.uwaterloo.sh6choi.korea101r.model.VocabWord;
 import ca.uwaterloo.sh6choi.korea101r.presentation.VocabSetPresenter;
-import ca.uwaterloo.sh6choi.korea101r.utils.CharacterType;
 import ca.uwaterloo.sh6choi.korea101r.utils.ConjugationForm;
 import ca.uwaterloo.sh6choi.korea101r.utils.HangulUtils;
 import ca.uwaterloo.sh6choi.korea101r.utils.SpeechForm;
@@ -55,7 +53,7 @@ public class ConjugationFragment extends Fragment implements DrawerFragment, Vie
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-
+        setHasOptionsMenu(false);
         View contentView = inflater.inflate(R.layout.fragment_conjugation, container, false);
         return contentView;
     }
@@ -78,7 +76,7 @@ public class ConjugationFragment extends Fragment implements DrawerFragment, Vie
         mCheckButton.setOnClickListener(this);
 
         mPresenter = new VocabSetPresenter(getActivity(), this);
-        mPresenter.obtainVocab("verb");
+        mPresenter.obtainVocabulary("verb");
     }
 
     @Override
@@ -95,7 +93,7 @@ public class ConjugationFragment extends Fragment implements DrawerFragment, Vie
             case R.id.check_button:
                 String answer = HangulUtils.conjugate(mVerbSet.getWords()[mCurIndex].getHangul(), isPositive(mCurForm),
                         getVerbTense(mCurForm), isHonorific(mCurForm), getConjugationForm(mCurForm),
-                        SpeechForm.FORMAL_POLITE);
+                        SpeechForm.INFORMAL_POLITE);
 
                 if (TextUtils.equals(mInputEditText.getText(), answer)) {
                     switchVerb();
@@ -112,7 +110,7 @@ public class ConjugationFragment extends Fragment implements DrawerFragment, Vie
         int nextForm;
         int nextInt;
         do {
-            nextForm = random.nextInt(63);
+            nextForm = random.nextInt(255);
             nextInt = random.nextInt(mVerbSet.getWords().length);
         } while (nextInt == mCurIndex && nextForm == mCurForm);
 
@@ -133,37 +131,43 @@ public class ConjugationFragment extends Fragment implements DrawerFragment, Vie
         if (isHonorific(mCurForm)) {
             mSpeechFormConjugationTextView.setText(String.format(getString(R.string.conjugation_form_honorific),
                     positiveString, getString(verbTense.getStringResId()),
-                    getString(getConjugationForm(mCurForm).getStringResId())));
+                    getString(getConjugationForm(mCurForm).getStringResId()),
+                    getString(getSpeechForm(mCurForm).getStringResId())));
         } else {
             mSpeechFormConjugationTextView.setText(String.format(getString(R.string.conjugation_form),
                     positiveString, getString(verbTense.getStringResId()),
-                    getString(getConjugationForm(mCurForm).getStringResId())));
+                    getString(getConjugationForm(mCurForm).getStringResId()),
+                    getString(getSpeechForm(mCurForm).getStringResId())));
         }
 
         mInputEditText.setText("");
         mInputEditText.setError(null);
     }
 
+    private SpeechForm getSpeechForm(int form) {
+        return SpeechForm.values()[(form & 0b10000000) >> 6];
+    }
+
     private boolean isPositive(int form) {
-        return (form & 0b100000) == 0;
+        return (form & 0b00100000) == 0;
     }
 
     private VerbTense getVerbTense(int form) {
-        form = form & 0b101111;
+        form = form & 0b11101111;
 
-        return VerbTense.values()[(form & 0b011000) >> 3];
+        return VerbTense.values()[(form & 0b00011000) >> 3];
     }
 
     private boolean isHonorific(int form) {
-        return (form & 0b000100) == 0;
+        return (form & 0b00000100) == 0;
     }
 
     private ConjugationForm getConjugationForm(int form) {
         if (getVerbTense(form) == VerbTense.PAST) {
-            form = form & 0b111101;
+            form = form & 0b11111101;
         }
 
-        return ConjugationForm.values()[form & 0b000011];
+        return ConjugationForm.values()[form & 0b00000011];
     }
 
     @Override

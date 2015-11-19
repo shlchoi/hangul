@@ -36,7 +36,7 @@ public class HangulFragment extends Fragment implements DrawerFragment, View.OnC
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
-
+        setHasOptionsMenu(false);
         View contentView = inflater.inflate(R.layout.fragment_hangul, container, false);
         return contentView;
     }
