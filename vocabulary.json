@@ -832,5 +832,682 @@
                 "type": "additional"
             }
         ]
+    },
+    {
+        "lesson_id": 6,
+        "words": [
+            {
+                "word_id" : 600,
+                "hangul": "저녁",
+                "definitions": [
+                    "evening"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 601,
+                "hangul": "시간",
+                "definitions": [
+                    "time",
+                    "hour"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 602,
+                "hangul": "시",
+                "definitions": [
+                    "o'clock"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 603,
+                "hangul": "분",
+                "definitions": [
+                    "a minute (of an hour)"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 604,
+                "hangul": "영화",
+                "definitions": [
+                    "a movie"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 605,
+                "hangul": "후",
+                "definitions": [
+                    "after"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 606,
+                "hangul": "몇",
+                "definitions": [
+                    "how much"
+                    "how many"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 607,
+                "hangul": "보다",
+                "definitions": [
+                    "to see",
+                    "to watch"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 608,
+                "hangul": "만나다",
+                "definitions": [
+                    "to meet",
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 609,
+                "hangul": "바쁘다",
+                "definitions": [
+                    "to be busy"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 610,
+                "hangul": "좋다",
+                "definitions": [
+                    "to be good"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 611,
+                "hangul": "있다",
+                "definitions": [
+                    "to have (possesion)",
+                    "to be (existence)"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 612,
+                "hangul": "에",
+                "definitions": [
+                    "time particle",
+                    "destination particle",
+                    "location particle"
+                ],
+                "type": "particle"
+            },
+            {
+                "word_id" : 613,
+                "hangul": "극장",
+                "definitions": [
+                    "a theatre"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 614,
+                "hangul": "영화관",
+                "definitions": [
+                    "a movie theatre"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 615,
+                "hangul": "예쁘다",
+                "definitions": [
+                    "pretty"
+                ],
+                "type": "additional"
+            }
+        ]
+    },
+    {
+        "lesson_id": 7,
+        "words": [
+            {
+                "word_id" : 700,
+                "hangul": "가나은행",
+                "definitions": [
+                    "Gana Bank"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 701,
+                "hangul": "저기",
+                "definitions": [
+                    "over there"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 702,
+                "hangul": "호텔",
+                "definitions": [
+                    "a hotel"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 703,
+                "hangul": "뒤",
+                "definitions": [
+                    "behind"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 704,
+                "hangul": "옆",
+                "definitions": [
+                    "beside",
+                    "by"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 705,
+                "hangul": "근처",
+                "definitions": [
+                    "vincinity",
+                    "near"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 706,
+                "hangul": "백화점",
+                "definitions": [
+                    "a department store"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 707,
+                "hangul": "서울",
+                "definitions": [
+                    "Seoul"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 708,
+                "hangul": "이곳",
+                "definitions": [
+                    "this place",
+                    "here"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 709,
+                "hangul": "저곳",
+                "definitions": [
+                    "that place",
+                    "over there"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 710,
+                "hangul": "그곳",
+                "definitions": [
+                    "the place"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 711,
+                "hangul": "고맙다",
+                "definitions": [
+                    "to be thankful"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 712,
+                "hangul": "바로",
+                "definitions": [
+                    "just"
+                ],
+                "type": "adverb"
+            },
+            {
+                "word_id" : 713,
+                "hangul": "대단히",
+                "definitions": [
+                    "very much"
+                ],
+                "type": "adverb"
+            },
+            {
+                "word_id" : 714,
+                "hangul": "여기",
+                "definitions": [
+                    "a place near the speaker"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 715,
+                "hangul": "저기",
+                "definitions": [
+                    "a place away from the speaker and listener"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 716,
+                "hangul": "거기",
+                "definitions": [
+                    "a spot near the listener or understandable"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 717,
+                "hangul": "앞",
+                "definitions": [
+                    "front"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 718,
+                "hangul": "아래",
+                "definitions": [
+                    "below"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 719,
+                "hangul": "위",
+                "definitions": [
+                    "above"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 720,
+                "hangul": "오른쪽",
+                "definitions": [
+                    "right side"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 721,
+                "hangul": "왼쪽",
+                "definitions": [
+                    "left side"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 722,
+                "hangul": "안",
+                "definitions": [
+                    "inside"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 723,
+                "hangul": "밖",
+                "definitions": [
+                    "outside"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 724,
+                "hangul": "사이",
+                "definitions": [
+                    "between"
+                ],
+                "type": "additional"
+            }
+        ]
+    },
+    {
+        "lesson_id": 8,
+        "words": [
+            {
+                "word_id" : 800,
+                "hangul": "날씨",
+                "definitions": [
+                    "weather"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 801,
+                "hangul": "시장",
+                "definitions": [
+                    "a market"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 802,
+                "hangul": "남대문 시장",
+                "definitions": [
+                    "Namdaemoon (South Gate) Market"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 803,
+                "hangul": "지내다",
+                "definitions": [
+                    "to spend time",
+                    "to get along"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 804,
+                "hangul": "보다",
+                "definitions": [
+                    "to see",
+                    "to watch"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 805,
+                "hangul": "좋다",
+                "definitions": [
+                    "to be good"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 806,
+                "hangul": "좋아하다",
+                "definitions": [
+                    "to like"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 807,
+                "hangul": "참",
+                "definitions": [
+                    "really",
+                    "truely"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 808,
+                "hangul": "요즈음",
+                "definitions": [
+                    "these days"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 809,
+                "hangul": "어떻게",
+                "definitions": [
+                    "how"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 810,
+                "hangul": "잘",
+                "definitions": [
+                    "well"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 811,
+                "hangul": "아주",
+                "definitions": [
+                    "very (much)"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 812,
+                "hangul": "나중에",
+                "definitions": [
+                    "later"
+                ],
+                "type": "additional"
+            }
+        ]
+    },
+    {
+        "lesson_id": 9,
+        "words": [
+            {
+                "word_id" : 900,
+                "hangul": "취미",
+                "definitions": [
+                    "a hobby"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 901,
+                "hangul": "음악",
+                "definitions": [
+                    "music"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 902,
+                "hangul": "감상",
+                "definitions": [
+                    "appreciation"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 903,
+                "hangul": "재즈",
+                "definitions": [
+                    "jazz"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 904,
+                "hangul": "운동",
+                "definitions": [
+                    "exercise",
+                    "sport"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 905,
+                "hangul": "궈동",
+                "definitions": [
+                    "boxing"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 906,
+                "hangul": "어떤",
+                "definitions": [
+                    "what kinds of",
+                    "which"
+                ],
+                "type": "noun modifier"
+            },
+            {
+                "word_id" : 907,
+                "hangul": "모든",
+                "definitions": [
+                    "all"
+                ],
+                "type": "noun modifier"
+            },
+            {
+                "word_id" : 908,
+                "hangul": "특히",
+                "definitions": [
+                    "especially",
+                    "particularly"
+                ],
+                "type": "adverb"
+            },
+            {
+                "word_id" : 909,
+                "hangul": "별로",
+                "definitions": [
+                    "not really",
+                    "not so much"
+                ],
+                "type": "adverb"
+            }
+        ]
+    },
+    {
+        "lesson_id": 10,
+        "words": [
+            {
+                "word_id" : 1000,
+                "hangul": "밥",
+                "definitions": [
+                    "meal",
+                    "cooked rice"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 1001,
+                "hangul": "국수집",
+                "definitions": [
+                    "a noodle-house"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 1002,
+                "hangul": "불고기집",
+                "definitions": [
+                    "a bulgogi-house"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 1003,
+                "hangul": "점심",
+                "definitions": [
+                    "lunch",
+                    "luncheon"
+                ],
+                "type": "noun"
+            },
+            {
+                "word_id" : 1004,
+                "hangul": "되다",
+                "definitions": [
+                    "to become"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 1005,
+                "hangul": "먹다",
+                "definitions": [
+                    "to eat"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 1006,
+                "hangul": "배고프다",
+                "definitions": [
+                    "to be hungry"
+                ],
+                "type": "verb"
+            },
+            {
+                "word_id" : 1007,
+                "hangul": "벌써",
+                "definitions": [
+                    "already"
+                ],
+                "type": "adverb"
+            },
+            {
+                "word_id" : 1008,
+                "hangul": "빨리",
+                "definitions": [
+                    "quickly",
+                    "fast"
+                ],
+                "type": "adverb"
+            },
+            {
+                "word_id" : 1009,
+                "hangul": "아직",
+                "definitions": [
+                    "yet"
+                ],
+                "type": "adverb"
+            },
+            {
+                "word_id" : 1010,
+                "hangul": "아구",
+                "definitions": [
+                    "very much"
+                ],
+                "type": "adverb"
+            },
+            {
+                "word_id" : 1011,
+                "hangul": "무척",
+                "definitions": [
+                    "very much"
+                ],
+                "type": "adverb"
+            },
+            {
+                "word_id" : 1012,
+                "hangul": "집다",
+                "definitions": [
+                    "to pick up"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 1013,
+                "hangul": "슬프다",
+                "definitions": [
+                    "to be sad"
+                ],
+                "type": "additional"
+            },
+            {
+                "word_id" : 1014,
+                "hangul": "마시다",
+                "definitions": [
+                    "to drink"
+                ],
+                "type": "additional"
+            }
+        ]
     }
 ]
