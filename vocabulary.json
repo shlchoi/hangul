@@ -889,7 +889,7 @@
                 "word_id" : 606,
                 "hangul": "몇",
                 "definitions": [
-                    "how much"
+                    "how much",
                     "how many"
                 ],
                 "type": "noun"
@@ -907,7 +907,7 @@
                 "word_id" : 608,
                 "hangul": "만나다",
                 "definitions": [
-                    "to meet",
+                    "to meet"
                 ],
                 "type": "verb"
             },
