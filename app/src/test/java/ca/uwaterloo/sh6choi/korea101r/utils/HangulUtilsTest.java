@@ -164,10 +164,10 @@ public class HangulUtilsTest {
 
     @Test
     public void testFormalPolitePresentQuestionConjugation() {
-        String conjugated1 = HangulUtils.conjugateFormalPolitePresent(VERB_1, SpeechForm.FORMAL_POLITE, ConjugationForm.QUESTION);
-        String conjugated2 = HangulUtils.conjugateFormalPolitePresent(VERB_2, SpeechForm.FORMAL_POLITE, ConjugationForm.QUESTION);
-        String conjugated3 = HangulUtils.conjugateFormalPolitePresent(VERB_3, SpeechForm.FORMAL_POLITE, ConjugationForm.QUESTION);
-        String conjugated4 = HangulUtils.conjugateFormalPolitePresent(VERB_4, SpeechForm.FORMAL_POLITE, ConjugationForm.QUESTION);
+        String conjugated1 = HangulUtils.conjugateFormalPolitePresent(VERB_1, ConjugationForm.QUESTION);
+        String conjugated2 = HangulUtils.conjugateFormalPolitePresent(VERB_2, ConjugationForm.QUESTION);
+        String conjugated3 = HangulUtils.conjugateFormalPolitePresent(VERB_3, ConjugationForm.QUESTION);
+        String conjugated4 = HangulUtils.conjugateFormalPolitePresent(VERB_4, ConjugationForm.QUESTION);
 
         assertThat(conjugated1, equalTo("갑니까"));
         assertThat(conjugated2, equalTo("잡습니까"));
@@ -177,10 +177,10 @@ public class HangulUtilsTest {
 
     @Test
     public void testFormalPolitePresentCommandConjugation() {
-        String conjugated1 = HangulUtils.conjugateFormalPolitePresent(VERB_1, SpeechForm.FORMAL_POLITE, ConjugationForm.COMMAND);
-        String conjugated2 = HangulUtils.conjugateFormalPolitePresent(VERB_2, SpeechForm.FORMAL_POLITE, ConjugationForm.COMMAND);
-        String conjugated3 = HangulUtils.conjugateFormalPolitePresent(VERB_3, SpeechForm.FORMAL_POLITE, ConjugationForm.COMMAND);
-        String conjugated4 = HangulUtils.conjugateFormalPolitePresent(VERB_4, SpeechForm.FORMAL_POLITE, ConjugationForm.COMMAND);
+        String conjugated1 = HangulUtils.conjugateFormalPolitePresent(VERB_1, ConjugationForm.COMMAND);
+        String conjugated2 = HangulUtils.conjugateFormalPolitePresent(VERB_2, ConjugationForm.COMMAND);
+        String conjugated3 = HangulUtils.conjugateFormalPolitePresent(VERB_3, ConjugationForm.COMMAND);
+        String conjugated4 = HangulUtils.conjugateFormalPolitePresent(VERB_4, ConjugationForm.COMMAND);
 
         assertThat(conjugated1, equalTo("가십시오"));
         assertThat(conjugated2, equalTo("잡으십시오"));
@@ -190,10 +190,10 @@ public class HangulUtilsTest {
 
     @Test
     public void testFormalPolitePresentProposalConjugation() {
-        String conjugated1 = HangulUtils.conjugateFormalPolitePresent(VERB_1, SpeechForm.FORMAL_POLITE, ConjugationForm.PROPOSAL);
-        String conjugated2 = HangulUtils.conjugateFormalPolitePresent(VERB_2, SpeechForm.FORMAL_POLITE, ConjugationForm.PROPOSAL);
-        String conjugated3 = HangulUtils.conjugateFormalPolitePresent(VERB_3, SpeechForm.FORMAL_POLITE, ConjugationForm.PROPOSAL);
-        String conjugated4 = HangulUtils.conjugateFormalPolitePresent(VERB_4, SpeechForm.FORMAL_POLITE, ConjugationForm.PROPOSAL);
+        String conjugated1 = HangulUtils.conjugateFormalPolitePresent(VERB_1, ConjugationForm.PROPOSAL);
+        String conjugated2 = HangulUtils.conjugateFormalPolitePresent(VERB_2, ConjugationForm.PROPOSAL);
+        String conjugated3 = HangulUtils.conjugateFormalPolitePresent(VERB_3, ConjugationForm.PROPOSAL);
+        String conjugated4 = HangulUtils.conjugateFormalPolitePresent(VERB_4, ConjugationForm.PROPOSAL);
 
         assertThat(conjugated1, equalTo("갑시다"));
         assertThat(conjugated2, equalTo("잡읍시다"));

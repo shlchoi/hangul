@@ -40,7 +40,8 @@ checkstyle {
 }
 
 task checkstyle(type: Checkstyle) {
-    configFile file('../checkstyle.xml')
+    configFile = file("${rootDir}/app/checkstyle.xml")
+    configProperties = [rootDir: "${rootDir}"]
     source 'src/main/java'
     include '**/*.java'
     classpath = files()
