@@ -109,11 +109,8 @@ public class HangulCharacter implements Parcelable, FlashcardItem {
         dest.writeString(mType);
     }
 
-
-    public static class CharacterComparator implements Comparator<HangulCharacter>
-    {
-        public int compare(HangulCharacter c1, HangulCharacter c2)
-        {
+    public static class CharacterComparator implements Comparator<HangulCharacter> {
+        public int compare(HangulCharacter c1, HangulCharacter c2) {
             return c1.getCharacter().compareTo(c2.getCharacter());
         }
     }

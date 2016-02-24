@@ -20,10 +20,12 @@ public class NumberDataSource {
 
     private SQLiteDatabase mDatabase;
     private KoreanSQLiteOpenHelper mHelper;
-    private String[] mColumns = { KoreanSQLiteOpenHelper.COLUMN_NUMBER,
+    private String[] mColumns = {
+            KoreanSQLiteOpenHelper.COLUMN_NUMBER,
             KoreanSQLiteOpenHelper.COLUMN_KOREAN,
             KoreanSQLiteOpenHelper.COLUMN_SINO_KOREAN,
-            KoreanSQLiteOpenHelper.COLUMN_COUNT};
+            KoreanSQLiteOpenHelper.COLUMN_COUNT,
+    };
 
     public NumberDataSource(Context context) {
         mHelper = new KoreanSQLiteOpenHelper(context);
@@ -61,7 +63,6 @@ public class NumberDataSource {
             protected void onPostExecute(List<KoreanNumber> hangulCharacterList) {
                 callback.processResults(hangulCharacterList);
             }
-
         }.execute();
     }
 
@@ -89,11 +90,10 @@ public class NumberDataSource {
             protected void onPostExecute(List<KoreanNumber> hangulCharacterList) {
                 callback.processResults(hangulCharacterList);
             }
-
         }.execute();
     }
 
-    public void update(final List<KoreanNumber> koreanNumbers, final DatabaseRequestCallback<Void> callback ) {
+    public void update(final List<KoreanNumber> koreanNumbers, final DatabaseRequestCallback<Void> callback) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -105,7 +105,7 @@ public class NumberDataSource {
                         KoreanSQLiteOpenHelper.COLUMN_COUNT + ") VALUES ";
 
                 StringBuilder builder = new StringBuilder(sql);
-                for (int i = 0; i < koreanNumbers.size(); i ++) {
+                for (int i = 0; i < koreanNumbers.size(); i++) {
                     KoreanNumber koreanNumber = koreanNumbers.get(i);
                     String format = "(\"%1$s\", \"%2$s\", \"%3$s\", \"%4$s\")";
 

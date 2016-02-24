@@ -12,16 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.Arrays;
-import java.util.List;
 
 import ca.uwaterloo.sh6choi.korea101r.R;
 import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 import ca.uwaterloo.sh6choi.korea101r.adapters.FlashcardAdapter;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
-import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
 import ca.uwaterloo.sh6choi.korea101r.model.VocabSet;
 import ca.uwaterloo.sh6choi.korea101r.model.VocabWord;
-import ca.uwaterloo.sh6choi.korea101r.presentation.HangulCharacterPresenter;
 import ca.uwaterloo.sh6choi.korea101r.presentation.VocabSetPresenter;
 
 /**

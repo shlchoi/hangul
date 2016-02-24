@@ -10,17 +10,17 @@ public class HangulUtils {
     private static final int CHARS_PER_INITIAL = 588;
     private static final int CHARS_PER_VOWEL = 28;
 
-    private static final char[] UNICODE_INITIALS = new char[]{'ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'};
-    private static final char[] UNICODE_VOWELS = new char[] {'ᅡ','ᅢ','ᅣ','ᅤ','ᅥ','ᅦ','ᅧ','ᅨ','ᅩ','ᅪ','ᅫ','ᅬ','ᅭ','ᅮ','ᅯ','ᅰ','ᅱ','ᅲ','ᅳ','ᅴ','ᅵ'};
-    private static final char[] UNICODE_FINALS = new char[]{'ᆨ','ᆩ','ᆪ','ᆫ','ᆬ','ᆭ','ᆮ','ᆯ','ᆰ','ᆱ','ᆲ','ᆳ','ᆴ','ᆵ','ᆶ','ᆷ','ᆸ','ᆹ','ᆺ','ᆻ','ᆼ','ᆽ','ᆾ','ᆿ','ᇀ','ᇁ'};
+    private static final char[] UNICODE_INITIALS = new char[]{'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'};
+    private static final char[] UNICODE_VOWELS = new char[] {'ᅡ', 'ᅢ', 'ᅣ', 'ᅤ', 'ᅥ', 'ᅦ', 'ᅧ', 'ᅨ', 'ᅩ', 'ᅪ', 'ᅫ', 'ᅬ', 'ᅭ', 'ᅮ', 'ᅯ', 'ᅰ', 'ᅱ', 'ᅲ', 'ᅳ', 'ᅴ', 'ᅵ'};
+    private static final char[] UNICODE_FINALS = new char[]{'ᆨ', 'ᆩ', 'ᆪ', 'ᆫ', 'ᆬ', 'ᆭ', 'ᆮ', 'ᆯ', 'ᆰ', 'ᆱ', 'ᆲ', 'ᆳ', 'ᆴ', 'ᆵ', 'ᆶ', 'ᆷ', 'ᆸ', 'ᆹ', 'ᆺ', 'ᆻ', 'ᆼ', 'ᆽ', 'ᆾ', 'ᆿ', 'ᇀ', 'ᇁ'};
 
-    private static final char[] CHARACTER_INITIALS = new char[]{'ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'};
-    private static final char[] CHARACTER_VOWELS = new char[]{'ㅏ','ㅐ','ㅑ','ㅒ','ㅓ','ㅔ','ㅕ','ㅖ','ㅗ','ㅘ','ㅙ','ㅚ','ㅛ','ㅜ','ㅝ','ㅞ','ㅟ','ㅠ','ㅡ','ㅢ','ㅣ'};
-    private static final char[] CHARACTER_FINALS = new char[]{'ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'};
+    private static final char[] CHARACTER_INITIALS = new char[]{'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'};
+    private static final char[] CHARACTER_VOWELS = new char[]{'ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'};
+    private static final char[] CHARACTER_FINALS = new char[]{'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'};
 
-    private static final String[] ROMANIZED_INITIAL = new String[]{"g","kk","n","d","tt","r","m","b","pp","s","ss","","j","jj","ch","k","t","p","h"};
-    private static final String[] ROMANIZED_VOWEL = new String[]{"a","ae","ya","yae","eo","e","yeo","ye","o","wa","wae","oe","yo","u","wo","we","wi","yu","eu","ui","i"};
-    private static final String[] ROMANIZED_FINAL = new String[]{"k","k","k","n","n","n","t","l","k","m","p","l","l","l","l","m","p","p","t","t","ng","t","t","k","t","p","t"};
+    private static final String[] ROMANIZED_INITIAL = new String[]{"g", "kk", "n", "d", "tt", "r", "m", "b", "pp", "s", "ss", "", "j", "jj", "ch", "k", "t", "p", "h"};
+    private static final String[] ROMANIZED_VOWEL = new String[]{"a", "ae", "ya", "yae", "eo", "e", "yeo", "ye", "o", "wa", "wae", "oe", "yo", "u", "wo", "we", "wi", "yu", "eu", "ui", "i"};
+    private static final String[] ROMANIZED_FINAL = new String[]{"k", "k", "k", "n", "n", "n", "t", "l", "k", "m", "p", "l", "l", "l", "l", "m", "p", "p", "t", "t", "ng", "t", "t", "k", "t", "p", "t"};
 
     public static char[] unicodeDecompose(char hangul) {
         int value = Character.toString(hangul).codePointAt(0) - UNICODE_OFFSET;
@@ -77,7 +77,7 @@ public class HangulUtils {
         int vowelValue = -1;
         int finalValue = 0;
 
-        for (int i = 0; i < CHARACTER_INITIALS.length; i ++) {
+        for (int i = 0; i < CHARACTER_INITIALS.length; i++) {
             if (CHARACTER_INITIALS[i] == components[0]) {
                 initialValue = i;
                 break;
@@ -88,7 +88,7 @@ public class HangulUtils {
             throw new IllegalArgumentException("Not a valid hangul component");
         }
 
-        for (int i = 0; i < CHARACTER_VOWELS.length; i ++) {
+        for (int i = 0; i < CHARACTER_VOWELS.length; i++) {
             if (CHARACTER_VOWELS[i] == components[1]) {
                 vowelValue = i;
                 break;
@@ -100,7 +100,7 @@ public class HangulUtils {
         }
 
         if (components.length > 2) {
-            for (int i = 0; i < CHARACTER_FINALS.length; i ++) {
+            for (int i = 0; i < CHARACTER_FINALS.length; i++) {
                 if (CHARACTER_FINALS[i] == components[2]) {
                     finalValue = i + 1;
                     break;
@@ -143,7 +143,7 @@ public class HangulUtils {
 
         StringBuilder builder = new StringBuilder();
 
-        for (int i = 0; i < hangul.length(); i ++) {
+        for (int i = 0; i < hangul.length(); i++) {
             if (hangul.charAt(i) == ' ') {
                 builder.append(" ");
             } else if (hangul.charAt(i) == '.') {
@@ -457,7 +457,7 @@ public class HangulUtils {
 
             int initialValue = value / CHARS_PER_INITIAL;
             int vowelValue = (value - (initialValue * CHARS_PER_INITIAL)) / CHARS_PER_VOWEL;
-            int finalValue = (value - (     initialValue * CHARS_PER_INITIAL)) - (vowelValue * CHARS_PER_VOWEL);
+            int finalValue = (value - (initialValue * CHARS_PER_INITIAL)) - (vowelValue * CHARS_PER_VOWEL);
 
             if (finalValue == 0) {
                 if (vowelValue == 8) {

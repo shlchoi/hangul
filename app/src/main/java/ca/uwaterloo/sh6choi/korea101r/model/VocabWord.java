@@ -95,10 +95,8 @@ public class VocabWord implements Parcelable, FlashcardItem {
         }
     };
 
-    public static class WordComparator implements Comparator<VocabWord>
-    {
-        public int compare(VocabWord c1, VocabWord c2)
-        {
+    public static class WordComparator implements Comparator<VocabWord> {
+        public int compare(VocabWord c1, VocabWord c2) {
             return c1.getWordId() - c2.getWordId();
         }
     }

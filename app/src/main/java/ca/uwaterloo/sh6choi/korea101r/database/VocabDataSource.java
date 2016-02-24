@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -22,13 +21,17 @@ public class VocabDataSource {
 
     private SQLiteDatabase mDatabase;
     private KoreanSQLiteOpenHelper mHelper;
-    private String[] mColumnsVocab = { KoreanSQLiteOpenHelper.COLUMN_WORD_ID_VOCAB,
+    private String[] mColumnsVocab = {
+            KoreanSQLiteOpenHelper.COLUMN_WORD_ID_VOCAB,
             KoreanSQLiteOpenHelper.COLUMN_HANGUL_VOCAB,
             KoreanSQLiteOpenHelper.COLUMN_WORD_TYPE,
-            KoreanSQLiteOpenHelper.COLUMN_LESSON_ID};
+            KoreanSQLiteOpenHelper.COLUMN_LESSON_ID,
+    };
 
-    private String[] mColumnsDefinitions = { KoreanSQLiteOpenHelper.COLUMN_WORD_ID,
-            KoreanSQLiteOpenHelper.COLUMN_DEFINITION};
+    private String[] mColumnsDefinitions = {
+            KoreanSQLiteOpenHelper.COLUMN_WORD_ID,
+            KoreanSQLiteOpenHelper.COLUMN_DEFINITION,
+    };
 
     public VocabDataSource(Context context) {
         mHelper = new KoreanSQLiteOpenHelper(context);
@@ -226,11 +229,11 @@ public class VocabDataSource {
         }.execute();
     }
 
-    public void update(final VocabSet vocabSet, final DatabaseRequestCallback<Void> callback ) {
+    public void update(final VocabSet vocabSet, final DatabaseRequestCallback<Void> callback) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                for (int i = 0; i < vocabSet.getWords().length; i ++) {
+                for (int i = 0; i < vocabSet.getWords().length; i++) {
                     ContentValues vocabValues = new ContentValues();
                     vocabValues.put(KoreanSQLiteOpenHelper.COLUMN_WORD_ID_VOCAB, vocabSet.getWords()[i].getWordId());
                     vocabValues.put(KoreanSQLiteOpenHelper.COLUMN_LESSON_ID, vocabSet.getId());
@@ -240,7 +243,7 @@ public class VocabDataSource {
                     mDatabase.insertWithOnConflict(KoreanSQLiteOpenHelper.TABLE_VOCABULARY, null, vocabValues,
                             SQLiteDatabase.CONFLICT_REPLACE);
 
-                    for (int j = 0; j < vocabSet.getWords()[i].getDefinitions().length; j ++) {
+                    for (int j = 0; j < vocabSet.getWords()[i].getDefinitions().length; j++) {
                         ContentValues definitionValues = new ContentValues();
                         definitionValues.put(KoreanSQLiteOpenHelper.COLUMN_WORD_ID, vocabSet.getWords()[i].getWordId());
                         definitionValues.put(KoreanSQLiteOpenHelper.COLUMN_DEFINITION, vocabSet.getWords()[i].getDefinitions()[j]);
@@ -267,14 +270,14 @@ public class VocabDataSource {
     }
 
     private VocabWord cursorToWord(Cursor cursor) {
-        VocabWord word= new VocabWord(cursor.getInt(0), cursor.getString(1), new String[0], cursor.getString(2));
+        VocabWord word = new VocabWord(cursor.getInt(0), cursor.getString(1), new String[0], cursor.getString(2));
         return word;
     }
 
     private String generateQuestionMarkString(Set<Integer> args) {
         StringBuilder builder = new StringBuilder();
         Integer[] intArray = args.toArray(new Integer[args.size()]);
-        for (int i = 0; i < args.size(); i ++) {
+        for (int i = 0; i < args.size(); i++) {
             builder.append(intArray[i]);
             if (i < args.size() - 1) {
                 builder.append(", ");
@@ -285,7 +288,7 @@ public class VocabDataSource {
 
     private String generateQuestionMarkString(String... args) {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < args.length; i ++) {
+        for (int i = 0; i < args.length; i++) {
             builder.append("\"" + args[i] + "\"");
             if (i < args.length - 1) {
                 builder.append(", ");

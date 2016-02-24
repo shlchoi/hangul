@@ -35,8 +35,7 @@ public class HangulLookupFragment extends Fragment implements DrawerFragment, Ha
     private static final String TAG = HangulLookupFragment.class.getCanonicalName();
     public static final String FRAGMENT_TAG = MainActivity.TAG + ".fragment.hangul_lookup";
 
-    public static final String EXTRA_CHARACTER = TAG +".extra.character";
-
+    public static final String EXTRA_CHARACTER = TAG + ".extra.character";
 
     private RecyclerView mHangulRecyclerView;
     private HangulAdapter mHangulAdapter;

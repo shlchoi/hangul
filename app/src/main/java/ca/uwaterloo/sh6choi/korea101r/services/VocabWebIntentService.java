@@ -9,9 +9,7 @@ import com.google.gson.JsonParser;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import ca.uwaterloo.sh6choi.korea101r.database.HangulCharacterDataSource;
 import ca.uwaterloo.sh6choi.korea101r.database.VocabDataSource;
-import ca.uwaterloo.sh6choi.korea101r.model.DictationSet;
 import ca.uwaterloo.sh6choi.korea101r.model.VocabSet;
 
 /**

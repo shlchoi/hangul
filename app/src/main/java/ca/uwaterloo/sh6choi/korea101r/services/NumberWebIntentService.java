@@ -9,7 +9,6 @@ import com.google.gson.JsonParser;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import ca.uwaterloo.sh6choi.korea101r.database.DatabaseRequestCallback;

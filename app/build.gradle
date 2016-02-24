@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'checkstyle'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
 
     useLibrary 'org.apache.http.legacy'
 
@@ -32,4 +33,15 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.robolectric:robolectric:3.0'
+}
+
+checkstyle {
+    toolVersion = '6.7'
+}
+
+task checkstyle(type: Checkstyle) {
+    configFile file('../checkstyle.xml')
+    source 'src/main/java'
+    include '**/*.java'
+    classpath = files()
 }

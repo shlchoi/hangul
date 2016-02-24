@@ -29,7 +29,6 @@ public class VocabLookupFragment extends Fragment implements DrawerFragment  {
     private static final String TAG = VocabLookupFragment.class.getCanonicalName();
     public static final String FRAGMENT_TAG = MainActivity.TAG + ".fragment.kana_lookup";
 
-
     public static final String EXTRA_VOCAB_WORD = TAG + ".extras.vocab_word";
 
     private ViewPager mVocabViewPager;
@@ -62,7 +61,7 @@ public class VocabLookupFragment extends Fragment implements DrawerFragment  {
         mVocabPagerTabStrip.setDrawFullUnderline(true);
 
         List<Fragment> fragments = new ArrayList<>();
-        for (int i = 1; i < 6; i ++) {
+        for (int i = 1; i < 6; i++) {
             Bundle args = new Bundle();
             args.putInt(VocabListFragment.ARG_LESSON_ID, i);
             fragments.add(VocabListFragment.getInstance(args));

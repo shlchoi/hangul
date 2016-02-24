@@ -50,8 +50,9 @@ public class SlidingDrawer extends SlidingPaneLayout implements ISlidingPane, Sl
 
     @Override
     public boolean isOpen() {
-        if (!isSlideable())
+        if (!isSlideable()) {
             return false;
+        }
 
         return super.isOpen();
     }

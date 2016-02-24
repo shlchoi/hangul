@@ -1,9 +1,7 @@
 package ca.uwaterloo.sh6choi.korea101r.database;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -14,7 +12,6 @@ import java.util.Collections;
 import java.util.List;
 
 import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
-import ca.uwaterloo.sh6choi.korea101r.presentation.HangulCharacterPresenter;
 
 /**
  * Created by Samson on 2015-10-23.
@@ -23,13 +20,15 @@ public class HangulCharacterDataSource {
 
     private SQLiteDatabase mDatabase;
     private KoreanSQLiteOpenHelper mHelper;
-    private String[] mColumns = { KoreanSQLiteOpenHelper.COLUMN_CHAR_ID,
+    private String[] mColumns = {
+            KoreanSQLiteOpenHelper.COLUMN_CHAR_ID,
             KoreanSQLiteOpenHelper.COLUMN_CHARACTER,
             KoreanSQLiteOpenHelper.COLUMN_NAME,
             KoreanSQLiteOpenHelper.COLUMN_PRONUNCIATION,
             KoreanSQLiteOpenHelper.COLUMN_ROMANIZATION_INITIAL,
             KoreanSQLiteOpenHelper.COLUMN_ROMANIZATION_FINAL,
-            KoreanSQLiteOpenHelper.COLUMN_CHARACTER_TYPE};
+            KoreanSQLiteOpenHelper.COLUMN_CHARACTER_TYPE,
+    };
 
     public HangulCharacterDataSource(Context context) {
         mHelper = new KoreanSQLiteOpenHelper(context);
@@ -67,11 +66,10 @@ public class HangulCharacterDataSource {
             protected void onPostExecute(List<HangulCharacter> hangulCharacterList) {
                 callback.processResults(hangulCharacterList);
             }
-
         }.execute();
     }
 
-    public void update(final List<HangulCharacter> hangulCharacters, final DatabaseRequestCallback<Void> callback ) {
+    public void update(final List<HangulCharacter> hangulCharacters, final DatabaseRequestCallback<Void> callback) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -86,7 +84,7 @@ public class HangulCharacterDataSource {
                         KoreanSQLiteOpenHelper.COLUMN_CHARACTER_TYPE + ") VALUES ";
 
                 StringBuilder builder = new StringBuilder(sql);
-                for (int i = 0; i < hangulCharacters.size(); i ++) {
+                for (int i = 0; i < hangulCharacters.size(); i++) {
                     HangulCharacter character = hangulCharacters.get(i);
                     String format = "(\"%1$s\", \"%2$s\", \"%3$s\", \"%4$s\", \"%5$s\", \"%6$s\", \"%7$s\")";
 

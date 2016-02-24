@@ -42,7 +42,6 @@ public class VocabQuizFragment extends Fragment implements DrawerFragment, View.
     private TextView mHintTextView;
     private Button mCheckButton;
 
-
     public static VocabQuizFragment getInstance(Bundle args) {
         VocabQuizFragment fragment = new VocabQuizFragment();
         fragment.setArguments(args);
@@ -160,5 +159,4 @@ public class VocabQuizFragment extends Fragment implements DrawerFragment, View.
         startActivity(intent);
         return true;
     }
-
 }

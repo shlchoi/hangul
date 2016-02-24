@@ -93,10 +93,8 @@ public class KoreanNumber implements Parcelable {
         return mCount;
     }
 
-    public static class NumberComparator implements Comparator<KoreanNumber>
-    {
-        public int compare(KoreanNumber c1, KoreanNumber c2)
-        {
+    public static class NumberComparator implements Comparator<KoreanNumber> {
+        public int compare(KoreanNumber c1, KoreanNumber c2) {
             return c1.getNumber() - c2.getNumber();
         }
     }

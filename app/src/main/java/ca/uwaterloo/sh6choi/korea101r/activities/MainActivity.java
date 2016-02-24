@@ -3,19 +3,19 @@ package ca.uwaterloo.sh6choi.korea101r.activities;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.media.AudioManager;
-import android.speech.RecognizerIntent;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
-import android.support.v4.widget.DrawerLayout;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
@@ -24,11 +24,13 @@ import java.util.List;
 
 import ca.uwaterloo.sh6choi.korea101r.R;
 import ca.uwaterloo.sh6choi.korea101r.fragments.ConjugationFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.DictationFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
+import ca.uwaterloo.sh6choi.korea101r.fragments.PronunciationFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulCharacterFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulFlashcardFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.hangul.HangulLookupFragment;
-import ca.uwaterloo.sh6choi.korea101r.fragments.PronunciationFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.numbers.KoreanNumbersFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.numbers.NumberTimeFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.numbers.NumbersLookupFragment;
@@ -41,12 +43,7 @@ import ca.uwaterloo.sh6choi.korea101r.fragments.vocab.VocabQuizFragment;
 import ca.uwaterloo.sh6choi.korea101r.fragments.vocab.VocabWordFragment;
 import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
 import ca.uwaterloo.sh6choi.korea101r.model.VocabWord;
-import ca.uwaterloo.sh6choi.korea101r.services.HangulWebIntentService;
-import ca.uwaterloo.sh6choi.korea101r.services.NumberWebIntentService;
-import ca.uwaterloo.sh6choi.korea101r.services.VocabWebIntentService;
 import ca.uwaterloo.sh6choi.korea101r.utils.KeyboardUtils;
-import ca.uwaterloo.sh6choi.korea101r.fragments.DictationFragment;
-import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
 import ca.uwaterloo.sh6choi.korea101r.utils.NumberUtils;
 import ca.uwaterloo.sh6choi.korea101r.views.DrawerMenuAdapter;
 import ca.uwaterloo.sh6choi.korea101r.views.IDrawerMenuItem;
@@ -89,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
     private Toolbar mToolbar;
     private TextView mToolbarActionTextView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,8 +111,7 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         mToolbarActionTextView = (TextView) mToolbar.findViewById(R.id.toolbar_action_tv);
 
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM
-                | ActionBar.DISPLAY_SHOW_HOME);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
 
         mWrappedDrawerLayout = new ISlidingPane.DrawerLayoutWrapper(this, mDrawerLayout) {
             @Override
@@ -428,10 +423,11 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
         final View fragmentContainer = findViewById(R.id.fragment_container);
         mDrawerLayout.closePane();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             fragmentContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        else
+        } else {
             fragmentContainer.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+        }
     }
 
     @Override
@@ -449,8 +445,9 @@ public class MainActivity extends AppCompatActivity implements ViewTreeObserver.
     }
 
     private void refreshToolbar(boolean shouldShowUp, int titleResId) {
-        if (getSupportActionBar() == null)
+        if (getSupportActionBar() == null) {
             return;
+        }
 
         if (shouldShowUp) {
             getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM

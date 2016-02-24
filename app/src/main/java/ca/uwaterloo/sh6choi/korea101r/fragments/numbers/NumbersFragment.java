@@ -18,7 +18,6 @@ import java.util.Random;
 import ca.uwaterloo.sh6choi.korea101r.R;
 import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
-import ca.uwaterloo.sh6choi.korea101r.utils.NumberUtils;
 
 /**
  * Created by Samson on 2015-11-02.

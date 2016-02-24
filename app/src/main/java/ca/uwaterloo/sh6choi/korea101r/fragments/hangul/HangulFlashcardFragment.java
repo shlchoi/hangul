@@ -4,26 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
-import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 import ca.uwaterloo.sh6choi.korea101r.R;
+import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 import ca.uwaterloo.sh6choi.korea101r.adapters.FlashcardAdapter;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
-import ca.uwaterloo.sh6choi.korea101r.model.FlashcardItem;
 import ca.uwaterloo.sh6choi.korea101r.model.HangulCharacter;
 import ca.uwaterloo.sh6choi.korea101r.presentation.HangulCharacterPresenter;
 

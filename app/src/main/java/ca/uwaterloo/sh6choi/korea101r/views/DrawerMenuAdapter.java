@@ -19,6 +19,7 @@ public class DrawerMenuAdapter extends BaseAdapter {
 
     private List<IDrawerMenuItem> mMenuItems;
     private Context mContext;
+
     public DrawerMenuAdapter(Context context, List<IDrawerMenuItem> menuLabels) {
         super();
 

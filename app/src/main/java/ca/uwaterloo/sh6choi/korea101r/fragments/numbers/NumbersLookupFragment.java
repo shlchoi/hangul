@@ -19,17 +19,15 @@ import java.util.List;
 import ca.uwaterloo.sh6choi.korea101r.R;
 import ca.uwaterloo.sh6choi.korea101r.activities.MainActivity;
 import ca.uwaterloo.sh6choi.korea101r.adapters.NumbersViewPagerAdapater;
-import ca.uwaterloo.sh6choi.korea101r.adapters.VocabViewPagerAdapter;
 import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
-import ca.uwaterloo.sh6choi.korea101r.fragments.vocab.VocabListFragment;
 import ca.uwaterloo.sh6choi.korea101r.services.NumberWebIntentService;
 
 /**
  * Created by Samson on 2015-11-03.
  */
 public class NumbersLookupFragment extends Fragment implements DrawerFragment {
-    private String TAG = NumbersLookupFragment.class.getCanonicalName();
-    private String FRAGMENT_TAG = MainActivity.TAG + ".fragment.numbers.lookup";
+    private static final String TAG = NumbersLookupFragment.class.getCanonicalName();
+    private static final String FRAGMENT_TAG = MainActivity.TAG + ".fragment.numbers.lookup";
 
     private ViewPager mNumbersViewPager;
     private PagerTabStrip mNumbersPagerTabString;
@@ -87,7 +85,6 @@ public class NumbersLookupFragment extends Fragment implements DrawerFragment {
         }
     }
 
-    //    @Override
     public void onRefresh() {
         Intent intent = new Intent(getContext(), NumberWebIntentService.class);
         getContext().startService(intent);

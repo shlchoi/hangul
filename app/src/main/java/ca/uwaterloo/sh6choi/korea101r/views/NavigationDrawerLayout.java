@@ -40,7 +40,7 @@ public abstract class NavigationDrawerLayout extends SlidingDrawer {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        if(isInEditMode()) {
+        if (isInEditMode()) {
             return;
         }
         initializeMenu();
@@ -59,6 +59,7 @@ public abstract class NavigationDrawerLayout extends SlidingDrawer {
     }
 
     protected abstract void setupClickListener();
+
     protected abstract void startNavigation(IDrawerMenuItem navigateToItem);
 }
 

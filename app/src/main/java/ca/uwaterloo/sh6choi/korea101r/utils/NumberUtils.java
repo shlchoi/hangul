@@ -23,7 +23,7 @@ public class NumberUtils {
         dataSource.queryNumbers(new DatabaseRequestCallback<List<KoreanNumber>>() {
             @Override
             public void processResults(List<KoreanNumber> results) {
-                for (int i = 0; i < results.size(); i ++) {
+                for (int i = 0; i < results.size(); i++) {
                     sKoreanNumberMap.put(results.get(i).getNumber(), results.get(i));
                 }
             }

@@ -10,9 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,7 +20,6 @@ import ca.uwaterloo.sh6choi.korea101r.fragments.DrawerFragment;
 import ca.uwaterloo.sh6choi.korea101r.model.VocabSet;
 import ca.uwaterloo.sh6choi.korea101r.model.VocabWord;
 import ca.uwaterloo.sh6choi.korea101r.presentation.VocabSetPresenter;
-import ca.uwaterloo.sh6choi.korea101r.services.NumberWebIntentService;
 import ca.uwaterloo.sh6choi.korea101r.services.VocabWebIntentService;
 
 /**

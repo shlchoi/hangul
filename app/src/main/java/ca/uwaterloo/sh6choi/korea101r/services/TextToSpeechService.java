@@ -6,7 +6,6 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.widget.Toast;
 
 import java.util.Locale;
