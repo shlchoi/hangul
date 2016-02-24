@@ -7,3 +7,8 @@ test:
     pre:
     - ./gradlew checkstyle
     - ./gradlew lint
+    - ./gradlew clean test
+
+general:
+  artifacts:
+      - "lint-results.html"

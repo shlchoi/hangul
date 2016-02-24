@@ -11,6 +11,7 @@ android {
         applicationId "ca.uwaterloo.sh6choi.korea101r"
         minSdkVersion 16
         targetSdkVersion 23
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
         versionCode 1
         versionName "1.0"
     }
